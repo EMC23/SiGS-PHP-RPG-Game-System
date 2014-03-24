@@ -1,0 +1,46 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsFeedback
+ *
+ * @ORM\Table(name="j17_jigs_feedback", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id", "number"})})
+ * @ORM\Entity
+ */
+class J17JigsFeedback
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="number", type="integer", nullable=false)
+     */
+    private $number;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user", type="integer", nullable=false)
+     */
+    private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="feedback", type="string", length=255, nullable=false)
+     */
+    private $feedback;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

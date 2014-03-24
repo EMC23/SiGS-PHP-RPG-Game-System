@@ -1,0 +1,137 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsPages
+ *
+ * @ORM\Table(name="j17_jigs_pages")
+ * @ORM\Entity
+ */
+class J17JigsPages
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="posy", type="boolean", nullable=false)
+     */
+    private $posy;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="posx", type="boolean", nullable=false)
+     */
+    private $posx;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=50, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="details", type="string", length=50, nullable=false)
+     */
+    private $details;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255, nullable=false)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="owner", type="integer", nullable=false)
+     */
+    private $owner;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="proprio_equipe", type="integer", nullable=false)
+     */
+    private $proprioEquipe;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", nullable=false)
+     */
+    private $price;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="timer", type="integer", nullable=false)
+     */
+    private $timer;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="acces", type="boolean", nullable=false)
+     */
+    private $acces;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="grid", type="integer", nullable=false)
+     */
+    private $grid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="map", type="integer", nullable=false)
+     */
+    private $map;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="published", type="integer", nullable=false)
+     */
+    private $published;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

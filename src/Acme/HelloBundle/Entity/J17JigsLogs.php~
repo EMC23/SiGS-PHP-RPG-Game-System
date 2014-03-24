@@ -1,0 +1,46 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsLogs
+ *
+ * @ORM\Table(name="j17_jigs_logs")
+ * @ORM\Entity
+ */
+class J17JigsLogs
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    private $userId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=255, nullable=false)
+     */
+    private $message;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp", type="datetime", nullable=false)
+     */
+    private $timestamp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

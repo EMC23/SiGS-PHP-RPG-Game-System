@@ -1,0 +1,60 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsFlats
+ *
+ * @ORM\Table(name="j17_jigs_flats", uniqueConstraints={@ORM\UniqueConstraint(name="building", columns={"building", "flat"})})
+ * @ORM\Entity
+ */
+class J17JigsFlats
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="building", type="integer", nullable=false)
+     */
+    private $building;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="flat", type="integer", nullable=false)
+     */
+    private $flat;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="smallint", nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="resident", type="integer", nullable=false)
+     */
+    private $resident;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="timestamp", type="integer", nullable=false)
+     */
+    private $timestamp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

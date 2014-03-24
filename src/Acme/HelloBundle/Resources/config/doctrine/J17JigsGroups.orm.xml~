@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\HelloBundle\Entity\J17JigsGroups" table="j17_jigs_groups">
+   
+           <one-to-one field="gid" target-entity="J17UserGroups">
+            <join-column name="id" referenced-column-name="id" />
+        </one-to-one>
+   
+   
+   
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="totalMembers" type="integer" column="total_members" nullable="false"/>
+    <field name="totalBank" type="integer" column="total_bank" nullable="false"/>
+    <field name="totalXp" type="integer" column="total_xp" nullable="false"/>
+    <field name="totalMoney" type="integer" column="total_money" nullable="false"/>
+  </entity>
+</doctrine-mapping>

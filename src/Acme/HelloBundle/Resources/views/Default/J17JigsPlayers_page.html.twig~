@@ -1,0 +1,63 @@
+{% extends 'AcmeHelloBundle::base.html.twig' %}
+
+
+
+{% block body %}
+{{ knp_menu_render('AcmeHelloBundle:Builder:mainMenu') }}
+
+
+
+
+
+
+
+
+
+
+
+Username : {{stuff.Name}}<br/>
+Posx : {{player.Posx}}<br/>
+Posy : {{player.Posy}}<br/>     
+iduser : {{player.iduser}}<br/>
+Map : {{player.Map}}<br/>
+Grid : {{player.Grid}}<br/>
+Level : {{player.Level}}<br/>
+Xp : {{player.Xp}}<br/>
+Energy : {{player.Energy}}<br/>
+Statpoints : {{player.Statpoints}}<br/>
+Health : {{player.Health}}<br/>
+Attack : {{player.Attack}}<br/>
+FinalAttack : {{player.FinalAttack}}<br/>
+Defence : {{player.Defence}}<br/>
+FinalDefence : {{player.FinalDefence}}<br/>
+IdWeapon : {{player.IdWeapon}}<br/>
+Strength : {{player.Strength}}<br/>
+Speed : {{player.Speed}}<br/>
+Intelligence: {{player.Intelligence}}<br/>
+Dexterity : {{player.Dexterity}}<br/>
+Team : {{player.Team}}<br/>
+Money : {{player.Money}}<br/>
+IdCar : {{player.IdCar}}<br/>
+Reservoir : {{player.Reservoir}}<br/>
+Ammunition : {{player.Ammunition}}<br/>
+Tempsplanque : {{player.Tempsplanque}}<br/>
+Image : {{player.Image}}<br/>
+Tempsmove : {{player.Tempsmove}}<br/>
+Ip : {{player.Ip}}<br/>
+Commentaire : {{player.Commentaire}}<br/>
+Bank : {{player.Bank}}<br/>
+Parrainage : {{player.Parrainage}}<br/>
+Stupefiant : {{player.Stupefiant}}<br/>
+Volevoiture : {{player.Volevoiture}}<br/>
+Volearme : {{player.Volearme}}<br/>
+NbrAttacks : {{player.NbrAttacks}}<br/>
+NbrCrops : {{player.NbrCrops}}<br/>
+NbrObjs : {{player.NbrObjs}}<br/>
+Active : {{player.Active}}<br/>
+TimeKilled : {{player.TimeKilled}}<br/>
+Empty : {{player.Empty}}<br/>
+Messages : {{player.Messages}}<br/>
+Published : {{player.Published}}<br/>
+Flags : {{player.Flags}}<br/>
+
+{% endblock %}

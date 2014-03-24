@@ -1,0 +1,46 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsAwards
+ *
+ * @ORM\Table(name="j17_jigs_awards")
+ * @ORM\Entity
+ */
+class J17JigsAwards
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="iduser", type="integer", nullable=false)
+     */
+    private $iduser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="name_id", type="integer", nullable=false)
+     */
+    private $nameId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="published", type="integer", nullable=false)
+     */
+    private $published;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

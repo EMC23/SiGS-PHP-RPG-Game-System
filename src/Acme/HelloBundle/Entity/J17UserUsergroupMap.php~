@@ -1,0 +1,34 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17UserUsergroupMap
+ *
+ * @ORM\Table(name="j17_user_usergroup_map")
+ * @ORM\Entity
+ */
+class J17UserUsergroupMap
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $userId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="group_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $groupId;
+
+
+}

@@ -1,0 +1,53 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsShopMetalPrices
+ *
+ * @ORM\Table(name="j17_jigs_shop_metal_prices")
+ * @ORM\Entity
+ */
+class J17JigsShopMetalPrices
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="shop_id", type="integer", nullable=false)
+     */
+    private $shopId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="item_id", type="integer", nullable=false)
+     */
+    private $itemId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sell_price", type="integer", nullable=false)
+     */
+    private $sellPrice;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="buy_price", type="integer", nullable=false)
+     */
+    private $buyPrice;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

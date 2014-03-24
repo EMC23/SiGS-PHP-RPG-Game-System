@@ -1,0 +1,172 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsBuildings
+ *
+ * @ORM\Table(name="j17_jigs_buildings")
+ * @ORM\Entity
+ */
+class J17JigsBuildings
+{
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="posy", type="boolean", nullable=false)
+     */
+    private $posy;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="posx", type="boolean", nullable=false)
+     */
+    private $posx;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", nullable=false)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="protection", type="smallint", nullable=false)
+     */
+    private $protection;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="coffre", type="integer", nullable=false)
+     */
+    private $coffre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=50, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="public", type="boolean", nullable=false)
+     */
+    private $public;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="couleur", type="string", length=7, nullable=false)
+     */
+    private $couleur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="xp", type="smallint", nullable=false)
+     */
+    private $xp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="owner", type="integer", nullable=false)
+     */
+    private $owner;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="proprio_equipe", type="integer", nullable=false)
+     */
+    private $proprioEquipe;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", nullable=false)
+     */
+    private $price;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="timer", type="integer", nullable=false)
+     */
+    private $timer;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="acces", type="boolean", nullable=false)
+     */
+    private $acces;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="grid", type="integer", nullable=false)
+     */
+    private $grid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="map", type="integer", nullable=false)
+     */
+    private $map;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="messages", type="string", length=255, nullable=false)
+     */
+    private $messages;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean", nullable=false)
+     */
+    private $published;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

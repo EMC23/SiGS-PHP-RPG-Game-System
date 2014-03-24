@@ -1,0 +1,31 @@
+{% extends 'AcmeHelloBundle::base.html.twig' %}
+
+
+{% block body %}
+{{ knp_menu_render('AcmeHelloBundle:Builder:mainMenu') }}
+
+Username : {{stuff.name}}<br/>
+Posx : {{stuff.Posx}}<br/>
+Posy : {{stuff.Posy}}<br/>     
+
+Map : {{stuff.Map}}<br/>
+Grid : {{stuff.Grid}}<br/>
+Level : {{stuff.Level}}<br/>
+Xp : {{stuff.Xp}}<br/>
+
+Image : {{stuff.Image}}<br/>
+Active : {{stuff.Active}}<br/>
+TimeKilled : {{stuff.TimeKilled}}<br/>
+Empty : {{stuff.Empty}}<br/>
+
+Published : {{stuff.Published}}<br/>
+
+
+{{ form(form) }}
+
+
+
+
+
+
+{% endblock %}

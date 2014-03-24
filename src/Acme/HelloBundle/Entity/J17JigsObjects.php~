@@ -1,0 +1,81 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsObjects
+ *
+ * @ORM\Table(name="j17_jigs_objects")
+ * @ORM\Entity
+ */
+class J17JigsObjects
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="man_time", type="integer", nullable=false)
+     */
+    private $manTime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="metal_1", type="integer", nullable=false)
+     */
+    private $metal1;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantity_1", type="integer", nullable=false)
+     */
+    private $quantity1;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="metal_2", type="integer", nullable=false)
+     */
+    private $metal2;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantity_2", type="integer", nullable=false)
+     */
+    private $quantity2;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

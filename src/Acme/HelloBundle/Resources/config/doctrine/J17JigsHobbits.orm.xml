@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\HelloBundle\Entity\J17JigsHobbits" table="j17_jigs_hobbits">
+    <unique-constraints>
+      <unique-constraint name="id" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="255" nullable="false"/>
+    <field name="health" type="integer" column="health" nullable="false"/>
+    <field name="strength" type="integer" column="strength" nullable="false"/>
+    <field name="intelligence" type="integer" column="intelligence" nullable="false"/>
+    <field name="faction" type="integer" column="faction" nullable="false"/>
+    <field name="gid" type="integer" column="gid" nullable="true"/>
+    <field name="owner" type="integer" column="owner" nullable="true"/>
+      <field name="birth" type="string" column="birth" nullable="true"/>
+    <field name="contentment" type="integer" column="contentment" nullable="true"/>  
+    
+    
+    
+    
+  </entity>
+</doctrine-mapping>

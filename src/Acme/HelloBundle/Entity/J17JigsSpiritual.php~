@@ -1,0 +1,32 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsSpiritual
+ *
+ * @ORM\Table(name="j17_jigs_spiritual")
+ * @ORM\Entity
+ */
+class J17JigsSpiritual
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=28, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

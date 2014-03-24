@@ -1,0 +1,347 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsPlayers
+ *
+ * @ORM\Table(name="j17_jigs_players", uniqueConstraints={@ORM\UniqueConstraint(name="iduser", columns={"id"})})
+ * @ORM\Entity
+ */
+class J17JigsPlayers
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="posx", type="boolean", nullable=false)
+     */
+    private $posx;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="posy", type="boolean", nullable=false)
+     */
+    private $posy;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="map", type="integer", nullable=false)
+     */
+    private $map;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="grid", type="integer", nullable=false)
+     */
+    private $grid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="xp", type="integer", nullable=false)
+     */
+    private $xp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="energy", type="integer", nullable=false)
+     */
+    private $energy;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="statpoints", type="integer", nullable=false)
+     */
+    private $statpoints;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="health", type="boolean", nullable=false)
+     */
+    private $health;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="attack", type="boolean", nullable=false)
+     */
+    private $attack;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="final_attack", type="integer", nullable=false)
+     */
+    private $finalAttack;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defence", type="boolean", nullable=false)
+     */
+    private $defence;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="final_defence", type="integer", nullable=false)
+     */
+    private $finalDefence;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_weapon", type="integer", nullable=false)
+     */
+    private $idWeapon;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="strength", type="integer", nullable=false)
+     */
+    private $strength;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="speed", type="integer", nullable=false)
+     */
+    private $speed;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="intelligence", type="integer", nullable=false)
+     */
+    private $intelligence;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dexterity", type="integer", nullable=false)
+     */
+    private $dexterity;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="team", type="boolean", nullable=false)
+     */
+    private $team;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="money", type="integer", nullable=false)
+     */
+    private $money;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="id_car", type="boolean", nullable=false)
+     */
+    private $idCar;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="reservoir", type="boolean", nullable=false)
+     */
+    private $reservoir;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ammunition", type="boolean", nullable=false)
+     */
+    private $ammunition;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tempsplanque", type="integer", nullable=false)
+     */
+    private $tempsplanque;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tempsmove", type="integer", nullable=false)
+     */
+    private $tempsmove;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="string", length=20, nullable=true)
+     */
+    private $ip;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=255, nullable=false)
+     */
+    private $commentaire;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bank", type="integer", nullable=false)
+     */
+    private $bank;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="parrainage", type="integer", nullable=false)
+     */
+    private $parrainage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="stupefiant", type="integer", nullable=false)
+     */
+    private $stupefiant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="volevoiture", type="smallint", nullable=false)
+     */
+    private $volevoiture;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="volearme", type="smallint", nullable=false)
+     */
+    private $volearme;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="voleargent", type="smallint", nullable=false)
+     */
+    private $voleargent;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_attacks", type="integer", nullable=false)
+     */
+    private $nbrAttacks;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_kills", type="integer", nullable=false)
+     */
+    private $nbrKills;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_crops", type="integer", nullable=false)
+     */
+    private $nbrCrops;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_objs", type="integer", nullable=false)
+     */
+    private $nbrObjs;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_drills", type="integer", nullable=false)
+     */
+    private $nbrDrills;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="active", type="integer", nullable=false)
+     */
+    private $active;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="time_killed", type="integer", nullable=false)
+     */
+    private $timeKilled;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="empty", type="integer", nullable=false)
+     */
+    private $empty;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="messages", type="string", length=255, nullable=false)
+     */
+    private $messages;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean", nullable=false)
+     */
+    private $published;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flags", type="string", length=255, nullable=false)
+     */
+    private $flags;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

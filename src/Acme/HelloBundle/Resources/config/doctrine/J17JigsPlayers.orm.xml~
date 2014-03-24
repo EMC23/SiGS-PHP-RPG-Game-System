@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\HelloBundle\Entity\J17JigsPlayers" table="j17_jigs_players">
+    <unique-constraints>
+      <unique-constraint name="iduser" columns="iduser"/>
+    </unique-constraints>
+    <id name="iduser" type="integer" column="iduser">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="username" type="string" column="username" length="255" nullable="false"/>
+    <field name="posx" type="boolean" column="posx" nullable="false"/>
+    <field name="posy" type="boolean" column="posy" nullable="false"/>
+    <field name="map" type="integer" column="map" nullable="false"/>
+    <field name="grid" type="integer" column="grid" nullable="false"/>
+    <field name="level" type="integer" column="level" nullable="false"/>
+    <field name="xp" type="integer" column="xp" nullable="false"/>
+    <field name="energy" type="integer" column="energy" nullable="false"/>
+    <field name="statpoints" type="integer" column="statpoints" nullable="false"/>
+    <field name="health" type="boolean" column="health" nullable="false"/>
+    <field name="attack" type="boolean" column="attack" nullable="false"/>
+    <field name="finalAttack" type="integer" column="final_attack" nullable="false"/>
+    <field name="defence" type="boolean" column="defence" nullable="false"/>
+    <field name="finalDefence" type="integer" column="final_defence" nullable="false"/>
+    <field name="idWeapon" type="integer" column="id_weapon" nullable="false"/>
+    <field name="strength" type="integer" column="strength" nullable="false"/>
+    <field name="speed" type="integer" column="speed" nullable="false"/>
+    <field name="intelligence" type="integer" column="intelligence" nullable="false"/>
+    <field name="dexterity" type="integer" column="dexterity" nullable="false"/>
+    <field name="team" type="boolean" column="team" nullable="false"/>
+    <field name="money" type="integer" column="money" nullable="false"/>
+    <field name="idCar" type="boolean" column="id_car" nullable="false"/>
+    <field name="reservoir" type="boolean" column="reservoir" nullable="false"/>
+    <field name="ammunition" type="boolean" column="ammunition" nullable="false"/>
+    <field name="tempsplanque" type="integer" column="tempsplanque" nullable="false"/>
+    <field name="image" type="string" column="image" length="255" nullable="false"/>
+    <field name="tempsmove" type="integer" column="tempsmove" nullable="false"/>
+    <field name="ip" type="string" column="ip" length="20" nullable="true"/>
+    <field name="commentaire" type="string" column="commentaire" length="255" nullable="false"/>
+    <field name="bank" type="integer" column="bank" nullable="false"/>
+    <field name="parrainage" type="integer" column="parrainage" nullable="false"/>
+    <field name="stupefiant" type="integer" column="stupefiant" nullable="false"/>
+    <field name="volevoiture" type="smallint" column="volevoiture" nullable="false"/>
+    <field name="volearme" type="smallint" column="volearme" nullable="false"/>
+    <field name="voleargent" type="smallint" column="voleargent" nullable="false"/>
+    <field name="nbrAttacks" type="integer" column="nbr_attacks" nullable="false"/>
+    <field name="nbrKills" type="integer" column="nbr_kills" nullable="false"/>
+    <field name="nbrCrops" type="integer" column="nbr_crops" nullable="false"/>
+    <field name="nbrObjs" type="integer" column="nbr_objs" nullable="false"/>
+    <field name="nbrDrills" type="integer" column="nbr_drills" nullable="false"/>
+    <field name="active" type="integer" column="active" nullable="false"/>
+    <field name="timeKilled" type="integer" column="time_killed" nullable="false"/>
+    <field name="empty" type="integer" column="empty" nullable="false"/>
+    <field name="messages" type="string" column="messages" length="255" nullable="false"/>
+    <field name="published" type="boolean" column="published" nullable="false"/>
+    <field name="flags" type="string" column="flags" length="255" nullable="false"/>
+  </entity>
+</doctrine-mapping>

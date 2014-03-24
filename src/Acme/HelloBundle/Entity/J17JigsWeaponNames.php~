@@ -1,0 +1,130 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsWeaponNames
+ *
+ * @ORM\Table(name="j17_jigs_weapon_names")
+ * @ORM\Entity
+ */
+class J17JigsWeaponNames
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=50, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="max_ammunition", type="boolean", nullable=false)
+     */
+    private $maxAmmunition;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="attack", type="boolean", nullable=false)
+     */
+    private $attack;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defence", type="boolean", nullable=false)
+     */
+    private $defence;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="precision", type="boolean", nullable=false)
+     */
+    private $precision;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="detente", type="boolean", nullable=false)
+     */
+    private $detente;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sell_price", type="integer", nullable=false)
+     */
+    private $sellPrice;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="prix_munition", type="integer", nullable=false)
+     */
+    private $prixMunition;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="text", nullable=false)
+     */
+    private $commentaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idmagasin", type="integer", nullable=false)
+     */
+    private $idmagasin;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="nombre", type="boolean", nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="xp", type="smallint", nullable=false)
+     */
+    private $xp;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="special", type="boolean", nullable=false)
+     */
+    private $special;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean", nullable=false)
+     */
+    private $published;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="smallint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

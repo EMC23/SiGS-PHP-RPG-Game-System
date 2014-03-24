@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\HelloBundle\Entity\J17UserUsergroupMap" table="j17_user_usergroup_map">
+    <id name="userId" type="integer" column="user_id"/>
+    <id name="groupId" type="integer" column="group_id"/>
+  </entity>
+</doctrine-mapping>

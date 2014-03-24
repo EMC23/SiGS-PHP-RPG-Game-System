@@ -1,0 +1,46 @@
+<?php
+
+namespace Acme\HelloBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * J17JigsMetals
+ *
+ * @ORM\Table(name="j17_jigs_metals", uniqueConstraints={@ORM\UniqueConstraint(name="player_id", columns={"player_id", "item_id"})})
+ * @ORM\Entity
+ */
+class J17JigsMetals
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="player_id", type="integer", nullable=false)
+     */
+    private $playerId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="item_id", type="integer", nullable=false)
+     */
+    private $itemId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantity", type="integer", nullable=false)
+     */
+    private $quantity;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

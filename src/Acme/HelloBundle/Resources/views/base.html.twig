@@ -1,0 +1,25 @@
+{# app/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html>
+{% block head %}
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
+      <link href="/bundles/framework/css/structure.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/bundles/framework/css/body.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+    <body>
+        <div id="sidebar" class="sf-reset">
+            {% block sidebar %}
+               
+            {% endblock %}
+        </div>
+
+        <div id="content">
+      <div class="sf-reset">
+        <div class="block">
+            {% block body %}{% endblock %}
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
