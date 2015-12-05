@@ -1,0 +1,10 @@
+<?php
+
+class Jigs{
+
+
+    function generateLove()
+    {
+        return 'love';
+    }
+}

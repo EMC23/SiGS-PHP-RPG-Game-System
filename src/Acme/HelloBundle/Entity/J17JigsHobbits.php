@@ -61,6 +61,14 @@ class J17JigsHobbits
      */
     private $owner;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="owner_type", type="string", nullable=true)
+     */
+    private $owner_type;
+
      /**
      * @var text
      *
@@ -95,7 +103,7 @@ class J17JigsHobbits
      */
     public function setContentment($contentment)
     {
-        $this->birth = $contentment;
+        $this->contentment = $contentment;
 
         return $this;
     }
@@ -274,6 +282,7 @@ class J17JigsHobbits
         return $this->gid;
     }
 
+
     /**
      * Set owner
      *
@@ -283,7 +292,6 @@ class J17JigsHobbits
     public function setOwner($owner)
     {
         $this->owner = $owner;
-
         return $this;
     }
 
@@ -296,6 +304,34 @@ class J17JigsHobbits
     {
         return $this->owner;
     }
+//////////////////////////////////////////////////////////////////////
+
+    /**
+     * Set owner
+     *
+     * @param integer $owner
+     * @return J17JigsHobbits
+     */
+    public function setOwner_type($owner_type)
+    {
+        $this->owner_type = $owner_type;
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return integer 
+     */
+    public function getOwner_type()
+    {
+        return $this->owner_type;
+    }
+
+
+////////////////////////////////////////////////////
+
+
 
     /**
      * Get id
@@ -310,31 +346,4 @@ class J17JigsHobbits
  
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

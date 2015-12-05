@@ -61,6 +61,14 @@ class J17JigsHobbits
      */
     private $owner;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="owner_type", type="string", nullable=true)
+     */
+    private $owner_type;
+
      /**
      * @var text
      *
@@ -87,8 +95,55 @@ class J17JigsHobbits
     private $id;
     
     
+        /**
+     * Set birth
+     *
+     * @param string $birth
+     * @return J17JigsHobbits
+     */
+    public function setContentment($contentment)
+    {
+        $this->contentment = $contentment;
+
+        return $this;
+    }
+
+    /**
+     * Get contentment
+     *
+     * @return string 
+     */
+    public function getContentment()
+    {
+        return $this->contentment;
+    }
+      
+      /**
+     * Set birth
+     *
+     * @param string $birth
+     * @return J17JigsHobbits
+     */
+    public function setBirth($birth)
+    {
+        $this->birth = $birth;
+
+        return $this;
+    }
+
+    /**
+     * Get birth
+     *
+     * @return string 
+     */
+    public function getBirth()
+    {
+        return $this->birth;
+    }
     
     
+    
+      
     /**
      * Set name
      *
@@ -227,6 +282,11 @@ class J17JigsHobbits
         return $this->gid;
     }
 
+
+
+
+
+
     /**
      * Set owner
      *
@@ -249,6 +309,46 @@ class J17JigsHobbits
     {
         return $this->owner;
     }
+//////////////////////////////////////////////////////////////////////
+
+    /**
+     * Set owner
+     *
+     * @param integer $owner
+     * @return J17JigsHobbits
+     */
+    public function setOwner_type($owner_type)
+    {
+        $this->owner_type = $owner_type;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return integer 
+     */
+    public function getOwner_type()
+    {
+        return $this->owner_type;
+    }
+
+
+////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Get id
@@ -263,31 +363,4 @@ class J17JigsHobbits
  
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

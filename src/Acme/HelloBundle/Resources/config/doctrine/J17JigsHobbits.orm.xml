@@ -14,7 +14,11 @@
     <field name="faction" type="integer" column="faction" nullable="false"/>
     <field name="gid" type="integer" column="gid" nullable="true"/>
     <field name="owner" type="integer" column="owner" nullable="true"/>
-      <field name="birth" type="string" column="birth" nullable="true"/>
+    <field name="owner_type" type="string" column="owner_type" nullable="true"/>
+    
+    
+    
+    <field name="birth" type="string" column="birth" nullable="true"/>
     <field name="contentment" type="integer" column="contentment" nullable="true"/>  
     
     

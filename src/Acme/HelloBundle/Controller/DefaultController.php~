@@ -4,13 +4,14 @@ namespace Acme\HelloBundle\Controller;
         use Symfony\Bundle\FrameworkBundle\Controller\Controller;
         use Acme\HelloBundle\Entity\J17JigsAwards;
         use Symfony\Component\HttpFoundation\Response;
+        use Acme\HelloBundle\Model\Jigs;
         use Acme\HelloBundle\Entity\J17JigsCharacters;
         use Acme\HelloBundle\Entity\J17JigsPlayers;
         use Acme\HelloBundle\Entity\J17JigsBuildings;
         use Acme\HelloBundle\Entity\J17JigsHobbits;       
         use Acme\HelloBundle\Entity\Mudnames;       
         use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
-        
+        use Acme\HelloBundle\JigsFactory;
         //use Acme\HelloBundle\Entity\J17JigsFactions;
      //   use Acme\HelloBundle\Entity\J17JUsergroups;
         use Symfony\Component\HttpFoundation\Request;
@@ -53,26 +54,46 @@ class DefaultController extends Controller
  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////      
         public function newAction($type, Request $request)
     {
+    
+      $em = $this->getDoctrine()->getManager();
+    
+      
+     
+     $jigs = $this->get('my_JigsFactory');
+      
       if ($type == 'J17JigsHobbits')
         {
     
        $task           = new J17JigsHobbits();
+   //    $jigs           = new Jigs();
+       
     
      $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random' ;    
      $name           = Mudnames::generate_name_from($file);
+     
+     
      $task->setName($name);
-    $faction        = $task->getFaction();
-     $task->setFaction($faction);  
+     
+     $hobbit                = $jigs->generateHobbit();
+     
+     $task->setFaction($hobbit['faction_number']);
+     $task->setGid($hobbit['Gid'] ); 
+     $task->setHealth($hobbit['health']);     
+     $task->setStrength($hobbit['strength'] );         
+     $task->setIntelligence($hobbit['intelligence']);     
+     $task->setOwner($hobbit['owner']);     
+     
+     
     
      $form = $this->createFormBuilder($task)
             ->add('name')
             ->add('faction')
-             ->add('health')           
-              ->add('strength')          
+            ->add('health')           
+            ->add('strength')          
             ->add('intelligence')            
-             ->add('group')           
-                ->add('owner')           
-
+            ->add('gid')           
+            ->add('owner')           
+            ->add('contentment') 
             ->add('save', 'submit')
             
             ->getForm();
@@ -88,23 +109,28 @@ if ($form->isValid()) {
 
 
                     $name           = $task->getName();
-                    $faction        = 42;
-                //    $health         = $record->getHealth();
-               //     $strength       = $record->getStrength();
-              //      $intelligence   = $record->getIntelligence();
-             //       $group          = $record->getGroup();
-             //       $owner          = $record->getOwner();
-                
+                    $faction        = $task->getFaction();
+                    $contentment    = $task->getContentment();
+                    $health         = $task->getHealth();
+                    $intelligence   = $task->getIntelligence();
+                    $strength        = $task->getStrength();
+                    $gid          = $task->getGid();
+                    $owner          = $task->getOwner();
+               
+                    //$faction    = $task->getFaction();
+                    //$gid        = $task->getGid();     
+
                     $task->setName($name);
                     $task->setFaction($faction);        
-                  //  $task->setHealth($health);
-               //     $task->setStrength($strength);
-                //    $task->setIntelligence($intelligence);
-                //    $task->setGroup($group);
-               //     $task->setOwner($owner);
+                    $task->setHealth($health);
+                    $task->setStrength($strength);
+                    $task->setIntelligence($intelligence);
+                    $task->setContentment($contentment);
+                    $task->setGid($gid);
+                    $task->setOwner($owner);
 
 
-    $em = $this->getDoctrine()->getManager();
+  
     $em->persist($task);
     $em->flush();
 
@@ -173,6 +199,7 @@ if ($form->isValid()) {
                     $intelligence   = $record->getIntelligence();
                     $group          = $record->getGroup();
                     $owner          = $record->getOwner();
+                    $contentment    = $record->getContentment();
                 
                     $task->setName($name);
                     $task->setFaction($faction);        
@@ -181,7 +208,7 @@ if ($form->isValid()) {
                     $task->setIntelligence($intelligence);
                     $task->setGroup($group);
                     $task->setOwner($owner);
-      
+                    $task->setContentment($contentment);
         
         $form = $this->createFormBuilder($task)
             ->add('name', 'text')
@@ -190,7 +217,7 @@ if ($form->isValid()) {
               ->add('strength', 'text')          
             ->add('intelligence', 'text')            
              ->add('group', 'text')           
-            
+               ->add('contentment', 'text')           
 
             ->add('save', 'submit')
             
