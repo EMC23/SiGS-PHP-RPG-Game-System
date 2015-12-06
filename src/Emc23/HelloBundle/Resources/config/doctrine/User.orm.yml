@@ -1,0 +1,9 @@
+# src/Emc23/HelloBundle/Resources/config/doctrine/User.orm.yml
+Emc23\HelloBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO

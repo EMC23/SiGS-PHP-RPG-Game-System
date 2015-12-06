@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Emc23\HelloBundle\Entity\J17JigsFactions" table="j17_jigs_factions">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="totalGroups" type="integer" column="total_groups" nullable="false"/>
+    <field name="totalPlayers" type="integer" column="total_players" nullable="false"/>
+    <field name="totalXp" type="integer" column="total_xp" nullable="false"/>
+    <field name="totalMoney" type="integer" column="total_money" nullable="false"/>
+    <field name="totalBuildings" type="integer" column="total_buildings" nullable="false"/>
+    <field name="coffers" type="integer" column="coffers" nullable="false"/>
+  </entity>
+</doctrine-mapping>

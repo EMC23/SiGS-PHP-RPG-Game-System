@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Emc23\HelloBundle\Entity\J17JigsMines" table="j17_jigs_mines">
+    <unique-constraints>
+      <unique-constraint name="building_id" columns="building,mine"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="building" type="integer" column="building" nullable="false"/>
+    <field name="mine" type="integer" column="mine" nullable="false"/>
+    <field name="status" type="integer" column="status" nullable="false"/>
+    <field name="type" type="smallint" column="type" nullable="false"/>
+    <field name="timestamp" type="integer" column="timestamp" nullable="false"/>
+  </entity>
+</doctrine-mapping>
