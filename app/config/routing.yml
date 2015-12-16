@@ -1,11 +1,11 @@
-acme_hello:
-    resource: "@AcmeHelloBundle/Resources/config/routing.yml"
+emc23_hello:
+    resource: "@Emc23SigsBundle/Resources/config/routing.yml"
     prefix:   /
 
-# src/Acme/HelloBundle/Resources/config/routing.yml
+# src/Acme/SigsBundle/Resources/config/routing.yml
 hello:
     path:     /hello/{name}
-    defaults: { _controller: AcmeHelloBundle:Hello:index }
+    defaults: { _controller: Emc23SigsBundle:Hello:index }
     
     
     # app/config/routing.yml

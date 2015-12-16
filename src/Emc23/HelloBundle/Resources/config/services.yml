@@ -1,7 +1,0 @@
-parameters:
-#    emc23_hello.example.class: Emc23\HelloBundle\Example
-
-services:
-#    emc23_hello.example:
-#        class: %emc23_hello.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

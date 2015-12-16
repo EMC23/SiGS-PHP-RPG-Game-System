@@ -19,10 +19,10 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "knplabs/knp-menu-bundle":"dev-master",
-        "knplabs/knp-menu": "2.0.*@dev",
          "friendsofsymfony/user-bundle": "~2.0@dev",
-          "symfony/console": "2.5.*@dev"
+         "symfony/console": "2.5.*@dev",
+        "knplabs/knp-menu-bundle": "^2.1",
+        "knplabs/knp-menu": "^2.1"
     },
     "scripts": {
         "post-install-cmd": [

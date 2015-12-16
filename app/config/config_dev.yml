@@ -34,3 +34,17 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+
+
+
+
+
+
+
+
+# app/config/config.yml
+services:    
+    my_JigsFactory:
+        class:        Emc23\SigsBundle\JigsFactory
+        arguments:    ['@doctrine.orm.entity_manager']   

@@ -93,6 +93,10 @@ knp_menu:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Acme\HelloBundle\Entity\User    
-    
-    
+    user_class: Emc23\SigsBundle\Entity\User
+
+# app/config/config.yml
+services:    
+    my_JigsFactory:
+        class:        Emc23\SigsBundle\JigsFactory
+        arguments:    [arg]    

@@ -15,11 +15,11 @@ Generate Hobbit Type
 Move Hobbit
 
 The integrated website includes views for: 
-hobbits,
-players,
-buildings,
-groups 
-and 
-factions
+    hobbits,
+    players,
+    buildings,
+    groups 
+    and 
+    factions
 
 In Progress Serverside AI for zombies and halflings.
