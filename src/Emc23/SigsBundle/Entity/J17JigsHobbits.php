@@ -22,9 +22,17 @@ class J17JigsHobbits
     /**
      * @var integer
      *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="health", type="integer", nullable=false)
      */
     private $health;
+
 
     /**
      * @var integer
@@ -104,6 +112,28 @@ class J17JigsHobbits
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @param $type
+     * @return $this
+     * */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get contentment
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
 
 
     /**
@@ -314,8 +344,6 @@ class J17JigsHobbits
     }
 //////////////////////////////////////////////////////////////////////
 
-
-/////////////////////////////////////////////////////////////////////
     /**
      * Set y
      *
@@ -339,11 +367,6 @@ class J17JigsHobbits
     }
 //////////////////////////////////////////////////////////////////////
 
-
-
-
-
-/////////////////////////////////////////////////////////////////////
     /**
      * Set owner
      *
@@ -389,10 +412,7 @@ class J17JigsHobbits
         return $this->owner_type;
     }
 
-
 ////////////////////////////////////////////////////
-
-
 
     /**
      * Get id
@@ -403,8 +423,5 @@ class J17JigsHobbits
     {
         return $this->id;
     }
-    
- 
-    
 }
 

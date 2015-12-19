@@ -49,25 +49,11 @@ class J17Usergroups
      */
     private $id;
 
-
-
-
-
  /**
      * @ORM\OneToOne(targetEntity="J17JigsGroups", referencedColumnName="gid")
      */
 
 private $gid;
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Set parentId

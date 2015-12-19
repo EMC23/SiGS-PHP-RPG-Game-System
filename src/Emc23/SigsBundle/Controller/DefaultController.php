@@ -90,15 +90,11 @@ class DefaultController extends Controller
                 ->getForm();
         }
 
-
         $form->handleRequest($request);
-
 
         if ($form->isValid()) {
 
-//$record = $form->getData();
-
-
+        //$record = $form->getData();
             $name = $task->getName();
             $faction = $task->getFaction();
             $contentment = $task->getContentment();
@@ -119,16 +115,12 @@ class DefaultController extends Controller
             $task->setContentment($contentment);
             $task->setGid($gid);
             $task->setOwner($owner);
-
-
             $em->persist($task);
             $em->flush();
 
             return $this->redirect($this->generateUrl('task_success'));
         }
-
         return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
-
     }
 
 

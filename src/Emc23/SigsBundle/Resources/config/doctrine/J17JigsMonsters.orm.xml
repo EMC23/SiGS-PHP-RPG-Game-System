@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Emc23\SigsBundle\Entity\J17JigsMonsters" table="j17_jigs_monsters">
+    <indexes>
+      <index name="id_2" columns="id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="id" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="type" type="integer" column="type" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="health" type="integer" column="health" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">100</option>
+      </options>
+    </field>
+    <field name="map" type="integer" column="map" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="grid" type="integer" column="grid" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">99</option>
+      </options>
+    </field>
+    <field name="x" type="integer" column="x" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="y" type="integer" column="y" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

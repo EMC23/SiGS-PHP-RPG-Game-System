@@ -9,7 +9,6 @@ use Emc23\SigsBundle\Entity\J17JigsCharacters;
 class JigsFactory
 {
 
-
     protected $em;
 
     public function __construct($em)
@@ -27,10 +26,15 @@ class JigsFactory
         $hobbit['intelligence']          = $this->generateIntelligence();
         $hobbit['contentment']           = $this->generateContentment();
         $hobbit['owner']                 = $this->generateOwner($hobbit['Gid']);
-
+        $hobbit['type']                  = $this->generateType();
         return $hobbit;    
     }
+    function generateType()
+    {
 
+        return rand(1, 160);
+
+    }
 
     function generateLove()
     {

@@ -1,6 +1,5 @@
 <?php
 
-// src/Acme/DemoBundle/Command/GreetCommand.php
 namespace Emc23\SigsBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -16,7 +15,7 @@ class GreetCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('demo:greet')
+            ->setName('Emc23:greet')
             ->setDescription('Greet someone')
             ->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to greet?')
             ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
@@ -47,28 +46,14 @@ class GreetCommand extends ContainerAwareCommand
         $task->setOwner($hobbit['owner']->id);
         $task->setOwner_type($hobbit['owner']->type);    
         $task->setContentment($hobbit['contentment']);
-           
         $text = $hobbit['owner']->type;
           
         $output->writeln($text);    
-    
-           
+
         $em->persist($task);
         $em->flush();
      
-      /*  
-        $name = $input->getArgument('name');
-        if ($name) {
-            $text = 'Hello '.$name;
-        } else {
-            $text = 'Hello';
-        }
 
-        if ($input->getOption('yell')) {
-            $text = strtoupper($text);
-        }
-  
-        $output->writeln($text);*/
         
     }
 }

@@ -34,7 +34,11 @@ class Mudnames_Dictionnaries {
      *
      * @param string $directory directory where the dictionnaries can be found
      */
-    public function __construct($directory='./data/') {
+    public function __construct() {
+
+        $directory=dirname(__FILE__).'/data/';
+
+
         if (!file_exists($directory)) {
             throw new InvalidArgumentException ('Directory \''. $directory . '\' doesn\'t exist.');
         }
