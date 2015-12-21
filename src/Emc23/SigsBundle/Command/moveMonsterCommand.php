@@ -13,13 +13,13 @@ use Emc23\SigsBundle\Entity\Mudnames;
 use Doctrine\ORM\Query;
 use \ZMQContext;
 
-class moveHobbitCommand extends ContainerAwareCommand
+class moveMonsterCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('Emc23:moveHobbit')
-            ->setDescription('Greet someone')
+            ->setName('Emc23:moveMonster')
+            ->setDescription('Move a monster')
             ->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to greet?')
             ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
         ;
@@ -31,7 +31,7 @@ class moveHobbitCommand extends ContainerAwareCommand
         //$file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
         //$name              = Mudnames::generate_name_from($file);
         $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
-        $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbits a";
+        $dql = "SELECT a FROM Emc23SigsBundle:J17JigsMonsters a";
         $query = $em->createQuery($dql);
         $result = $query->getResult(Query::HYDRATE_ARRAY);
         //$task              = new J17JigsHobbitTypes();
@@ -73,7 +73,7 @@ class moveHobbitCommand extends ContainerAwareCommand
             }
             $x      = $row['x'];
             $y      = $row['y'];
-            $dql    = "UPDATE Emc23SigsBundle:J17JigsHobbits u SET u.x = $x, u.y = $y WHERE u.id =" . $row['id'];
+            $dql    = "UPDATE Emc23SigsBundle:J17JigsMonsters u SET u.x = $x, u.y = $y WHERE u.id =" . $row['id'];
 
             $query  = $em->createQuery($dql);
             $query->execute();
@@ -85,12 +85,12 @@ class moveHobbitCommand extends ContainerAwareCommand
 
 
             //temporary todo: only send diff
-            $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbits a";
+            $dql = "SELECT a FROM Emc23SigsBundle:J17JigsMonsters a";
             $query = $em->createQuery($dql);
             $result = $query->getResult(Query::HYDRATE_ARRAY);
 
 
-            $entryData  = array('category' => 'halflingsCategory', 'title' => 'title', 'article'  => $result, 'when' => time()  );
+            $entryData  = array('category' => 'monstersCategory', 'title' => 'title', 'article'  => $result, 'when' => time()  );
             $socket->send(json_encode($entryData));
 
             //  $output->writeln($type);

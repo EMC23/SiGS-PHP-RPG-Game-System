@@ -7,11 +7,11 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Emc23\SigsBundle\Entity\J17JigsHobbits;
-use Emc23\SigsBundle\Entity\Mudnames;
+use Emc23\SigsBundle\Entity\J17JigsMonsters;
+
 use Emc23\SigsBundle\JigsFactory;
 
-class makeHobbitCommand extends ContainerAwareCommand
+class makeMonsterCommand extends ContainerAwareCommand
 {
 
 //protected $em;
@@ -25,7 +25,7 @@ class makeHobbitCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('Emc23:makeHobbit')
+            ->setName('Emc23:makeMonster')
             ->setDescription('generate Hobbit')
             ->addArgument('name', InputArgument::OPTIONAL, 'Enter name of new hobbit?')
             ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
@@ -37,23 +37,17 @@ class makeHobbitCommand extends ContainerAwareCommand
         $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
          //   $name = $input->getArgument('name');
          $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random' ;
-         $name           = Mudnames::generate_name_from($file);
 
-         $task              = new J17JigsHobbits();
+         $task              = new J17JigsMonsters();
          $jigs              = new JigsFactory($em);
-         $hobbit            = $jigs->generateHobbit();
-         $task->setName($name);
+         $monster            = $jigs->generateMonster();
 
-         echo 'Name:' . $name . PHP_EOL;
-         $task->setType($hobbit['type']);
-         $task->setFaction($hobbit['faction_number']);
-         $task->setGid($hobbit['Gid'] );
-         $task->setHealth($hobbit['health']);
-         $task->setStrength($hobbit['strength'] );
-         $task->setIntelligence($hobbit['intelligence']);
-         $task->setOwner($hobbit['owner']->id);
-         $task->setOwner_type($hobbit['owner']->type);
-         $task->setContentment($hobbit['contentment']);
+
+         $task->setType($monster['type']);
+
+         $task->setHealth($monster['health']);
+         $task->setStrength($monster['strength'] );
+         $task->setIntelligence($monster['intelligence']);
 
         $task->setX(rand(10,100));
         $task->setY(rand(10,100));
