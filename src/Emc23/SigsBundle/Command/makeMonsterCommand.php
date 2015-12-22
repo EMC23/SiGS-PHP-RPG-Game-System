@@ -16,7 +16,6 @@ class makeMonsterCommand extends ContainerAwareCommand
 
 //protected $em;
 
-
   //  public function __construct($em)
   //  {
  //       $this->em = $em;
@@ -34,23 +33,18 @@ class makeMonsterCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
+         $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
          //   $name = $input->getArgument('name');
-         $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random' ;
-
+         //$file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random' ;
          $task              = new J17JigsMonsters();
          $jigs              = new JigsFactory($em);
-         $monster            = $jigs->generateMonster();
-
-
+         $monster           = $jigs->generateMonster();
          $task->setType($monster['type']);
-
          $task->setHealth($monster['health']);
          $task->setStrength($monster['strength'] );
          $task->setIntelligence($monster['intelligence']);
-
-        $task->setX(rand(10,100));
-        $task->setY(rand(10,100));
+         $task->setX(rand(10,100));
+         $task->setY(rand(10,100));
          $em->persist($task);
          $em->flush();
          $text='done';
