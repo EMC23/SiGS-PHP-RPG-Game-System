@@ -8,7 +8,6 @@ use Emc23\SigsBundle\Entity\J17JigsCharacters;
 
 class JigsFactory
 {
-
     protected $em;
 
     public function __construct($em)
@@ -18,7 +17,6 @@ class JigsFactory
 
     function generateHobbit()
     {
-
         $hobbit['faction_number']        = $this->generateFaction();
         $hobbit['Gid']                   = $this->generateGroup($hobbit['faction_number']);
         $hobbit['health']                = $this->generateHealth();
@@ -26,21 +24,53 @@ class JigsFactory
         $hobbit['intelligence']          = $this->generateIntelligence();
         $hobbit['contentment']           = $this->generateContentment();
         $hobbit['owner']                 = $this->generateOwner($hobbit['Gid']);
-        $hobbit['type']                  = $this->generateType();
+        $hobbit['type']                  = $this->generateHobbitType();
         return $hobbit;    
     }
-    function generateType()
+
+    function generateMonsterType()
     {
+        $result         = $this->em->createQuery("SELECT a.id FROM Emc23SigsBundle:J17JigsMonsterTypes a")->getArrayResult();
+        $ids            = array_map('current', $result);
+        $randomIndex    = rand(1, count($ids));
+        print_r($ids) .PHP_EOL;
+        $randomIndex    = rand(1, count($ids));
 
-        return rand(1, 160);
+        echo $randomIndex. PHP_EOL;
 
+        echo $ids[$randomIndex]. PHP_EOL;
+
+        return  $ids[$randomIndex];
     }
+
+    function generateHobbitType()
+    {
+        $result         = $this->em->createQuery("SELECT a.id FROM Emc23SigsBundle:J17JigsHobbits a")->getArrayResult();
+        $ids            = array_map('current', $result);
+
+        print_r($ids) .PHPEOL;
+        $randomIndex    = rand(1, count($ids));
+
+        echo $randomIndex. PHP_EOL;
+
+        echo $ids[$randomIndex]. PHP_EOL;
+
+        return  $ids[$randomIndex];
+    }
+
 
     function generateLove()
     {
         return 'love';
     }
-    
+    function generateMonster()
+    {
+        $monster['health']                = $this->generateHealth();
+        $monster['strength']              = $this->generateStrength();
+        $monster['intelligence']          = $this->generateIntelligence();
+        $monster['type']                  = $this->generateMonsterType();
+        return $monster;
+    }
     function generateFaction()
     {
         
@@ -67,11 +97,8 @@ class JigsFactory
     
     function generateGroup($faction)
     {
-    
         $query      = $this->em->createQuery('SELECT a FROM Emc23SigsBundle:J17Usergroups a WHERE a.parentId =' . $faction);
-
         $result     = $query->getResult(Query::HYDRATE_ARRAY);
-        
         $i          = 0;
         foreach ($result as $row)
         {
@@ -80,31 +107,24 @@ class JigsFactory
         }
         
         $new_index      = rand(0,$i-1);
-        
         return $array[$new_index];
 
     }
     
     function generateContentment()
     {
-    
-    return rand(1, 10);
-        
-    } 
+        return rand(1, 10);
+    }
     
     function generateHealth()
     {
-    
-    return rand(8, 11);
-        
-    }   
+        return rand(8, 11);
+    }
 
     function generateStrength()
     {
-    
-    return rand(8, 11);
-        
-    } 
+        return rand(8, 11);
+    }
 
     function generateIntelligence()
     {
