@@ -39,3 +39,6 @@ emc23_hello_homepage10:
     pattern:  /new/{type}
     defaults: { _controller: Emc23SigsBundle:Default:new }
 
+emc23_sigs_hobbit_types:
+ pattern:  /hobbittypes/list
+    defaults: { _controller: Emc23SigsBundle:HobbitType:list }
