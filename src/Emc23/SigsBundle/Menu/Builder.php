@@ -12,7 +12,7 @@ class Builder
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
-$menu->setChildrenAttributes(array('id' => 'menu'));
+        $menu->setChildrenAttributes(array('id' => 'menu'));
         $menu->addChild('Home', array('route' => 'emc23_hello_homepage4'));
         
         $menu->addChild('Players', array(
@@ -43,8 +43,12 @@ $menu->setChildrenAttributes(array('id' => 'menu'));
          $menu->addChild('Hobbits', array(
             'route' => 'emc23_hello_homepage5',
             'routeParameters' => array('type' => 'J17JigsHobbits')        
-         ));        
+         ));
 
+        $menu->addChild('HobbitTypes', array(
+            'route' => 'emc23_sigs_hobbit_types',
+            'routeParameters' => array('type' => 'J17JigsHobbitTypes')
+        ));
         // ... add more children
 
         return $menu;
