@@ -1,0 +1,44 @@
+{% extends 'Emc23SigsBundle::base.html.twig' %}
+{% block body %}
+    {{ knp_menu_render('Emc23SigsBundle:Builder:mainMenu') }}
+    {# total items count #}
+    <div class="count">
+        {{ pagination.getTotalItemCount }}
+    </div>
+    <table width="100%">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
+            <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Title', 'a.type') }} </th>
+
+            <th> type</th>
+            <th> avatar</th>
+            <th> cellwidth</th>
+            <th> cellheight</th>
+            <th> numberofcells</th>
+        </tr>
+
+        {# table body #}
+        {% for article in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+
+                <td>{{ article.type }}</td>
+                <td>{{ article.avatar }}</td>
+                <td>{{ article.cellwidth }}</td>
+                <td>{{ article.cellheight }}</td>
+                <td>{{ article.numberofcells }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/app_dev.php/new/{{ type }}">New</a>
+
+
+
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}
