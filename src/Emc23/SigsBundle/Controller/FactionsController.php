@@ -19,7 +19,7 @@ namespace Emc23\SigsBundle\Controller;
         // src/Acme/StoreBundle/Controller/DefaultController.php
       
 
-class DefaultController extends Controller
+class FactionsController extends Controller
 {
     public function __get($var)
     {
@@ -29,7 +29,6 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $name = "stuff";
-
         return $this->render('Emc23SigsBundle:Default:index.html.twig', array('name' => $name));
     }
 

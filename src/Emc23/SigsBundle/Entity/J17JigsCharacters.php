@@ -872,4 +872,18 @@ class J17JigsCharacters
     {
         return $this->id;
     }
+
+    /**
+     * Set ammunition
+     *
+     * @param boolean $ammunition
+     *
+     * @return J17JigsCharacters
+     */
+    public function setAmmunition($ammunition)
+    {
+        $this->ammunition = $ammunition;
+
+        return $this;
+    }
 }

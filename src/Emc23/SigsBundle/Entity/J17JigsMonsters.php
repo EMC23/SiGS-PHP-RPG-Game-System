@@ -44,6 +44,16 @@ class J17JigsMonsters
     /**
      * @var integer
      */
+    private $strength = '100';
+
+    /**
+     * @var integer
+     */
+    private $intelligence = '100';
+
+    /**
+     * @var integer
+     */
     private $map = '1';
 
     /**
@@ -61,6 +71,29 @@ class J17JigsMonsters
      */
     private $y;
 
+    /**
+     * Set intelligence
+     *
+     * @param integer $intelligence
+     *
+     * @return J17JigsMonsters
+     */
+    public function setIntelligence($intelligence)
+    {
+        $this->intelligence = $intelligence;
+
+        return $this;
+    }
+
+    /**
+     * Get intelligence
+     *
+     * @return integer
+     */
+    public function getIntelligence()
+    {
+        return $this->intelligence;
+    }
 
     /**
      * Set type
@@ -134,6 +167,32 @@ class J17JigsMonsters
         return $this->map;
     }
 
+
+
+    /**
+     * Set strength
+     *
+     * @param integer $strength
+     *
+     * @return J17JigsMonsters
+     */
+    public function setStrength($strength)
+    {
+        $this->grid = $strength;
+
+        return $this;
+    }
+
+    /**
+     * Get strength
+     *
+     * @return strength
+     */
+    public function getStrength()
+    {
+        return $this->strength;
+    }
+
     /**
      * Set grid
      *
@@ -144,7 +203,6 @@ class J17JigsMonsters
     public function setGrid($grid)
     {
         $this->grid = $grid;
-
         return $this;
     }
 

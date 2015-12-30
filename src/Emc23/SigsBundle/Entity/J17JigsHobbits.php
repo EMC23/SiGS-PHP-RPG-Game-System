@@ -3,190 +3,95 @@
 namespace Emc23\SigsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * J17JigsHobbits
+ * J17JigsHobbitTypes
  *
  * @ORM\Table(name="j17_jigs_hobbits", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
  * @ORM\Entity
  */
 class J17JigsHobbits
 {
+
+
+
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="type", type="integer", nullable=false)
-     */
-    private $type;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="health", type="integer", nullable=false)
      */
     private $health;
 
-
     /**
      * @var integer
-     *
-     * @ORM\Column(name="strength", type="integer", nullable=false)
      */
     private $strength;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="intelligence", type="integer", nullable=false)
      */
     private $intelligence;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="faction", type="integer", nullable=false)
      */
     private $faction;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="gid", type="integer", nullable=true)
      */
     private $gid;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="owner", type="integer", nullable=true)
      */
     private $owner;
 
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="owner_type", type="string", nullable=true)
      */
     private $owner_type;
 
-     /**
-     * @var text
-     *
-     * @ORM\Column(name="birth", type="integer", nullable=true)
+    /**
+     * @var float
+     */
+    private $x;
+
+    /**
+     * @var float
+     */
+    private $y;
+
+    /**
+     * @var string
      */
     private $birth;
 
-
     /**
      * @var integer
-     *
-     * @ORM\Column(name="contentment", type="integer", nullable=true)
      */
     private $contentment;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="x", type="float", nullable=true)
-     */
-    private $x;    /**
- * @var integer
- *
- * @ORM\Column(name="y", type="float", nullable=true)
- */
-    private $y;
-
-     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @param $type
-     * @return $this
-     * */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get contentment
-     *
-     * @return string
+     * @var \Emc23\SigsBundle\Entity\J17JigsHobbitTypes
      */
-    public function getType()
-    {
-        return $this->type;
-    }
+    private $type;
 
 
-
-    /**
-     * @param $contentment
-     * @return $this
-     * */
-    public function setContentment($contentment)
-    {
-        $this->contentment = $contentment;
-
-        return $this;
-    }
-
-    /**
-     * Get contentment
-     *
-     * @return string 
-     */
-    public function getContentment()
-    {
-        return $this->contentment;
-    }
-      
-      /**
-     * Set birth
-     *
-     * @param string $birth
-     * @return J17JigsHobbits
-     */
-    public function setBirth($birth)
-    {
-        $this->birth = $birth;
-
-        return $this;
-    }
-
-    /**
-     * Get birth
-     *
-     * @return string 
-     */
-    public function getBirth()
-    {
-        return $this->birth;
-    }
-    
-    
-    
-      
     /**
      * Set name
      *
      * @param string $name
+     *
      * @return J17JigsHobbits
      */
     public function setName($name)
@@ -199,7 +104,7 @@ class J17JigsHobbits
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -210,6 +115,7 @@ class J17JigsHobbits
      * Set health
      *
      * @param integer $health
+     *
      * @return J17JigsHobbits
      */
     public function setHealth($health)
@@ -222,7 +128,7 @@ class J17JigsHobbits
     /**
      * Get health
      *
-     * @return integer 
+     * @return integer
      */
     public function getHealth()
     {
@@ -233,6 +139,7 @@ class J17JigsHobbits
      * Set strength
      *
      * @param integer $strength
+     *
      * @return J17JigsHobbits
      */
     public function setStrength($strength)
@@ -245,7 +152,7 @@ class J17JigsHobbits
     /**
      * Get strength
      *
-     * @return integer 
+     * @return integer
      */
     public function getStrength()
     {
@@ -256,6 +163,7 @@ class J17JigsHobbits
      * Set intelligence
      *
      * @param integer $intelligence
+     *
      * @return J17JigsHobbits
      */
     public function setIntelligence($intelligence)
@@ -268,7 +176,7 @@ class J17JigsHobbits
     /**
      * Get intelligence
      *
-     * @return integer 
+     * @return integer
      */
     public function getIntelligence()
     {
@@ -279,6 +187,7 @@ class J17JigsHobbits
      * Set faction
      *
      * @param integer $faction
+     *
      * @return J17JigsHobbits
      */
     public function setFaction($faction)
@@ -291,7 +200,7 @@ class J17JigsHobbits
     /**
      * Get faction
      *
-     * @return integer 
+     * @return integer
      */
     public function getFaction()
     {
@@ -302,6 +211,7 @@ class J17JigsHobbits
      * Set gid
      *
      * @param integer $gid
+     *
      * @return J17JigsHobbits
      */
     public function setGid($gid)
@@ -314,114 +224,188 @@ class J17JigsHobbits
     /**
      * Get gid
      *
-     * @return integer 
+     * @return integer
      */
     public function getGid()
     {
         return $this->gid;
     }
-/////////////////////////////////////////////////////////////////////
+
+    /**
+     * Set owner
+     *
+     * @param integer $owner
+     *
+     * @return J17JigsHobbits
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return integer
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Set ownerType
+     *
+     * @param string $ownerType
+     *
+     * @return J17JigsHobbits
+     */
+    public function setOwnerType($ownerType)
+    {
+        $this->owner_type = $ownerType;
+
+        return $this;
+    }
+
+    /**
+     * Get ownerType
+     *
+     * @return string
+     */
+    public function getOwnerType()
+    {
+        return $this->owner_type;
+    }
+
     /**
      * Set x
      *
-     * @param integer $x
+     * @param float $x
+     *
      * @return J17JigsHobbits
      */
     public function setX($x)
     {
         $this->x = $x;
+
         return $this;
     }
 
     /**
      * Get x
      *
-     * @return integer
+     * @return float
      */
     public function getX()
     {
         return $this->x;
     }
-//////////////////////////////////////////////////////////////////////
 
     /**
      * Set y
      *
-     * @param integer $y
+     * @param float $y
+     *
      * @return J17JigsHobbits
      */
     public function setY($y)
     {
         $this->y = $y;
+
         return $this;
     }
 
     /**
      * Get y
      *
-     * @return integer
+     * @return float
      */
     public function getY()
     {
         return $this->y;
     }
-//////////////////////////////////////////////////////////////////////
 
     /**
-     * Set owner
+     * Set birth
      *
-     * @param integer $owner
+     * @param string $birth
+     *
      * @return J17JigsHobbits
      */
-    public function setOwner($owner)
+    public function setBirth($birth)
     {
-        $this->owner = $owner;
+        $this->birth = $birth;
+
         return $this;
     }
 
     /**
-     * Get owner
+     * Get birth
      *
-     * @return integer 
+     * @return string
      */
-    public function getOwner()
+    public function getBirth()
     {
-        return $this->owner;
+        return $this->birth;
     }
-//////////////////////////////////////////////////////////////////////
 
     /**
-     * Set owner
+     * Set contentment
      *
-     * @param integer $owner_type
+     * @param integer $contentment
+     *
      * @return J17JigsHobbits
      */
-    public function setOwner_type($owner_type)
+    public function setContentment($contentment)
     {
-        $this->owner_type = $owner_type;
+        $this->contentment = $contentment;
+
         return $this;
     }
 
     /**
-     * Get owner
+     * Get contentment
      *
-     * @return integer 
+     * @return integer
      */
-    public function getOwner_type()
+    public function getContentment()
     {
-        return $this->owner_type;
+        return $this->contentment;
     }
-
-////////////////////////////////////////////////////
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set type
+     *
+     * @param \Emc23\SigsBundle\Entity\J17JigsHobbitTypes $type
+     *
+     * @return J17JigsHobbits
+     */
+    public function setType(\Emc23\SigsBundle\Entity\J17JigsHobbitTypes $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Emc23\SigsBundle\Entity\J17JigsHobbitTypes
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+}

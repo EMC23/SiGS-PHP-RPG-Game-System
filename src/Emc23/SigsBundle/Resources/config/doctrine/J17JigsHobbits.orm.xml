@@ -8,7 +8,6 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="name" type="string" column="name" length="255" nullable="false"/>
-    <field name="type" type="integer" column="type" nullable="false"/>
     <field name="health" type="integer" column="health" nullable="false"/>
     <field name="strength" type="integer" column="strength" nullable="false"/>
     <field name="intelligence" type="integer" column="intelligence" nullable="false"/>
@@ -19,8 +18,10 @@
     <field name="x" type="float" column="x" nullable="false"/>
     <field name="y" type="float" column="y" nullable="false"/>
     <field name="birth" type="string" column="birth" nullable="true"/>
-    <field name="contentment" type="integer" column="contentment" nullable="true"/>  
-    
+    <field name="contentment" type="integer" column="contentment" nullable="true"/>
+    <many-to-one field="type" target-entity="J17JigsHobbitTypes" >
+      <join-column name="type" referenced-column-name="id" />
+    </many-to-one>
     
     
     

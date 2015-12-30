@@ -12,12 +12,11 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-        <one-to-one field="gid" target-entity="J17JigsGroups">
-            <join-column name="id" referenced-column-name="gid" />
-        </one-to-one>
-    
-    
-    
+
+    <one-to-one field="gid" target-entity="J17JigsGroups">
+        <join-column name="gid" referenced-column-name="id" />
+    </one-to-one>
+
     <field name="parentId" type="integer" column="parent_id" nullable="false"/>
     <field name="lft" type="integer" column="lft" nullable="false"/>
     <field name="rgt" type="integer" column="rgt" nullable="false"/>

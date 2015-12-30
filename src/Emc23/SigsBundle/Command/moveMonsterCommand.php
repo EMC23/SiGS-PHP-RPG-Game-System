@@ -39,12 +39,12 @@ class moveMonsterCommand extends ContainerAwareCommand
         //$hobbit            = $jigs->generateHobbit();
         //$directory = '/var/www/meme/components/com_battle/images/assets/chars/halflings/';
         //$fileArray = scandir($directory);
-        print_r($result);
+
        // exit();
         foreach ($result as $row)
         {
         //  $type = substr($row, 0, -4);
-            echo ( $row['name'] . PHP_EOL );
+       //     echo ( $row['name'] . PHP_EOL );
             $direction = rand(0,12);
             if ($direction ==0){
                 $row['x']-=60;

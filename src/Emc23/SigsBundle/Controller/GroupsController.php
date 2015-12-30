@@ -19,7 +19,7 @@ namespace Emc23\SigsBundle\Controller;
         // src/Acme/StoreBundle/Controller/DefaultController.php
       
 
-class DefaultController extends Controller
+class GroupsController extends Controller
 {
     public function __get($var)
     {

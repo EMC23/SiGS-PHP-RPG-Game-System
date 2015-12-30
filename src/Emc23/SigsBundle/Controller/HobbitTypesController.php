@@ -1,21 +1,18 @@
 <?php
 
 namespace Emc23\SigsBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\Response;
-use Emc23\SigsBundle\Model\Jigs;
-
 use Emc23\SigsBundle\Entity\J17JigsHobbitTypes;
-use Emc23\SigsBundle\Entity\Mudnames;
+
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
-use Emc23\SigsBundle\JigsFactory;
-use Emc23\SigsBundle\Entity\J17JigsHobbitType;
-//   use Emc23\SigsBundle\Entity\J17JUsergroups;
+
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Query;
+
 // src/Acme/StoreBundle/Controller/DefaultController.php
-      
+
 
 class HobbitTypesController extends Controller
 {
@@ -46,14 +43,13 @@ class HobbitTypesController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function newAction($type, Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $jigs = $this->get('my_JigsFactory');
-        {
+
             $task = new J17JigsHobbitType();
             //    $jigs           = new Jigs();
             $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
-            //$name = Mudnames::generate_name_from($file);
+            $name = Mudnames::generate_name_from($file);
             $task->setName($name);
             $hobbit = $jigs->generateHobbit();
             $task->setFaction($hobbit['faction_number']);
@@ -74,8 +70,6 @@ class HobbitTypesController extends Controller
                 ->add('contentment')
                 ->add('save', 'submit')
                 ->getForm();
-        }
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -107,130 +101,50 @@ class HobbitTypesController extends Controller
         return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
 
-    public function showAction($id,  Request $request)
+    public function showAction($id, Request $request)
     {
-
-        $task   = new J17JigsHobbitType();
+        $task = new J17JigsHobbitTypes();
         $record = $this->getDoctrine()
             //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
             ->getRepository("Emc23SigsBundle:J17JigsHobbitTypes")
             ->find($id);
-
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-            $name = $record->getName();
-            $faction = $record->getFaction();
-            $health = $record->getHealth();
-            $strength = $record->getStrength();
-            $intelligence = $record->getIntelligence();
-           // $gid = $record->getGid();
-            $owner = $record->getOwner();
-            $contentment = $record->getContentment();
+        $id                     = $record->getId();
+        $type                   = $record->getTypeName();
+        $avatar                 = $record->getAvatar();
+        $cellWidth              = $record->getCellwidth();
+        $cellHeight             = $record->getCellheight();
+        $numberOfCells          = $record->getNumberofcells();
 
-            $task->setName($name);
-            $task->setFaction($faction);
-            $task->setHealth($health);
-            $task->setStrength($strength);
-            $task->setIntelligence($intelligence);
-           // $task->setGid($gid);
-            $task->setOwner($owner);
-            $task->setContentment($contentment);
+        $task->setTypeName($type);
+        $task->setAvatar($avatar);
+        $task->setCellWidth($cellWidth);
+        $task->setCellHeight($avatar);
+        $task->setCellHeight($cellHeight);
+        $task->setNumberOfCells($numberOfCells);
+        //);
+        $form = $this->createFormBuilder($task)
+            ->add('typename', 'text')
+            ->add('avatar', 'text')
+            ->add('cellwidth', 'text')
+            ->add('cellheight', 'text')
+            ->add('NumberOfCells', 'text')
+            ->add('save', 'submit')
+            ->getForm();
+       return $this->render("Emc23SigsBundle:Default:J17JigsHobbitTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
+       }
 
-            $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
-                ->add('faction', 'text')
-                ->add('health', 'text')
-                ->add('strength', 'text')
-                ->add('intelligence', 'text')
-             //   ->add('group', 'text')
-                ->add('contentment', 'text')
-                ->add('save', 'submit')
-                ->getForm();
-
-        return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
-    }
-    ///////////////////////////////////////////////////////////////////
-
-
-    public function showallusersAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT p
-    FROM Emc23SigsBundle:J17JigsPlayers p
-    WHERE p.id > :id
-    ORDER BY p.iduser ASC'
-        )->setParameter('id', '1');
-
-        $products = $query->getResult();
-        $x = 0;
-        $content = '<table>';
-        foreach ($products as $record) {
-
-            $content .= $this->renderView(
-                'Emc23SigsBundle:Hello:index.html.twig',
-                array('name' => $record->getName(), 'id' => $record->getId())
-            );
-        }
-        $content .= '</table>';
-        return new Response($content);
-    }
-
-        ///////////////////////////////
-        public function showGroupsAction()
-        {
-            $content = "empty";
-            return new Response($content);
-        }
-
-    /////////////////////////////////
-
-        public function showallusers2Action()
-        {
-            $em = $this->getDoctrine()->getManager();
-            $query = $em->createQuery('SELECT p FROM Emc23SigsBundle:J17Comprofiler p WHERE p.id > 1 ORDER BY p.id ASC');
-            //$query->setMaxResults(1);
-            $thing = $query->getSql();
-
-            try {
-                // default action is always to return a Document
-                echo '<pre>';
-                \Doctrine\Common\Util\Debug::dump($query);
-                echo '</pre>';
-             //   $products = $query->getResult();
-                $document = $query->getResult(Query::HYDRATE_SCALAR);
-            } catch (QueryException $e){
-                print_r($e);
-                // no result or non unique result
-                }
-            $x = 0;
-            $content = '<table>';
-            foreach ($products as $record) {
-
-                $content .= $this->renderView(
-                    'AcmeSigsBundle:Default:index3.html.twig',
-                    array('image' => $record->getAvatar(), 'id' => $record->getId())
-                );
-            }
-            $content .= '</table>';
-            return new Response($content);
-        }
         // Acme\MainBundle\Controller\ArticleController.php
 
-        public function listAction()
-        {
-            $em = $this->get('doctrine.orm.entity_manager');
-            $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbitTypes a";
-            $query = $em->createQuery($dql);
-            $paginator = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-            // $pagination ="hello";
-            //  echo '<pre>';
-            //  print_r ($pagination);
-            //  echo '</pre>';
-            // parameters to template
-            return $this->render('Emc23SigsBundle:Default:J17JigsHobbitTypes.html.twig', array('pagination' => $pagination));
-        }
+    public function listAction()
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbitTypes a";
+        $query = $em->createQuery($dql);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+        return $this->render('Emc23SigsBundle:Default:J17JigsHobbitTypes.html.twig', array('pagination' => $pagination));
     }
-
+}

@@ -41,7 +41,7 @@ class Builder
          ));       
          
          $menu->addChild('Hobbits', array(
-            'route' => 'emc23_hello_homepage5',
+            'route' => 'emc23_sigs_hobbits',
             'routeParameters' => array('type' => 'J17JigsHobbits')        
          ));
 

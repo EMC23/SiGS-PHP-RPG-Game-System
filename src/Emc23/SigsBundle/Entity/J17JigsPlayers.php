@@ -1189,4 +1189,28 @@ class J17JigsPlayers
     {
         return $this->id;
     }
+
+    /**
+     * Set reservoir
+     *
+     * @param boolean $reservoir
+     *
+     * @return J17JigsPlayers
+     */
+    public function setReservoir($reservoir)
+    {
+        $this->reservoir = $reservoir;
+
+        return $this;
+    }
+
+    /**
+     * Get reservoir
+     *
+     * @return boolean
+     */
+    public function getReservoir()
+    {
+        return $this->reservoir;
+    }
 }

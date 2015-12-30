@@ -21,8 +21,7 @@ class moveHobbitCommand extends ContainerAwareCommand
             ->setName('Emc23:moveHobbit')
             ->setDescription('Greet someone')
             ->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to greet?')
-            ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
-        ;
+            ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -30,7 +29,7 @@ class moveHobbitCommand extends ContainerAwareCommand
         //$em = $this->get('doctrine.orm.entity_manager');
         //$file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
         //$name              = Mudnames::generate_name_from($file);
-        $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
+        $em = $this->getContainer()->get('doctrine')->getEntityManager('default');
         $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbits a";
         $query = $em->createQuery($dql);
         $result = $query->getResult(Query::HYDRATE_ARRAY);
@@ -40,42 +39,40 @@ class moveHobbitCommand extends ContainerAwareCommand
         //$directory = '/var/www/meme/components/com_battle/images/assets/chars/halflings/';
         //$fileArray = scandir($directory);
         print_r($result);
-       // exit();
-        foreach ($result as $row)
-        {
-        //  $type = substr($row, 0, -4);
-            echo ( $row['name'] . PHP_EOL );
-            $direction = rand(0,12);
-            if ($direction ==0){
-                $row['x']-=60;
-                if ($row['x']<0){
-                    $row['x']=0;
+        // exit();
+        foreach ($result as $row) {
+            //  $type = substr($row, 0, -4);
+            echo($row['name'] . PHP_EOL);
+            $direction = rand(0, 12);
+            if ($direction == 0) {
+                $row['x'] -= 60;
+                if ($row['x'] < 0) {
+                    $row['x'] = 0;
                 }
-           }
-            if ($direction ==1){
-                $row['x']+=60;
+            }
+            if ($direction == 1) {
+                $row['x'] += 60;
 
-                if ($row['x']>1100){
-                    $row['x']=1100;
+                if ($row['x'] > 1100) {
+                    $row['x'] = 1100;
                 }
             }
-            if ($direction ==2){
-                $row['y']-=60;
-                if ($row['y']<0){
-                    $row['y']=0;
+            if ($direction == 2) {
+                $row['y'] -= 60;
+                if ($row['y'] < 0) {
+                    $row['y'] = 0;
                 }
             }
-            if ($direction ==3){
-                $row['y']+=60;
-                if ($row['y']>1100){
-                    $row['y']=1100;
+            if ($direction == 3) {
+                $row['y'] += 60;
+                if ($row['y'] > 1100) {
+                    $row['y'] = 1100;
                 }
             }
-            $x      = $row['x'];
-            $y      = $row['y'];
-            $dql    = "UPDATE Emc23SigsBundle:J17JigsHobbits u SET u.x = $x, u.y = $y WHERE u.id =" . $row['id'];
-
-            $query  = $em->createQuery($dql);
+            $x = $row['x'];
+            $y = $row['y'];
+            $dql = "UPDATE Emc23SigsBundle:J17JigsHobbits u SET u.x = $x, u.y = $y WHERE u.id =" . $row['id'];
+            $query = $em->createQuery($dql);
             $query->execute();
             // This is our new stuff
 
@@ -90,22 +87,22 @@ class moveHobbitCommand extends ContainerAwareCommand
             $result = $query->getResult(Query::HYDRATE_ARRAY);
 
 
-            $entryData  = array('category' => 'halflingsCategory', 'title' => 'title', 'article'  => $result, 'when' => time()  );
+            $entryData = array('category' => 'halflingsCategory', 'title' => 'title', 'article' => $result, 'when' => time());
             $socket->send(json_encode($entryData));
 
             //  $output->writeln($type);
         }
         //$em->flush();
     }
-      /*
-        $name = $input->getArgument('name');
-        if ($name) {
-            $text = 'Hello '.$name;
-        } else {
-            $text = 'Hello';
-        }
-        if ($input->getOption('yell')) {
-            $text = strtoupper($text);
-        }
-          $output->writeln($text);*/
+    /*
+      $name = $input->getArgument('name');
+      if ($name) {
+          $text = 'Hello '.$name;
+      } else {
+          $text = 'Hello';
+      }
+      if ($input->getOption('yell')) {
+          $text = strtoupper($text);
+      }
+        $output->writeln($text);*/
 }

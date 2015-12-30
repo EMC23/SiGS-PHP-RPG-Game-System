@@ -40,5 +40,17 @@ emc23_hello_homepage10:
     defaults: { _controller: Emc23SigsBundle:Default:new }
 
 emc23_sigs_hobbit_types:
- pattern:  /hobbittypes/list
-    defaults: { _controller: Emc23SigsBundle:HobbitType:list }
+    pattern:  /hobbittypes/
+    defaults: { _controller: Emc23SigsBundle:HobbitTypes:list }
+
+emc23_sigs_hobbit_type:
+        pattern:  /hobbittypes/{id}/
+        defaults: { _controller: Emc23SigsBundle:HobbitTypes:show }
+
+emc23_sigs_hobbits:
+    pattern:  /hobbits/
+    defaults: { _controller: Emc23SigsBundle:Hobbits:list }
+
+emc23_sigs_hobbit:
+        pattern:  /hobbits/{id}/
+        defaults: { _controller: Emc23SigsBundle:Hobbits:show }

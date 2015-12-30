@@ -15,9 +15,9 @@ class J17JigsGroups
     /**
      * @var integer
      *
-     * @ORM\Column(name="gid", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      */
-    private $gid;
+    private $id;
 
     /**
      * @var integer
@@ -59,12 +59,12 @@ class J17JigsGroups
     /**
      * Set gid
      *
-     * @param integer $gid
+     * @param integer $id
      * @return J17JigsGroups
      */
-    public function setGid($gid)
+    public function setId($id)
     {
-        $this->gid = $gid;
+        $this->id = $id;
 
         return $this;
     }
@@ -74,9 +74,9 @@ class J17JigsGroups
      *
      * @return integer 
      */
-    public function getGid()
+    public function getId()
     {
-        return $this->gid;
+        return $this->id;
     }
 
     /**
@@ -194,13 +194,5 @@ class J17JigsGroups
         return $this->coffers;
     }
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+
 }

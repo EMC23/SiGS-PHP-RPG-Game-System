@@ -148,6 +148,11 @@ class DefaultController extends Controller
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
+
+
+
+
+
         // ... do something, like pass the $product object into a template
 
         // return $product;
@@ -163,12 +168,21 @@ class DefaultController extends Controller
 //   $task = new $type();
 
         if ($type == 'J17JigsHobbits') {
+
+
+
+
+
+
             $name = $record->getName();
             $faction = $record->getFaction();
             $health = $record->getHealth();
             $strength = $record->getStrength();
+
+
+
             $intelligence = $record->getIntelligence();
-            $group = $record->getGroup();
+           // $gid = $record->getGid();
             $owner = $record->getOwner();
             $contentment = $record->getContentment();
 
@@ -177,7 +191,7 @@ class DefaultController extends Controller
             $task->setHealth($health);
             $task->setStrength($strength);
             $task->setIntelligence($intelligence);
-            $task->setGroup($group);
+           // $task->setGid($gid);
             $task->setOwner($owner);
             $task->setContentment($contentment);
 
@@ -187,12 +201,14 @@ class DefaultController extends Controller
                 ->add('health', 'text')
                 ->add('strength', 'text')
                 ->add('intelligence', 'text')
-                ->add('group', 'text')
+             //   ->add('group', 'text')
                 ->add('contentment', 'text')
                 ->add('save', 'submit')
                 ->getForm();
 
         }
+
+
 
 
         return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));

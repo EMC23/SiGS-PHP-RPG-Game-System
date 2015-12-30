@@ -5,6 +5,9 @@ namespace Emc23\SigsBundle\Model;
         use Doctrine\ORM\Query;
         use Emc23\SigsBundle\Entity\J17JigsCharacters;
 
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
 class Jigs extends DefaultController
 {
 
@@ -41,8 +44,7 @@ class Jigs extends DefaultController
     
     function generateOwner($Gid,$em)
     {
-      $query = $em->createQuery('SELECT a FROM Emc23SigsBundle:J17Characters a
-      WHERE a.gid ='.$Gid);
+      $query = $em->createQuery('SELECT a FROM Emc23SigsBundle:J17Characters a  WHERE a.gid ='.$Gid);
         // print_r($query);
       $x = $query->getResult(Query::HYDRATE_ARRAY);
       $result = $x[0];

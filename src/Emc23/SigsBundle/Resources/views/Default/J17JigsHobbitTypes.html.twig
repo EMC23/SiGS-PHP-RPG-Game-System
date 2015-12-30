@@ -9,9 +9,7 @@
         <tr>
             {# sorting of properties based on query components #}
             <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
-            <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Title', 'a.type') }} </th>
-
-            <th> type</th>
+            <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Type', 'a.type') }} </th>
             <th> avatar</th>
             <th> cellwidth</th>
             <th> cellheight</th>
@@ -21,8 +19,9 @@
         {# table body #}
         {% for article in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ article.id }}</td>
+                <td>   <td><a href="/hobbittypes/{{ article.id }}/">{{ article.typename }}</a></td>   </td>
 
-                <td>{{ article.type }}</td>
                 <td>{{ article.avatar }}</td>
                 <td>{{ article.cellwidth }}</td>
                 <td>{{ article.cellheight }}</td>

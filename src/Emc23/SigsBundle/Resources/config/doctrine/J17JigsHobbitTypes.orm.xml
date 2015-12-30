@@ -7,6 +7,10 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="type" type="string" column="type" length="255" nullable="false"/>
+    <field name="typename" type="string" column="typename" length="255" nullable="false"/>
+    <field name="avatar" type="string" column="avatar" length="255" nullable="true"/>
+    <field name="cellwidth" type="integer" column="cellwidth" length="3" nullable="true"/>
+    <field name="cellheight" type="integer" column="cellheight" length="3" nullable="true"/>
+    <field name="numberofcells" type="integer" column="numberofcells" length="3" nullable="true"/>
   </entity>
 </doctrine-mapping>
