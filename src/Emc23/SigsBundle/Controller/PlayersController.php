@@ -367,28 +367,18 @@ class PlayersController extends Controller
                 $thing = $query->getSql();
 
                // echo $thing;
-
-
                 try {
                     // default action is always to return a Document
-
                     echo '<pre>';
                     \Doctrine\Common\Util\Debug::dump($query);
                     echo '</pre>';
 
                  //   $products = $query->getResult();
-
-
-
                     $document = $query->getResult(Query::HYDRATE_SCALAR);
                 } catch (QueryException $e){
                     print_r($e);
                     // no result or non unique result
                     }
-
-
-
-
 
                 $x = 0;
                 $content = '<table>';
@@ -407,14 +397,13 @@ class PlayersController extends Controller
 
             // Acme\MainBundle\Controller\ArticleController.php
 
-            public function listAction($type)
+            public function listAction()
             {
+                $type = 'J17JigsPlayers';
                 $em = $this->get('doctrine.orm.entity_manager');
                 $dql = "SELECT a FROM Emc23SigsBundle:$type a";
 
                 $query = $em->createQuery($dql);
-
-
                 $paginator = $this->get('knp_paginator');
                 $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
                 // $pagination ="hello";
