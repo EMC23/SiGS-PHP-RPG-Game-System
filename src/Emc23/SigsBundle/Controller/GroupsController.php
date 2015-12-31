@@ -1,6 +1,7 @@
 <?php
 
 namespace Emc23\SigsBundle\Controller;
+        use Doctrine\ORM\Tools\Pagination\Paginator;
         use Symfony\Bundle\FrameworkBundle\Controller\Controller;
         use Emc23\SigsBundle\Entity\J17JigsAwards;
         use Symfony\Component\HttpFoundation\Response;
@@ -124,22 +125,11 @@ class GroupsController extends Controller
     }
 
 
-    public function showAction($id, $type, Request $request)
+    public function showAction($id, Request $request)
     {
 
-        if ($type == 'J17JigsCharacters') {
-            $task = new J17JigsCharacters();
-        }
-        if ($type == 'J17JigsPlayers') {
-            $task = new J17JigsPlayers();
-        }
-        if ($type == 'J17JigsBuildings') {
-            $task = new J17JigsBuildings();
-        }
-        if ($type == 'J17JigsHobbits') {
-            $task = new J17JigsHobbits();
-        }
-
+        $type = 'J17JigsGroups';
+        $task = new J17JigsGroups();
         $record = $this->getDoctrine()
             //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
             ->getRepository("Emc23SigsBundle:$type")
@@ -150,24 +140,6 @@ class GroupsController extends Controller
         }
 
 
-
-
-
-        // ... do something, like pass the $product object into a template
-
-        // return $product;
-        //   return new Response('product id '.$product->getIdUser());
-
-
-        //    $faction = $record->getFaction();
-        // $image = $product->getImage();
-        //    $Posx = $product->getPosx();
-
-        //  $task = new J17JigsCharacters();
-
-//   $task = new $type();
-
-        if ($type == 'J17JigsHobbits') {
 
 
 
@@ -206,7 +178,7 @@ class GroupsController extends Controller
                 ->add('save', 'submit')
                 ->getForm();
 
-        }
+
 
 
 
@@ -289,7 +261,7 @@ class GroupsController extends Controller
             }
 
 
-//  
+//
         }
 
 
@@ -324,7 +296,7 @@ class GroupsController extends Controller
 
     }
 
-/////////////////////////////////          
+/////////////////////////////////
 
             public function showallusersAction()
             {
@@ -407,23 +379,65 @@ class GroupsController extends Controller
 
             // Acme\MainBundle\Controller\ArticleController.php
 
-            public function listAction($type)
+            public function listAction()
             {
+                $type = 'J17JigsGroups';
                 $em = $this->get('doctrine.orm.entity_manager');
                 $dql = "SELECT a FROM Emc23SigsBundle:$type a";
 
                 $query = $em->createQuery($dql);
 
+                $other = new Paginator($query, $fetchJoinCollection = true);
 
-                $paginator = $this->get('knp_paginator');
-                $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-                // $pagination ="hello";
+                $other->setUseOutputWalkers(true);
+                //$paginator = $this->get('knp_paginator');
+
+               // $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+
+
+                $c = count($other);
+
+
+
+
+
+                foreach ($other as $post) {
+
+               //     echo $post->getTotalMoney() . "\n";
+
+
+                  print_r($post->getGid());
+
+
+                }
+
+
 
 
                 //  echo '<pre>';
                 //  print_r ($pagination);
                 //  echo '</pre>';
                 // parameters to template
-                return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
+                return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $other));
             }
+
+
+            /**
+             * (Add this method into your class)
+             *
+             * @return string String representation of this class
+             */
+            public function __toString()
+            {
+                return $this->name;
+            }
+
+
+
+
+
+
+
+
+
         }

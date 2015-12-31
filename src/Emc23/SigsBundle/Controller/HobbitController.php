@@ -19,7 +19,7 @@ namespace Emc23\SigsBundle\Controller;
         // src/Acme/StoreBundle/Controller/DefaultController.php
       
 
-class PlayersController extends Controller
+class DefaultController extends Controller
 {
     public function __get($var)
     {
@@ -407,7 +407,7 @@ class PlayersController extends Controller
 
             // Acme\MainBundle\Controller\ArticleController.php
 
-            public function listAction($type)
+            public function listAction()
             {
                 $em = $this->get('doctrine.orm.entity_manager');
                 $dql = "SELECT a FROM Emc23SigsBundle:$type a";

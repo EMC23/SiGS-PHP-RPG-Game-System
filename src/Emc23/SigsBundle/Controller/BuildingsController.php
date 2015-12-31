@@ -407,10 +407,11 @@ class BuildingsController extends Controller
 
             // Acme\MainBundle\Controller\ArticleController.php
 
-            public function listAction($type)
+            public function listAction()
             {
+
                 $em = $this->get('doctrine.orm.entity_manager');
-                $dql = "SELECT a FROM Emc23SigsBundle:$type a";
+                $dql = "SELECT a FROM Emc23SigsBundle:J17JigsBuildings a";
 
                 $query = $em->createQuery($dql);
 
@@ -424,6 +425,6 @@ class BuildingsController extends Controller
                 //  print_r ($pagination);
                 //  echo '</pre>';
                 // parameters to template
-                return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
+                return $this->render('Emc23SigsBundle:Default:J17JigsBuildings.html.twig', array('pagination' => $pagination));
             }
         }

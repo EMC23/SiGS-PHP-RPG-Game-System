@@ -406,8 +406,9 @@ class FactionsController extends Controller
 
             // Acme\MainBundle\Controller\ArticleController.php
 
-            public function listAction($type)
+            public function listAction()
             {
+                $type = 'J17JigsFactions';
                 $em = $this->get('doctrine.orm.entity_manager');
                 $dql = "SELECT a FROM Emc23SigsBundle:$type a";
 

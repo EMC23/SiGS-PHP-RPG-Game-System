@@ -21,7 +21,7 @@ use Doctrine\ORM\Query;
 
 // src/Acme/StoreBundle/Controller/DefaultController.php
 
-class HobbitsController extends Controller
+class CharactersController extends Controller
 {
     public function __get($var)
     {
@@ -116,7 +116,7 @@ class HobbitsController extends Controller
     public function showAction($id,  Request $request)
     {
 
-        $task = new J17JigsHobbits();
+        $task = new J17JigsCharactors();
 
         echo $id;
 
@@ -136,10 +136,6 @@ class HobbitsController extends Controller
         $owner = $record->getOwner();
         $contentment = $record->getContentment();
         $typeName = $record->getType()->getTypeName();
-
-
-
-
         //$typeType = $record->getHobbitTypes();
         $task->setName($name);
         $task->setFaction($faction);
@@ -167,7 +163,7 @@ class HobbitsController extends Controller
 
     public function listAction()
     {
-        $type= 'J17JigsHobbits';
+        $type= 'J17JigsCharacters';
         $em = $this->get('doctrine.orm.entity_manager');
         $dql = "SELECT a FROM Emc23SigsBundle:$type a";
 
@@ -179,11 +175,6 @@ class HobbitsController extends Controller
         //  print_r ($pagination);
         //  echo '</pre>';
         // parameters to template
-
-
-
-
-
         return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
     }
 }
