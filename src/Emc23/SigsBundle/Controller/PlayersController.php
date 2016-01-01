@@ -124,21 +124,14 @@ class PlayersController extends Controller
     }
 
 
-    public function showAction($id, $type, Request $request)
+    public function showAction($id, Request $request)
     {
+        $type = 'J17JigsPlayers';
 
-        if ($type == 'J17JigsCharacters') {
-            $task = new J17JigsCharacters();
-        }
-        if ($type == 'J17JigsPlayers') {
+
+
             $task = new J17JigsPlayers();
-        }
-        if ($type == 'J17JigsBuildings') {
-            $task = new J17JigsBuildings();
-        }
-        if ($type == 'J17JigsHobbits') {
-            $task = new J17JigsHobbits();
-        }
+
 
         $record = $this->getDoctrine()
             //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
@@ -148,10 +141,6 @@ class PlayersController extends Controller
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-
-
-
-
 
         // ... do something, like pass the $product object into a template
 
@@ -167,22 +156,15 @@ class PlayersController extends Controller
 
 //   $task = new $type();
 
-        if ($type == 'J17JigsHobbits') {
-
-
-
-
-
-
             $name = $record->getName();
-            $faction = $record->getFaction();
-            $health = $record->getHealth();
-            $strength = $record->getStrength();
+          //  $faction = $record->getFaction();
+        //    $health = $record->getHealth();
+        //    $strength = $record->getStrength();
 
 
 
             $intelligence = $record->getIntelligence();
-           // $gid = $record->getGid();
+            $gid = $record->getGid();
             $owner = $record->getOwner();
             $contentment = $record->getContentment();
 
@@ -206,12 +188,7 @@ class PlayersController extends Controller
                 ->add('save', 'submit')
                 ->getForm();
 
-        }
-
-
-
-
-        return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+             return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
 
 
     }
