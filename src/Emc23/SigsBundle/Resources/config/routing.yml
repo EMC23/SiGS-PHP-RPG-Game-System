@@ -35,8 +35,8 @@ emc23_sigs_hobbit_types:
     defaults: { _controller: Emc23SigsBundle:HobbitTypes:list }
 
 emc23_sigs_hobbit_type:
-        pattern:  /hobbittypes/{id}/
-        defaults: { _controller: Emc23SigsBundle:HobbitTypes:show }
+     pattern:  /hobbittypes/{id}/
+     defaults: { _controller: Emc23SigsBundle:HobbitTypes:show }
 
 emc23_sigs_monsters:
      pattern:  /monsters/

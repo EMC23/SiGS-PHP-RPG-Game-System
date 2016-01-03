@@ -14,42 +14,41 @@ class Builder
         $menu = $factory->createItem('root');
         $menu->setChildrenAttributes(array('id' => 'menu'));
         $menu->addChild('Home', array('route' => 'emc23_hello_homepage4'));
-        
         $menu->addChild('Players', array(
-            'route' => 'emc23_hello_homepage5',
-            'routeParameters' => array('type' => 'J17JigsPlayers')
+            'route' => 'emc23_sigs_players'
         ));
         
         $menu->addChild('Buildings', array(
-            'route' => 'emc23_hello_homepage5',
-            'routeParameters' => array('type' => 'J17JigsBuildings')
-        ));       
+            'route' => '\'emc23_sigs_buildings'
+        ));
         
         $menu->addChild('Characters', array(
-            'route' => 'emc23_hello_homepage5',
-            'routeParameters' => array('type' => 'J17JigsCharacters')        
+            'route' => 'emc23_hello_characters'
          ));
          
         $menu->addChild('Factions', array(
-            'route' => 'emc23_hello_homepage7'
-                
+            'route' => 'emc23_hello_factions'
          ));
 
          $menu->addChild('Groups', array(
-            'route' => 'emc23_hello_homepage8',
-            'routeParameters' => array('type' => 'J17JigsGroups')        
-         ));       
+            'route' => 'emc23_hello_groups'
+         ));
          
          $menu->addChild('Hobbits', array(
-            'route' => 'emc23_sigs_hobbits',
-            'routeParameters' => array('type' => 'J17JigsHobbits')        
+            'route' => 'emc23_sigs_hobbits'
          ));
 
         $menu->addChild('HobbitTypes', array(
-            'route' => 'emc23_sigs_hobbit_types',
-            'routeParameters' => array('type' => 'J17JigsHobbitTypes')
+            'route' => 'emc23_sigs_hobbit_types'
         ));
-        // ... add more children
+
+        $menu->addChild('Monsters', array(
+            'route' => 'emc23_sigs_monsters'
+        ));
+
+        $menu->addChild('MonsterTypes', array(
+            'route' => 'emc23_sigs_monster_types'
+        ));
 
         return $menu;
     }
