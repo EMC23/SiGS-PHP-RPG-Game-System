@@ -1,43 +1,34 @@
-emc23_hello_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: Emc23SigsBundle:Default:index }
-    
-    
-emc23_hello_homepage2:
-    pattern:  /addstuff/
-    defaults: { _controller: Emc23SigsBundle:Default:add }
-    
-emc23_hello_homepage3:
-    pattern:  /show/{id}/{type}
-    defaults: { _controller: Emc23SigsBundle:Default:show }
-    
-emc23_hello_homepage4:
-    pattern:  /showallusers2/
-    defaults: { _controller: Emc23SigsBundle:Default:showallusers2 }
-    
-emc23_hello_homepage5:
-    pattern:  /list/{type}
+emc23_sigs_players:
+    pattern:  /players
     defaults: { _controller: Emc23SigsBundle:Default:list }
-    
-emc23_hello_homepage6:
-    pattern:  /
-    defaults: { _controller: Emc23SigsBundle:Default:index }
 
-emc23_hello_homepage7:
-    pattern:  /showfactions
-    defaults: { _controller: Emc23SigsBundle:Default:showfactions }
-    
-emc23_hello_homepage8:
-    pattern:  /showgroups
-    defaults: { _controller: Emc23SigsBundle:Default:showgroups }
-    
-emc23_hello_homepage9:
-    pattern:  /list/{type}
-    defaults: { _controller: Emc23SigsBundle:Default:list }
-    
-emc23_hello_homepage10:
-    pattern:  /new/{type}
-    defaults: { _controller: Emc23SigsBundle:Default:new }
+emc23_sigs_player:
+     pattern:  /players/{id}
+     defaults: { _controller: Emc23SigsBundle:Default:show }
+
+emc23_sigs_buildings:
+     pattern:  /buildings
+     defaults: { _controller: Emc23SigsBundle:Default:list }
+
+emc23_sigs_building:
+     pattern:  /buildings/{id}
+     defaults: { _controller: Emc23SigsBundle:Default:show }
+
+emc23_sigs_character:
+     pattern:  /characters
+     defaults: { _controller: Emc23SigsBundle:Default:list }
+
+emc23_sigs_character:
+     pattern:  /characters/{id}
+     defaults: { _controller: Emc23SigsBundle:Default:show }
+
+emc23_sigs_hobbits:
+     pattern:  /hobbits/
+     defaults: { _controller: Emc23SigsBundle:Hobbits:list }
+
+emc23_sigs_hobbit:
+     pattern:  /hobbits/{id}/
+     defaults: { _controller: Emc23SigsBundle:Hobbits:show }
 
 emc23_sigs_hobbit_types:
     pattern:  /hobbittypes/
@@ -47,10 +38,18 @@ emc23_sigs_hobbit_type:
         pattern:  /hobbittypes/{id}/
         defaults: { _controller: Emc23SigsBundle:HobbitTypes:show }
 
-emc23_sigs_hobbits:
-    pattern:  /hobbits/
-    defaults: { _controller: Emc23SigsBundle:Hobbits:list }
+emc23_sigs_monsters:
+     pattern:  /monsters/
+     defaults: { _controller: Emc23SigsBundle:Monsters:list }
 
-emc23_sigs_hobbit:
-        pattern:  /hobbits/{id}/
-        defaults: { _controller: Emc23SigsBundle:Hobbits:show }
+emc23_sigs_monster:
+     pattern:  /monsters/{id}/
+     defaults: { _controller: Emc23SigsBundle:Monsters:show }
+
+emc23_sigs_monster_types:
+    pattern:  /monstertypes/
+    defaults: { _controller: Emc23SigsBundle:MonsterTypes:list }
+
+emc23_sigs_monster_type:
+    pattern:  /monstertypes/{id}/
+    defaults: { _controller: Emc23SigsBundle:MonsterTypes:show }
