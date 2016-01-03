@@ -6,15 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * J17JigsHobbitTypes
+ * J17JigsHobbits
  *
  * @ORM\Table(name="j17_jigs_hobbits", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
  * @ORM\Entity
  */
 class J17JigsHobbits
 {
-
-
 
     /**
      * @var string
@@ -388,11 +386,11 @@ class J17JigsHobbits
     /**
      * Set type
      *
-     * @param \Emc23\SigsBundle\Entity\J17JigsHobbitTypes $type
+     * @param integer $type
      *
      * @return J17JigsHobbits
      */
-    public function setType(\Emc23\SigsBundle\Entity\J17JigsHobbitTypes $type = null)
+    public function setType($type )
     {
         $this->type = $type;
 
