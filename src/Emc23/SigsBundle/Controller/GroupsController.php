@@ -138,20 +138,10 @@ class GroupsController extends Controller
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-
-
-
-
-
-
-
-
             $name = $record->getName();
             $faction = $record->getFaction();
             $health = $record->getHealth();
             $strength = $record->getStrength();
-
-
 
             $intelligence = $record->getIntelligence();
            // $gid = $record->getGid();
@@ -329,99 +319,21 @@ class GroupsController extends Controller
                 return new Response($content);
             }
 
-/////////////////////////////////
-
-            public function showallusers2Action()
-            {
-                $em = $this->getDoctrine()->getManager();
-                $query = $em->createQuery('SELECT p FROM Emc23SigsBundle:J17Comprofiler p WHERE p.id > 1 ORDER BY p.id ASC');
-                //$query->setMaxResults(1);
-                $thing = $query->getSql();
-
-               // echo $thing;
-
-
-                try {
-                    // default action is always to return a Document
-
-                    echo '<pre>';
-                    \Doctrine\Common\Util\Debug::dump($query);
-                    echo '</pre>';
-
-                 //   $products = $query->getResult();
-
-
-
-                    $document = $query->getResult(Query::HYDRATE_SCALAR);
-                } catch (QueryException $e){
-                    print_r($e);
-                    // no result or non unique result
-                    }
-
-
-
-
-
-                $x = 0;
-                $content = '<table>';
-                foreach ($products as $record) {
-
-                    $content .= $this->renderView(
-                        'AcmeSigsBundle:Default:index3.html.twig',
-                        array('image' => $record->getAvatar(), 'id' => $record->getId())
-                    );
-                }
-                $content .= '</table>';
-                return new Response($content);
-            }
             ////////////////////////////////////////////////////////////////////////////////////
-
-
             // Acme\MainBundle\Controller\ArticleController.php
-
             public function listAction()
             {
-                $type = 'J17JigsGroups';
-                $em = $this->get('doctrine.orm.entity_manager');
-                $dql = "SELECT a FROM Emc23SigsBundle:$type a";
-
-                $query = $em->createQuery($dql);
-
-                $other = new Paginator($query, $fetchJoinCollection = true);
-
+                $em         = $this->get('doctrine.orm.entity_manager');
+                $dql        = "SELECT a FROM Emc23SigsBundle:J17JigsGroups a";
+                $query      = $em->createQuery($dql);
+                $other      = new Paginator($query, $fetchJoinCollection = true);
                 $other->setUseOutputWalkers(true);
                 //$paginator = $this->get('knp_paginator');
-
                // $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+                $c          = count($other);
 
-
-                $c = count($other);
-
-
-
-
-
-                foreach ($other as $post) {
-
-               //     echo $post->getTotalMoney() . "\n";
-
-
-                  print_r($post->getGid());
-
-
-                }
-
-
-
-
-                //  echo '<pre>';
-                //  print_r ($pagination);
-                //  echo '</pre>';
-                // parameters to template
-                return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $other));
+                return $this->render('Emc23SigsBundle:Default:J17JigsGroups.html.twig', array('pagination' => $other));
             }
-
-
             /**
              * (Add this method into your class)
              *
@@ -431,13 +343,4 @@ class GroupsController extends Controller
             {
                 return $this->name;
             }
-
-
-
-
-
-
-
-
-
         }
