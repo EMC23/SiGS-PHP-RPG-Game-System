@@ -7,10 +7,10 @@
     </div>
     <table width="100%">
         <tr>
-            {# sorting of properties based on query components #}
+            <th></th>
             <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
             <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Type', 'a.type') }} </th>
-            <th> avatar</th>
+
             <th> cellwidth</th>
             <th> cellheight</th>
             <th> numberofcells</th>
@@ -19,8 +19,13 @@
         {# table body #}
         {% for article in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>
+                    <div style="width:{{ article.cellwidth }}px;
+                                height:{{ article.cellheight }}px;
+                            overflow:hidden;">
+                        <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/chars/halflings/{{ article.typename }}.png"></div></td>
                 <td>{{ article.id }}</td>
-                <td>   <td><a href="/hobbittypes/{{ article.id }}/">{{ article.typename }}</a></td>   </td>
+                <td> <a href="/hobbittypes/{{ article.id }}/">{{ article.typename }}</a></td>
 
                 <td>{{ article.avatar }}</td>
                 <td>{{ article.cellwidth }}</td>
@@ -31,10 +36,6 @@
     </table>
 
     <a href="/app_dev.php/new/{{ type }}">New</a>
-
-
-
-
     {# display navigation #}
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}
