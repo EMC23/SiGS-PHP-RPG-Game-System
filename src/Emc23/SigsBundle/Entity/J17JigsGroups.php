@@ -193,6 +193,34 @@ class J17JigsGroups
     {
         return $this->coffers;
     }
+    /**
+     * @var integer
+     */
+    private $captain;
 
+
+    /**
+     * Set captain
+     *
+     * @param integer $captain
+     *
+     * @return J17JigsGroups
+     */
+    public function setCaptain($captain)
+    {
+        $this->captain = $captain;
+
+        return $this;
+    }
+
+    /**
+     * Get captain
+     *
+     * @return integer
+     */
+    public function getCaptain()
+    {
+        return $this->captain;
+    }
 
 }
