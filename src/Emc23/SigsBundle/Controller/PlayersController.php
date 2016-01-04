@@ -104,9 +104,6 @@ class PlayersController extends Controller
             $gid = $task->getGid();
             $owner = $task->getOwner();
 
-            //$faction    = $task->getFaction();
-            //$gid        = $task->getGid();
-
             $task->setName($name);
             $task->setFaction($faction);
             $task->setHealth($health);
@@ -127,12 +124,7 @@ class PlayersController extends Controller
     public function showAction($id, Request $request)
     {
         $type = 'J17JigsPlayers';
-
-
-
-            $task = new J17JigsPlayers();
-
-
+        $task = new J17JigsPlayers();
         $record = $this->getDoctrine()
             //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
             ->getRepository("Emc23SigsBundle:$type")
@@ -142,29 +134,15 @@ class PlayersController extends Controller
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
 
-        // ... do something, like pass the $product object into a template
-
-        // return $product;
-        //   return new Response('product id '.$product->getIdUser());
-
-
-        //    $faction = $record->getFaction();
-        // $image = $product->getImage();
-        //    $Posx = $product->getPosx();
-
-        //  $task = new J17JigsCharacters();
-
-//   $task = new $type();
-
             $name = $record->getName();
-          //  $faction = $record->getFaction();
-        //    $health = $record->getHealth();
-        //    $strength = $record->getStrength();
+            $faction = $record->getFaction();
+            $health = $record->getHealth();
+            $strength = $record->getStrength();
 
 
 
             $intelligence = $record->getIntelligence();
-            $gid = $record->getGid();
+            //$gid = $record->getGid();
             $owner = $record->getOwner();
             $contentment = $record->getContentment();
 
@@ -193,115 +171,7 @@ class PlayersController extends Controller
 
     }
 
-    ///////////////////////////////////////////////////////////////////
 
-
-    public function showfactionsAction()
-    {
-
-        $gids = array(42, 35, 36);
-        $this->faction = array();
-        $em = $this->getDoctrine()->getManager();
-        /*
-              $query = $em->createQuery(
-                  'SELECT p
-                  FROM AcmeSigsBundle:J17Comprofiler p
-                  WHERE p.id > :id
-                  ORDER BY p.id ASC'
-              )->setParameter('id', '1');
-
-              $x = $query->getResult();
-          */
-        foreach ($gids as $gid) {
-            //   $dql   = "           SELECT a,p FROM AcmeSigsBundle:J17Usergroups a             LEFT JOIN a.gid p WHERE a.parentId = $gid ";
-
-            /*    $query = $em->createQuery(
-                'SELECT p FROM AcmeSigsBundle:J17Usergroups p
-                 WHERE p.parentId = 42'
-
-            );  */
-
-            $query = $em->createQuery(' SELECT p,a FROM Emc23SigsBundle:J17Usergroups a  LEFT JOIN a.gid p WHERE a.parentId =' . $gid);
-
-            // print_r($query);
-
-            $x = $query->getResult(Query::HYDRATE_ARRAY);
-
-            //    $x = $query->getResult();
-
-            $this->faction[$gid] = $x;
-            //
-            $this->faction[$gid]['factiontotalBank'] = 0;
-            //
-            foreach ($x as $group) {
-
-                $this->faction[$gid]['factiontotalBank'] += $group['gid']['totalBank'];
-            }
-            $i = 0;
-            foreach ($this->faction as $page) {
-                //   echo $this->faction[$gid]['factiontotalBank']. '<br/>';
-                //    echo $page[$i]['gid']['totalBank'] . 'tb<br/>';
-                //   echo $i. '<br/>';
-                //   echo $this->$gid->faction_totalMoney.'<br/>';
-                // parameters to template
-                //       echo '<pre>';
-                // print_r ($page['gid']['totalBank'] );
-                //   print_r($page);
-
-
-                if ($page[$i]['parentId'] == 42) {
-                    $this->faction[$gid]['fid'] = "Cyberia";
-                }
-                if ($page[$i]['parentId'] == 35) {
-                    $this->faction[$gid]['fid'] = "Gaia";
-                }
-
-                if ($page[$i]['parentId'] == 36) {
-
-                    $this->faction[$gid]['fid'] = "Fantasia";
-                }
-
-
-                $i++;
-            }
-
-
-//  
-        }
-
-
-// return $this->render('AcmeSigsBundle:Default:layout.html.php');
-        return $this->render('Emc23SigsBundle:Default:layout.html.php', array('pagination' => $this->faction));
-
-        // ... do something, like pass the $product object into a template
-
-        // return $product;
-        //   return new Response('product id '.$product->getIdUser());
-
-        // $name = $product->getName();
-        //    $image = $product->getImage();
-        //  $Posx = $product->getPosx();
-
-        //$task = new J17JigsCharacters();
-        //
-        //     $task->setName($name);
-        //     $task->setImage($image);
-        //     $task->setPosx($Posx);
-
-
-        //      $form = $this->createFormBuilder($task)
-        //        ->add('name', 'text')
-        //        ->add('image', 'text')
-        //      ->add('posx','text')
-        //           ->add('save', 'submit')
-        //
-//            ->getForm();
-        //    return $this->render("AcmeSigsBundle:Default:J17_Jigs_Factions_page.html.twig", array('stuff' => $products, 'form' => $form->createView() ));
-
-
-    }
-
-/////////////////////////////////          
 
             public function showallusersAction()
             {
@@ -369,10 +239,6 @@ class PlayersController extends Controller
                 $content .= '</table>';
                 return new Response($content);
             }
-            ////////////////////////////////////////////////////////////////////////////////////
-
-
-            // Acme\MainBundle\Controller\ArticleController.php
 
             public function listAction()
             {
@@ -383,13 +249,7 @@ class PlayersController extends Controller
                 $query = $em->createQuery($dql);
                 $paginator = $this->get('knp_paginator');
                 $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-                // $pagination ="hello";
 
-
-                //  echo '<pre>';
-                //  print_r ($pagination);
-                //  echo '</pre>';
-                // parameters to template
                 return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
             }
         }
