@@ -1,0 +1,43 @@
+{% extends 'Emc23SigsBundle::base.html.twig' %}
+{% block body %}
+    {{ knp_menu_render('Emc23SigsBundle:Builder:mainMenu') }}
+    {# total items count #}
+    <div class="count">
+
+    </div>
+    <table width="100%">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th> Name</th>
+            <th> Total Members</th>
+            <th> Coffers</th>
+            <th> Captain</th>
+
+        </tr>
+
+        {# table body #}
+        {% for article in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+
+                <td><a href="/groups/{{ article.getCoffers }}/">{{ article.getCoffers }}</a></td>
+                <td>{{ article.totalMembers }}</td>
+                <td>{{ article.coffers }}</td>
+
+                <td>{{ article.captain }}</td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/app_dev.php/new/{{ type }}">New</a>
+
+
+
+
+    {# display navigation #}
+    <div class="navigation">
+
+    </div>
+
+{% endblock %}
