@@ -110,16 +110,6 @@ class J17JigsMonsters
     }
 
     /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Set health
      *
      * @param integer $health
@@ -262,5 +252,15 @@ class J17JigsMonsters
     public function getY()
     {
         return $this->y;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Emc23\SigsBundle\Entity\J17JigsMonsterTypes
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
