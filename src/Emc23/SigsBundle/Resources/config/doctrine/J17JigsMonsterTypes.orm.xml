@@ -16,12 +16,7 @@
         <option name="default">0</option>
       </options>
     </field>
-    <field name="type" type="string" column="type" length="10" nullable="false">
-      <options>
-        <option name="fixed"/>
-        <option name="default">npc</option>
-      </options>
-    </field>
+
     <field name="avatar" type="string" column="avatar" length="255" nullable="false">
       <options>
         <option name="fixed"/>
@@ -51,11 +46,7 @@
         <option name="default">16</option>
       </options>
     </field>
-    <field name="active" type="boolean" column="active" nullable="false">
-      <options>
-        <option name="default">1</option>
-      </options>
-    </field>
+
     <field name="money" type="integer" column="money" nullable="false">
       <options>
         <option name="unsigned">1</option>
@@ -110,17 +101,7 @@
         <option name="default">0</option>
       </options>
     </field>
-    <field name="nbrAttacks" type="integer" column="nbr_attacks" nullable="false">
-      <options>
-        <option name="unsigned"/>
-        <option name="default">1</option>
-      </options>
-    </field>
-    <field name="nbrKills" type="boolean" column="nbr_kills" nullable="false">
-      <options>
-        <option name="default">1</option>
-      </options>
-    </field>
+
     <field name="idWeapon" type="boolean" column="id_weapon" nullable="false">
       <options>
         <option name="default">2</option>
