@@ -25,18 +25,12 @@
     <th> finalDefence </th>
     <th> idWeapon </th>
     <th> strength </th>
-    
-    
-</tr>
-
+   </tr>
 {# table body #}
 {% for article in pagination %}
 <tr {% if loop.index is odd %}class="color"{% endif %}>
-   
-   
-   <td><a href="/app_dev.php/show/{{article.id}}/{{type}}">{{article.id}}</a></td>
-   
-   <td>{{article.name}}</td>
+    <td><a href="/players/{{article.id}}/">{{article.id}}</a></td>
+     <td>{{article.name}}</td>
    <td>{{article.posx}}</td>
     <td>{{article.posy}}</td>
     <td>{{article.map}}</td>
@@ -52,14 +46,6 @@
     <td>{{article.finalDefence}}</td>
     <td>{{article.idWeapon}}</td>
     <td>{{article.strength}}</td>
-
-
-
-
-
-
-
-
 </tr>
 {% endfor %}
 </table>
@@ -67,5 +53,4 @@
 <div class="navigation">
     {{ knp_pagination_render(pagination) }}
 </div>
-
 {% endblock %}
