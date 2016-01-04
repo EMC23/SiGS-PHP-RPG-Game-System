@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class J17JigsMonsterTypes
 {
+
+    public function __construct()
+    {
+        $this->J17JigsMonsters = new ArrayCollection();
+    }
+
     /**
      * @var integer
      *
@@ -31,10 +37,6 @@ class J17JigsMonsterTypes
     {
         return $this->id;
     }
-    /**
-     * @var integer
-     */
-    private $type = '1';
 
     /**
      * @var integer
@@ -60,31 +62,6 @@ class J17JigsMonsterTypes
      * @var integer
      */
     private $y;
-
-
-    /**
-     * Set type
-     *
-     * @param integer $type
-     *
-     * @return J17JigsMonsters
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
     /**
      * Set health
@@ -240,10 +217,7 @@ class J17JigsMonsterTypes
      */
     private $numberofcells = '16';
 
-    /**
-     * @var boolean
-     */
-    private $active = '1';
+
 
     /**
      * @var integer
@@ -295,15 +269,6 @@ class J17JigsMonsterTypes
      */
     private $defence = '0';
 
-    /**
-     * @var integer
-     */
-    private $nbrAttacks = '1';
-
-    /**
-     * @var boolean
-     */
-    private $nbrKills = '1';
 
     /**
      * @var boolean
@@ -519,29 +484,7 @@ class J17JigsMonsterTypes
         return $this->numberofcells;
     }
 
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     *
-     * @return J17JigsMonsterTypes
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
 
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
 
     /**
      * Set money
@@ -781,54 +724,6 @@ class J17JigsMonsterTypes
     public function getDefence()
     {
         return $this->defence;
-    }
-
-    /**
-     * Set nbrAttacks
-     *
-     * @param integer $nbrAttacks
-     *
-     * @return J17JigsMonsterTypes
-     */
-    public function setNbrAttacks($nbrAttacks)
-    {
-        $this->nbrAttacks = $nbrAttacks;
-
-        return $this;
-    }
-
-    /**
-     * Get nbrAttacks
-     *
-     * @return integer
-     */
-    public function getNbrAttacks()
-    {
-        return $this->nbrAttacks;
-    }
-
-    /**
-     * Set nbrKills
-     *
-     * @param boolean $nbrKills
-     *
-     * @return J17JigsMonsterTypes
-     */
-    public function setNbrKills($nbrKills)
-    {
-        $this->nbrKills = $nbrKills;
-
-        return $this;
-    }
-
-    /**
-     * Get nbrKills
-     *
-     * @return boolean
-     */
-    public function getNbrKills()
-    {
-        return $this->nbrKills;
     }
 
     /**
