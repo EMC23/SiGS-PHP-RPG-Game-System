@@ -10,12 +10,9 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="type" type="integer" column="type" nullable="false">
-      <options>
-        <option name="unsigned"/>
-        <option name="default">1</option>
-      </options>
-    </field>
+
+
+
     <field name="health" type="integer" column="health" nullable="false">
       <options>
         <option name="unsigned"/>
@@ -44,5 +41,14 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <many-to-one field="type" target-entity="J17JigsMonsterTypes">
+      <join-column name="type" referenced-column-name="id" />
+    </many-to-one>
+
+
+
+
+
+
   </entity>
 </doctrine-mapping>
