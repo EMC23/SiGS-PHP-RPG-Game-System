@@ -13,25 +13,26 @@ class Builder
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttributes(array('id' => 'menu'));
-        $menu->addChild('Home', array('route' => 'emc23_hello_homepage4'));
+        $menu->addChild('Home', array('route' => 'emc23_sigs_homepage'));
+
         $menu->addChild('Players', array(
             'route' => 'emc23_sigs_players'
         ));
         
         $menu->addChild('Buildings', array(
-            'route' => '\'emc23_sigs_buildings'
+            'route' => 'emc23_sigs_buildings'
         ));
         
         $menu->addChild('Characters', array(
-            'route' => 'emc23_hello_characters'
+            'route' => 'emc23_sigs_characters'
          ));
          
         $menu->addChild('Factions', array(
-            'route' => 'emc23_hello_factions'
+            'route' => 'emc23_sigs_factions'
          ));
 
          $menu->addChild('Groups', array(
-            'route' => 'emc23_hello_groups'
+            'route' => 'emc23_sigs_groups'
          ));
          
          $menu->addChild('Hobbits', array(
