@@ -136,10 +136,6 @@ class HobbitsController extends Controller
         $owner = $record->getOwner();
         $contentment = $record->getContentment();
         $typeName = $record->getType()->getTypeName();
-
-
-
-
         //$typeType = $record->getHobbitTypes();
         $task->setName($name);
         $task->setFaction($faction);
@@ -162,28 +158,16 @@ class HobbitsController extends Controller
         return $this->render("Emc23SigsBundle:Default:J17JigsHobbits_page.html.twig", array('typename' => $typeName, 'form' => $form->createView()));
     }
 
-
     // Acme\MainBundle\Controller\ArticleController.php
 
     public function listAction()
     {
-        $type= 'J17JigsHobbits';
         $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM Emc23SigsBundle:$type a";
-
+        $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbits a";
         $query = $em->createQuery($dql);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-        // $pagination ="hello";
-        //  echo '<pre>';
-        //  print_r ($pagination);
-        //  echo '</pre>';
-        // parameters to template
 
-
-
-
-
-        return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
+        return $this->render('Emc23SigsBundle:Default:J17JigsHobbits.html.twig', array('pagination' => $pagination));
     }
 }
