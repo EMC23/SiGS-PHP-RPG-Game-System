@@ -175,8 +175,6 @@ class MonstersController extends Controller
         return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
-
-
             public function listAction()
             {
 
