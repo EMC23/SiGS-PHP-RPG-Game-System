@@ -12,14 +12,12 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-
-    <one-to-one field="gid" target-entity="J17JigsGroups">
-        <join-column name="gid" referenced-column-name="id" />
-    </one-to-one>
-
     <field name="parentId" type="integer" column="parent_id" nullable="false"/>
     <field name="lft" type="integer" column="lft" nullable="false"/>
     <field name="rgt" type="integer" column="rgt" nullable="false"/>
     <field name="title" type="string" column="title" length="100" nullable="false"/>
+    <one-to-one field="gid" target-entity="J17JigsGroups">
+      <join-column name="gid" referenced-column-name="id" />
+    </one-to-one>
   </entity>
 </doctrine-mapping>

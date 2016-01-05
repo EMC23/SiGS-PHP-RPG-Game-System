@@ -14,5 +14,6 @@
     <field name="totalXp" type="integer" column="total_xp" nullable="true"/>
     <field name="totalMoney" type="integer" column="total_money" nullable="true"/>
     <field name="coffers" type="integer" column="coffers" nullable="false"/>
+    <field name="captain" type="integer" column="captain" nullable="false"/>
   </entity>
 </doctrine-mapping>

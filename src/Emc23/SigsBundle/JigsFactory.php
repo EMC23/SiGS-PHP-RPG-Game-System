@@ -45,10 +45,10 @@ class JigsFactory
 
     function generateHobbitType()
     {
-        $result         = $this->em->createQuery("SELECT a.id FROM Emc23SigsBundle:J17JigsHobbits a")->getArrayResult();
+        $result         = $this->em->createQuery("SELECT a.id FROM Emc23SigsBundle:J17JigsHobbitTypes a")->getArrayResult();
         $ids            = array_map('current', $result);
 
-        print_r($ids) .PHPEOL;
+        print_r($ids) .PHP_EOL;
         $randomIndex    = rand(1, count($ids));
 
         echo $randomIndex. PHP_EOL;

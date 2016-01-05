@@ -34,7 +34,7 @@ class J17JigsMonsters
     /**
      * @var integer
      */
-    private $type ;
+    private $type = '1';
 
     /**
      * @var integer
@@ -93,6 +93,30 @@ class J17JigsMonsters
     public function getIntelligence()
     {
         return $this->intelligence;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return J17JigsMonsters
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -239,44 +263,4 @@ class J17JigsMonsters
     {
         return $this->y;
     }
-
-    /**
-     * Get type
-     *
-     * @return \Emc23\SigsBundle\Entity\J17JigsMonsterTypes
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set type
-     *
-     * @param integer $type
-     *
-     * @return J17JigsMonsters
-     */
-    public function setTypeInteger($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-    /**
-     * Set type
-     *
-     * @param \Emc23\SigsBundle\Entity\J17JigsMonsterTypes $type
-     *
-     * @return J17JigsMonsters
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-
-
 }

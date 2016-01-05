@@ -26,22 +26,13 @@ class moveHobbitCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        //$em = $this->get('doctrine.orm.entity_manager');
-        //$file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
-        //$name              = Mudnames::generate_name_from($file);
-        $em = $this->getContainer()->get('doctrine')->getEntityManager('default');
-        $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbits a";
-        $query = $em->createQuery($dql);
-        $result = $query->getResult(Query::HYDRATE_ARRAY);
-        //$task              = new J17JigsHobbitTypes();
-        //$jigs = $this->getContainer()->get('my_JigsFactory');
-        //$hobbit            = $jigs->generateHobbit();
-        //$directory = '/var/www/meme/components/com_battle/images/assets/chars/halflings/';
-        //$fileArray = scandir($directory);
-        print_r($result);
-        // exit();
+        $em         = $this->getContainer()->get('doctrine')->getEntityManager('default');
+        $dql        = "SELECT a FROM Emc23SigsBundle:J17JigsHobbits a";
+        $query      = $em->createQuery($dql);
+        $result     = $query->getResult(Query::HYDRATE_ARRAY);
+
         foreach ($result as $row) {
-            //  $type = substr($row, 0, -4);
+;
             echo($row['name'] . PHP_EOL);
             $direction = rand(0, 12);
             if ($direction == 0) {

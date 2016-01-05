@@ -2,6 +2,7 @@
 
 namespace Emc23\SigsBundle\Command;
 
+use Emc23\SigsBundle\Entity\J17JigsHobbitTypes;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,14 +14,6 @@ use Emc23\SigsBundle\JigsFactory;
 
 class makeHobbitCommand extends ContainerAwareCommand
 {
-
-//protected $em;
-
-
-  //  public function __construct($em)
-  //  {
- //       $this->em = $em;
- //   }
 
     protected function configure()
     {
@@ -43,8 +36,8 @@ class makeHobbitCommand extends ContainerAwareCommand
          $jigs              = new JigsFactory($em);
          $hobbit            = $jigs->generateHobbit();
          $task->setName($name);
-
          echo 'Name:' . $name . PHP_EOL;
+         //$halflingType->setType($hobbit['type']);
          $task->setType($hobbit['type']);
          $task->setFaction($hobbit['faction_number']);
          $task->setGid($hobbit['Gid'] );
@@ -52,13 +45,15 @@ class makeHobbitCommand extends ContainerAwareCommand
          $task->setStrength($hobbit['strength'] );
          $task->setIntelligence($hobbit['intelligence']);
          $task->setOwner($hobbit['owner']->id);
-         $task->setOwner_type($hobbit['owner']->type);
+         $task->setOwnerType($hobbit['owner']->type);
          $task->setContentment($hobbit['contentment']);
 
         $task->setX(rand(10,100));
         $task->setY(rand(10,100));
-         $em->persist($task);
-         $em->flush();
+
+        $em->persist($task);
+        //$em->persist($halflingType);
+        $em->flush();
          $text='done';
          $output->writeln($text);
     }

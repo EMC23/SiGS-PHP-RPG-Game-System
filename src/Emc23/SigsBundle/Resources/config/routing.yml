@@ -1,6 +1,6 @@
-emc23_sigs_home:
+emc23_sigs_homepage:
     pattern:  /
-    defaults: { _controller: Emc23SigsBundle:Default:home }
+    defaults: { _controller: Emc23SigsBundle:Default:index }
 
 
 emc23_sigs_players:
@@ -19,7 +19,7 @@ emc23_sigs_building:
      pattern:  /buildings/{id}
      defaults: { _controller: Emc23SigsBundle:Buildings:show }
 
-emc23_sigs_character:
+emc23_sigs_characters:
      pattern:  /characters
      defaults: { _controller: Emc23SigsBundle:Characters:list }
 
@@ -58,3 +58,19 @@ emc23_sigs_monster_types:
 emc23_sigs_monster_type:
     pattern:  /monstertypes/{id}/
     defaults: { _controller: Emc23SigsBundle:MonsterTypes:show }
+
+emc23_sigs_groups:
+    pattern:  /groups
+    defaults: { _controller: Emc23SigsBundle:Groups:list }
+
+emc23_sigs_group:
+    pattern:  /groups/{id}
+    defaults: { _controller: Emc23SigsBundle:Groups:show }
+
+emc23_sigs_factions:
+     pattern:  /factions
+     defaults: { _controller: Emc23SigsBundle:Factions:list }
+
+emc23_sigs_faction:
+     pattern:  /factions/{id}
+     defaults: { _controller: Emc23SigsBundle:Factions:show }

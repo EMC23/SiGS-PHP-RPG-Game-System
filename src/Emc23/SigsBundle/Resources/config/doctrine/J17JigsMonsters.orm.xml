@@ -44,11 +44,5 @@
     <many-to-one field="type" target-entity="J17JigsMonsterTypes">
       <join-column name="type" referenced-column-name="id" />
     </many-to-one>
-
-
-
-
-
-
   </entity>
 </doctrine-mapping>

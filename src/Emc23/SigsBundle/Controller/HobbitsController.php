@@ -157,7 +157,6 @@ class HobbitsController extends Controller
             ->getForm();
         return $this->render("Emc23SigsBundle:Default:J17JigsHobbits_page.html.twig", array('typename' => $typeName, 'form' => $form->createView()));
     }
-
     // Acme\MainBundle\Controller\ArticleController.php
 
     public function listAction()

@@ -12,7 +12,10 @@ class Builder
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
-        $menu->setChildrenAttributes(array('id' => 'menu'));
+        //$menu->setChildrenAttributes(array('id' => 'menu', 'class'=>'nav navbar'));
+        $menu->setChildrenAttributes(array('id' => 'menu', 'class'=>'navbar'));
+
+
         $menu->addChild('Home', array('route' => 'emc23_sigs_homepage'));
 
         $menu->addChild('Players', array(
