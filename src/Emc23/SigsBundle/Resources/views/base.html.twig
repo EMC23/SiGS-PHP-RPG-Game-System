@@ -21,6 +21,8 @@
         <div id="content">
       <div class="sf-reset">
         <div class="block">
+            {{  knp_menu_render('Emc23SigsBundle:Builder:mainMenu') }}
+            {# knp_menu_render('main', {'template': 'Emc23SigsBundle:Menu:knp_menu.html.twig'}) #}
             {% block body %}{% endblock %}
             </div>
             </div>
