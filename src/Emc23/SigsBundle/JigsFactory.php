@@ -22,10 +22,21 @@ class JigsFactory
         $hobbit['health']                = $this->generateHealth();
         $hobbit['strength']              = $this->generateStrength();
         $hobbit['intelligence']          = $this->generateIntelligence();
-        $hobbit['contentment']           = $this->generateContentment();
+        $hobbit['contentment']           = rand(1,10);
         $hobbit['owner']                 = $this->generateOwner($hobbit['Gid']);
         $hobbit['type']                  = $this->generateHobbitType();
+        $hobbit['grid']                  = rand(1,50);
         return $hobbit;    
+    }
+
+    function generateMonster()
+    {
+        $monster['health']                = $this->generateHealth();
+        $monster['strength']              = $this->generateStrength();
+        $monster['intelligence']          = $this->generateIntelligence();
+        $monster['type']                  = $this->generateMonsterType();
+        $monster['grid']                  = rand(50,99);
+        return $monster;
     }
 
     function generateMonsterType()
@@ -63,14 +74,8 @@ class JigsFactory
     {
         return 'love';
     }
-    function generateMonster()
-    {
-        $monster['health']                = $this->generateHealth();
-        $monster['strength']              = $this->generateStrength();
-        $monster['intelligence']          = $this->generateIntelligence();
-        $monster['type']                  = $this->generateMonsterType();
-        return $monster;
-    }
+
+
     function generateFaction()
     {
         
@@ -111,10 +116,7 @@ class JigsFactory
 
     }
     
-    function generateContentment()
-    {
-        return rand(1, 10);
-    }
+
     
     function generateHealth()
     {

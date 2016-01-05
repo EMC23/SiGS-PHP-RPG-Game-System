@@ -386,7 +386,7 @@ class J17JigsHobbits
     /**
      * Set type
      *
-     * @param integer $type
+     * @param \Emc23\SigsBundle\Entity\J17JigsHobbitTypes $type
      *
      * @return J17JigsHobbits
      */

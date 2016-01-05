@@ -1,24 +1,21 @@
 <?php
 
 namespace Emc23\SigsBundle\Controller;
-        use Doctrine\ORM\Tools\Pagination\Paginator;
-        use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-        use Emc23\SigsBundle\Entity\J17JigsAwards;
-        use Symfony\Component\HttpFoundation\Response;
-        use Emc23\SigsBundle\Model\Jigs;
-        use Emc23\SigsBundle\Entity\J17JigsCharacters;
-        use Emc23\SigsBundle\Entity\J17JigsPlayers;
-        use Emc23\SigsBundle\Entity\J17JigsBuildings;
-        use Emc23\SigsBundle\Entity\J17JigsHobbits;
-        use Emc23\SigsBundle\Entity\Mudnames;
-        use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
-        use Emc23\SigsBundle\JigsFactory;
-        //use Emc23\SigsBundle\Entity\J17JigsFactions;
-     //   use Emc23\SigsBundle\Entity\J17JUsergroups;
-        use Symfony\Component\HttpFoundation\Request;
-        use Doctrine\ORM\Query;
-        // src/Acme/StoreBundle/Controller/DefaultController.php
-      
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Emc23\SigsBundle\Entity\J17JigsAwards;
+use Symfony\Component\HttpFoundation\Response;
+use Emc23\SigsBundle\Model\Jigs;
+use Emc23\SigsBundle\Entity\J17JigsCharacters;
+use Emc23\SigsBundle\Entity\J17JigsGroups;
+use Emc23\SigsBundle\Entity\J17JigsHobbits;
+use Emc23\SigsBundle\Entity\Mudnames;
+use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
+use Emc23\SigsBundle\JigsFactory;
+
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Query;
+
 
 class GroupsController extends Controller
 {
@@ -131,216 +128,57 @@ class GroupsController extends Controller
         $type = 'J17JigsGroups';
         $task = new J17JigsGroups();
         $record = $this->getDoctrine()
-            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
-            ->getRepository("Emc23SigsBundle:$type")
+            ->getRepository("Emc23SigsBundle:J17JigsGroups")
             ->find($id);
 
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-            $name = $record->getName();
-            $faction = $record->getFaction();
-            $health = $record->getHealth();
-            $strength = $record->getStrength();
 
-            $intelligence = $record->getIntelligence();
-           // $gid = $record->getGid();
-            $owner = $record->getOwner();
-            $contentment = $record->getContentment();
 
-            $task->setName($name);
-            $task->setFaction($faction);
-            $task->setHealth($health);
-            $task->setStrength($strength);
-            $task->setIntelligence($intelligence);
+
+
+            $captain = $record->getCaptain();
+
+
+
+
            // $task->setGid($gid);
-            $task->setOwner($owner);
-            $task->setContentment($contentment);
+            $task->setCaptain($captain);
+         ;
 
             $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
-                ->add('faction', 'text')
-                ->add('health', 'text')
-                ->add('strength', 'text')
-                ->add('intelligence', 'text')
-             //   ->add('group', 'text')
-                ->add('contentment', 'text')
+
+                ->add('captain', 'text')
+
                 ->add('save', 'submit')
                 ->getForm();
 
-
-
-
-
-
-        return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("Emc23SigsBundle:Default:J17JigsGroups_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
 
 
     }
 
-    ///////////////////////////////////////////////////////////////////
-
-
-    public function showfactionsAction()
+    public function listAction()
     {
+        $em         = $this->get('doctrine.orm.entity_manager');
+        $dql        = "SELECT a FROM Emc23SigsBundle:J17JigsGroups a";
+        $query      = $em->createQuery($dql);
+        $other      = new Paginator($query, $fetchJoinCollection = true);
+        $other->setUseOutputWalkers(true);
+        //$paginator = $this->get('knp_paginator');
+       // $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+        $c          = count($other);
 
-        $gids = array(42, 35, 36);
-        $this->faction = array();
-        $em = $this->getDoctrine()->getManager();
-        /*
-              $query = $em->createQuery(
-                  'SELECT p
-                  FROM AcmeSigsBundle:J17Comprofiler p
-                  WHERE p.id > :id
-                  ORDER BY p.id ASC'
-              )->setParameter('id', '1');
-
-              $x = $query->getResult();
-          */
-        foreach ($gids as $gid) {
-            //   $dql   = "           SELECT a,p FROM AcmeSigsBundle:J17Usergroups a             LEFT JOIN a.gid p WHERE a.parentId = $gid ";
-
-            /*    $query = $em->createQuery(
-                'SELECT p FROM AcmeSigsBundle:J17Usergroups p
-                 WHERE p.parentId = 42'
-
-            );  */
-
-            $query = $em->createQuery(' SELECT p,a FROM Emc23SigsBundle:J17Usergroups a  LEFT JOIN a.gid p WHERE a.parentId =' . $gid);
-
-            // print_r($query);
-
-            $x = $query->getResult(Query::HYDRATE_ARRAY);
-
-            //    $x = $query->getResult();
-
-            $this->faction[$gid] = $x;
-            //
-            $this->faction[$gid]['factiontotalBank'] = 0;
-            //
-            foreach ($x as $group) {
-
-                $this->faction[$gid]['factiontotalBank'] += $group['gid']['totalBank'];
-            }
-            $i = 0;
-            foreach ($this->faction as $page) {
-                //   echo $this->faction[$gid]['factiontotalBank']. '<br/>';
-                //    echo $page[$i]['gid']['totalBank'] . 'tb<br/>';
-                //   echo $i. '<br/>';
-                //   echo $this->$gid->faction_totalMoney.'<br/>';
-                // parameters to template
-                //       echo '<pre>';
-                // print_r ($page['gid']['totalBank'] );
-                //   print_r($page);
-
-
-                if ($page[$i]['parentId'] == 42) {
-                    $this->faction[$gid]['fid'] = "Cyberia";
-                }
-                if ($page[$i]['parentId'] == 35) {
-                    $this->faction[$gid]['fid'] = "Gaia";
-                }
-
-                if ($page[$i]['parentId'] == 36) {
-
-                    $this->faction[$gid]['fid'] = "Fantasia";
-                }
-
-
-                $i++;
-            }
-
-
-//
-        }
-
-
-// return $this->render('AcmeSigsBundle:Default:layout.html.php');
-        return $this->render('Emc23SigsBundle:Default:layout.html.php', array('pagination' => $this->faction));
-
-        // ... do something, like pass the $product object into a template
-
-        // return $product;
-        //   return new Response('product id '.$product->getIdUser());
-
-        // $name = $product->getName();
-        //    $image = $product->getImage();
-        //  $Posx = $product->getPosx();
-
-        //$task = new J17JigsCharacters();
-        //
-        //     $task->setName($name);
-        //     $task->setImage($image);
-        //     $task->setPosx($Posx);
-
-
-        //      $form = $this->createFormBuilder($task)
-        //        ->add('name', 'text')
-        //        ->add('image', 'text')
-        //      ->add('posx','text')
-        //           ->add('save', 'submit')
-        //
-//            ->getForm();
-        //    return $this->render("AcmeSigsBundle:Default:J17_Jigs_Factions_page.html.twig", array('stuff' => $products, 'form' => $form->createView() ));
-
-
+        return $this->render('Emc23SigsBundle:Default:J17JigsGroups.html.twig', array('pagination' => $other));
     }
-
-/////////////////////////////////
-
-            public function showallusersAction()
-            {
-                $em = $this->getDoctrine()->getManager();
-                $query = $em->createQuery(
-                    'SELECT p
-            FROM Emc23SigsBundle:J17JigsPlayers p
-            WHERE p.id > :id
-            ORDER BY p.iduser ASC'
-                )->setParameter('id', '1');
-
-                $products = $query->getResult();
-                $x = 0;
-                $content = '<table>';
-                foreach ($products as $record) {
-
-                    $content .= $this->renderView(
-                        'Emc23SigsBundle:Hello:index.html.twig',
-                        array('name' => $record->getName(), 'id' => $record->getId())
-                    );
-                }
-                $content .= '</table>';
-                return new Response($content);
-            }
-
-            ////////////////////////////////////////////////////////////////////////////////////
-            public function showGroupsAction()
-            {
-                $content = "empty";
-                return new Response($content);
-            }
-
-            ////////////////////////////////////////////////////////////////////////////////////
-            // Acme\MainBundle\Controller\ArticleController.php
-            public function listAction()
-            {
-                $em         = $this->get('doctrine.orm.entity_manager');
-                $dql        = "SELECT a FROM Emc23SigsBundle:J17JigsGroups a";
-                $query      = $em->createQuery($dql);
-                $other      = new Paginator($query, $fetchJoinCollection = true);
-                $other->setUseOutputWalkers(true);
-                //$paginator = $this->get('knp_paginator');
-               // $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-                $c          = count($other);
-
-                return $this->render('Emc23SigsBundle:Default:J17JigsGroups.html.twig', array('pagination' => $other));
-            }
-            /**
-             * (Add this method into your class)
-             *
-             * @return string String representation of this class
-             */
-            public function __toString()
-            {
-                return $this->name;
-            }
-        }
+    /**
+     * (Add this method into your class)
+     *
+     * @return string String representation of this class
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+}

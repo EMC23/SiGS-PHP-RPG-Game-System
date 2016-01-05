@@ -19,7 +19,9 @@
     <field name="y" type="float" column="y" nullable="false"/>
     <field name="birth" type="string" column="birth" nullable="true"/>
     <field name="contentment" type="integer" column="contentment" nullable="true"/>
-    <field name="type" type="integer" column="type" nullable="true"/>
+    <many-to-one field="type" target-entity="J17JigsHobbitTypes">
+      <join-column name="type" referenced-column-name="id" />
+    </many-to-one>
     
     
   </entity>

@@ -19,7 +19,7 @@
         {% for article in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
 
-                <td><a href="/groups/{{ article.getCoffers }}/">{{ article.getCoffers }}</a></td>
+                <td><a href="/groups/{{ article.id }}">{{ article.id }}</a></td>
                 <td>{{ article.totalMembers }}</td>
                 <td>{{ article.coffers }}</td>
 

@@ -14,6 +14,9 @@ use Emc23\SigsBundle\Entity\Mudnames;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 use Emc23\SigsBundle\JigsFactory;
 
+
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 //use Emc23\SigsBundle\Entity\J17JigsFactions;
 //   use Emc23\SigsBundle\Entity\J17JUsergroups;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +34,6 @@ class HobbitsController extends Controller
     public function indexAction()
     {
         $name = "stuff";
-
         return $this->render('Emc23SigsBundle:Default:index.html.twig', array('name' => $name));
     }
 
@@ -51,9 +53,8 @@ class HobbitsController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function newAction($type, Request $request)
     {
-
-        $em = $this->getDoctrine()->getManager();
-        $jigs = $this->get('my_JigsFactory');
+        $em     = $this->getDoctrine()->getManager();
+        $jigs   = $this->get('my_JigsFactory');
 
         if ($type == 'J17JigsHobbits') {
             $task = new J17JigsHobbits();
@@ -85,19 +86,16 @@ class HobbitsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
             //$record = $form->getData();
-            $name = $task->getName();
-            $faction = $task->getFaction();
-            $contentment = $task->getContentment();
-            $health = $task->getHealth();
-            $intelligence = $task->getIntelligence();
-            $strength = $task->getStrength();
-            $gid = $task->getGid();
-            $owner = $task->getOwner();
-            //$faction    = $task->getFaction();
-            //$gid        = $task->getGid();
-            //$task->setName($name);
+            $name           = $task->getName();
+            $faction        = $task->getFaction();
+            $contentment    = $task->getContentment();
+            $health         = $task->getHealth();
+            $intelligence   = $task->getIntelligence();
+            $strength       = $task->getStrength();
+            $gid            = $task->getGid();
+            $owner          = $task->getOwner();
+
             $task->setFaction($faction);
             $task->setHealth($health);
             $task->setStrength($strength);
@@ -115,34 +113,27 @@ class HobbitsController extends Controller
 
     public function showAction($id,  Request $request)
     {
-
-        $task = new J17JigsHobbits();
-
-        echo $id;
-
-        $record = $this->getDoctrine()
+        $task       = new J17JigsHobbits();
+        $record     = $this->getDoctrine()
             ->getRepository("Emc23SigsBundle:J17JigsHobbits")
             ->find($id);
 
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-        $name = $record->getName();
-        $faction = $record->getFaction();
-        $health = $record->getHealth();
-        $strength = $record->getStrength();
-        $intelligence = $record->getIntelligence();
-        // $gid = $record->getGid();
-        $owner = $record->getOwner();
-        $contentment = $record->getContentment();
-        $typeName = $record->getType()->getTypeName();
-        //$typeType = $record->getHobbitTypes();
+        $name           = $record->getName();
+        $faction        = $record->getFaction();
+        $health         = $record->getHealth();
+        $strength       = $record->getStrength();
+        $intelligence   = $record->getIntelligence();
+        $owner          = $record->getOwner();
+        $contentment    = $record->getContentment();
+        $typeName       = $record->getType()->getTypeName();
         $task->setName($name);
         $task->setFaction($faction);
         $task->setHealth($health);
         $task->setStrength($strength);
         $task->setIntelligence($intelligence);
-        // $task->setGid($gid);
         $task->setOwner($owner);
         $task->setContentment($contentment);
         $form = $this->createFormBuilder($task)
@@ -151,22 +142,32 @@ class HobbitsController extends Controller
             ->add('health', 'text')
             ->add('strength', 'text')
             ->add('intelligence', 'text')
-            //   ->add('group', 'text')
             ->add('contentment', 'text')
             ->add('save', 'submit')
             ->getForm();
         return $this->render("Emc23SigsBundle:Default:J17JigsHobbits_page.html.twig", array('typename' => $typeName, 'form' => $form->createView()));
     }
-    // Acme\MainBundle\Controller\ArticleController.php
 
     public function listAction()
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbits a";
-        $query = $em->createQuery($dql);
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+        $em         = $this->get('doctrine.orm.entity_manager');
+        $dql        = "SELECT a,b FROM Emc23SigsBundle:J17JigsHobbits a JOIN a.type b";
+        $query      = $em->createQuery($dql)
+            ->setFirstResult(0)
+            ->setMaxResults(100);
+        //$paginator  = $this->get('knp_paginator');
+        //$pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+        $pagination = new Paginator($query, $fetchJoinCollection = true);
+
+
+
 
         return $this->render('Emc23SigsBundle:Default:J17JigsHobbits.html.twig', array('pagination' => $pagination));
+
+
+
+
+
+
     }
 }

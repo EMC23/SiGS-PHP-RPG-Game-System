@@ -3,13 +3,13 @@
 
     {# total items count #}
     <div class="count">
-        {{ pagination.getTotalItemCount }}
+
     </div>
     <table width="100%">
         <tr>
             {# sorting of properties based on query components #}
-            <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
-            <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Title', 'a.name') }} </th>
+            <th> id </th>
+            <th>title</th>
 
             <th> Faction</th>
             <th> health</th>
@@ -34,7 +34,11 @@
                 <td>{{ article.intelligence }}</td>
                 <td>{{ article.contentment }}</td>
                 <td>{{ article.birth }}</td>
-                <td>{{ article.owner }}</td>
+                <td>         <div style="width:{{ article.cellwidth }}px;
+                            height:{{ article.cellheight }}px;
+                            overflow:hidden;">
+                        <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/chars/halflings/{{ article.type.typename }}.png">
+                    </div></td>
 
 
             </tr>
@@ -48,7 +52,7 @@
 
     {# display navigation #}
     <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
+
     </div>
 
 {% endblock %}

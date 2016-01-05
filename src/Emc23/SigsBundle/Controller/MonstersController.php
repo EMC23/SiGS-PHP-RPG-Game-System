@@ -6,17 +6,12 @@ namespace Emc23\SigsBundle\Controller;
         use Symfony\Component\HttpFoundation\Response;
         use Emc23\SigsBundle\Model\Jigs;
         use Emc23\SigsBundle\Entity\J17JigsCharacters;
-        use Emc23\SigsBundle\Entity\J17JigsPlayers;
-        use Emc23\SigsBundle\Entity\J17JigsBuildings;
-        use Emc23\SigsBundle\Entity\J17JigsHobbits;
+        use Emc23\SigsBundle\Entity\J17JigsMonsters;
         use Emc23\SigsBundle\Entity\Mudnames;
         use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
         use Emc23\SigsBundle\JigsFactory;
-        //use Emc23\SigsBundle\Entity\J17JigsFactions;
-     //   use Emc23\SigsBundle\Entity\J17JUsergroups;
         use Symfony\Component\HttpFoundation\Request;
         use Doctrine\ORM\Query;
-        // src/Acme/StoreBundle/Controller/DefaultController.php
         use Doctrine\ORM\Tools\Pagination\Paginator;
 class MonstersController extends Controller
 {
@@ -49,24 +44,16 @@ class MonstersController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function newAction($type, Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $jigs = $this->get('my_JigsFactory');
 
         if ($type == 'J17JigsHobbits') {
-
             $task = new J17JigsHobbits();
             //    $jigs           = new Jigs();
-
-
             $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
-            $name = Mudnames::generate_name_from($file);
-
-
-            $task->setName($name);
-
+           // $name = Mudnames::generate_name_from($file);
+            //$task->setName($name);
             $hobbit = $jigs->generateHobbit();
-
             $task->setFaction($hobbit['faction_number']);
             $task->setGid($hobbit['Gid']);
             $task->setHealth($hobbit['health']);
@@ -74,10 +61,8 @@ class MonstersController extends Controller
             $task->setIntelligence($hobbit['intelligence']);
             $task->setOwner($hobbit['owner']);
             $task->setContentment($hobbit['contentment']);
-
-
             $form = $this->createFormBuilder($task)
-                ->add('name')
+             //   ->add('name')
                 ->add('faction')
                 ->add('health')
                 ->add('strength')
@@ -94,7 +79,7 @@ class MonstersController extends Controller
         if ($form->isValid()) {
 
         //$record = $form->getData();
-            $name = $task->getName();
+           // $name = $task->getName();
             $faction = $task->getFaction();
             $contentment = $task->getContentment();
             $health = $task->getHealth();
@@ -102,7 +87,7 @@ class MonstersController extends Controller
             $strength = $task->getStrength();
             $gid = $task->getGid();
             $owner = $task->getOwner();
-            $task->setName($name);
+            //$task->setName($name);
             $task->setFaction($faction);
             $task->setHealth($health);
             $task->setStrength($strength);
@@ -119,92 +104,52 @@ class MonstersController extends Controller
     }
 
 
-    public function showAction($id, $type, Request $request)
+    public function showAction($id, Request $request)
     {
-        if ($type == 'J17JigsCharacters') {
-            $task = new J17JigsCharacters();
-        }
-        if ($type == 'J17JigsPlayers') {
-            $task = new J17JigsPlayers();
-        }
-        if ($type == 'J17JigsBuildings') {
-            $task = new J17JigsBuildings();
-        }
-        if ($type == 'J17JigsHobbits') {
-            $task = new J17JigsHobbits();
-        }
+        $type = 'J17JigsMonsters';
+        $task = new J17JigsMonsters();
         $record = $this->getDoctrine()
-            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
-            ->getRepository("Emc23SigsBundle:$type")
+            ->getRepository("Emc23SigsBundle:J17JigsMonsters")
             ->find($id);
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-        // ... do something, like pass the $product object into a template
+        $health = $record->getHealth();
+        $strength = $record->getStrength();
+        $intelligence = $record->getIntelligence();
+        $task->setHealth($health);
+        $task->setStrength($strength);
+        $task->setIntelligence($intelligence);
 
-        if ($type == 'J17JigsHobbits') {
-            $name = $record->getName();
-            $faction = $record->getFaction();
-            $health = $record->getHealth();
-            $strength = $record->getStrength();
-            $intelligence = $record->getIntelligence();
-           // $gid = $record->getGid();
-            $owner = $record->getOwner();
-            $contentment = $record->getContentment();
+        $form = $this->createFormBuilder($task)
+            ->add('health', 'text')
+            ->add('strength', 'text')
+            ->add('intelligence', 'text')
+            ->add('save', 'submit')
+            ->getForm();
 
-            $task->setName($name);
-            $task->setFaction($faction);
-            $task->setHealth($health);
-            $task->setStrength($strength);
-            $task->setIntelligence($intelligence);
-           // $task->setGid($gid);
-            $task->setOwner($owner);
-            $task->setContentment($contentment);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
-                ->add('faction', 'text')
-                ->add('health', 'text')
-                ->add('strength', 'text')
-                ->add('intelligence', 'text')
-             //   ->add('group', 'text')
-                ->add('contentment', 'text')
-                ->add('save', 'submit')
-                ->getForm();
-        }
-        return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("Emc23SigsBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
-            public function listAction()
-            {
-
-                $em         = $this->get('doctrine.orm.entity_manager');
-                $dql        = "SELECT a, b FROM Emc23SigsBundle:J17JigsMonsters a LEFT JOIN a.type b";
-                $query      = $em->createQuery($dql)
-                ->setFirstResult(0)
-                ->setMaxResults(100);
-
-                //print_r($query);
-                //exit();
-
-
-                $repository = $this->getDoctrine()
-                    ->getRepository('Emc23SigsBundle:J17JigsMonsters');
-
-
-                // find *all* products
-                $monsters = $repository->findAll();
-
-
-                foreach ($monsters as $monster) {
-                    $monster->name          = $monster->getType()->getname();
-                    $monster->cellwidth     = $monster->getType()->getCellwidth();
-                    $monster->cellheight    = $monster->getType()->getCellheight();
-                }
-
-                //$paginator  = $this->get('knp_paginator');
-                //$pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-                // parameters to template
-                return $this->render('Emc23SigsBundle:Default:J17JigsMonsters.html.twig', array('pagination' => $monsters));
-            }
+    public function listAction()
+    {
+        $em         = $this->get('doctrine.orm.entity_manager');
+        $dql        = "SELECT a, b FROM Emc23SigsBundle:J17JigsMonsters a LEFT JOIN a.type b";
+        $query      = $em->createQuery($dql)
+        ->setFirstResult(0)
+        ->setMaxResults(100);
+        $repository = $this->getDoctrine()
+            ->getRepository('Emc23SigsBundle:J17JigsMonsters');
+        // find *all* products
+        $monsters = $repository->findAll();
+        foreach ($monsters as $monster) {
+            $monster->name          = $monster->getType()->getname();
+            $monster->cellwidth     = $monster->getType()->getCellwidth();
+            $monster->cellheight    = $monster->getType()->getCellheight();
         }
+        //$paginator  = $this->get('knp_paginator');
+        //$pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+        // parameters to template
+        return $this->render('Emc23SigsBundle:Default:J17JigsMonsters.html.twig', array('pagination' => $monsters));
+    }
+}

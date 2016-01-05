@@ -29,23 +29,22 @@ class makeMonsterCommand extends ContainerAwareCommand
          $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
          $monsterObject     = new J17JigsMonsters();
          //$monstersTypeObject = new J17JigsMonsterType();
-
-        $monstersTypeObject = $em
-            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
-            ->getRepository("Emc23SigsBundle:J17JigsMonsterTypes")
-            ->find(707);
-
          $jigs              = new JigsFactory($em);
          $monster           = $jigs->generateMonster();
          echo 'Monster Generated' . PHP_EOL;
 
-        print_r( $monsterObject->getType());
+        $monstersTypeObject = $em
+            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
+            ->getRepository("Emc23SigsBundle:J17JigsMonsterTypes")
+            ->find($monster['type']);
+
         $monsterObject->setType( $monstersTypeObject );
         $monsterObject->setHealth($monster['health']);
         $monsterObject->setStrength($monster['strength'] );
         $monsterObject->setIntelligence($monster['intelligence']);
         $monsterObject->setX(rand(10,100));
         $monsterObject->setY(rand(10,100));
+        $monsterObject->setGrid($monster['grid']);
         $em->persist($monsterObject);
         $em->flush();
         $text='done';
