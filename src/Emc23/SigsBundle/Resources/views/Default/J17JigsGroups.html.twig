@@ -5,7 +5,8 @@
     <div class="count">
 
     </div>
-    <table width="100%">
+    <table id='myTable' width="100%">
+        <thead>
         <tr>
             {# sorting of properties based on query components #}
             <th> Name</th>
@@ -14,7 +15,7 @@
             <th> Captain</th>
 
         </tr>
-
+        </thead>
         {# table body #}
         {% for article in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>

@@ -6,8 +6,8 @@
 <div class="count">
     {{ pagination.getTotalItemCount }}
 </div>
-<table width="100%"> 
-<tr>
+<table id = 'myTable' width="100%">
+    <thead><tr>
 {# sorting of properties based on query components #}
     <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
     <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Title', 'a.name') }} </th>
@@ -20,32 +20,35 @@
     <th> energy </th>
     <th> statpoints </th>
     <th> health </th>
-    <th> attack </th>
+
     <th> finalAttack </th>
-    <th> defence </th>
+
     <th> finalDefence </th>
     <th> idWeapon </th>
     <th> strength </th>
-    
-    
-</tr>
+
+
+</tr> </thead>
 
 {# table body #}
+
 {% for article in pagination %}
 <tr {% if loop.index is odd %}class="color"{% endif %}>
-   
-   
-   <td><a href="/app_dev.php/show/{{article.id}}/{{type}}">{{article.id}}</a></td>
-    <td><a href="/app_dev.php/show/{{article.name}}/{{type}}">{{article.name}}</a></td>  
-
-
-
-
-
-
-
-
-
+    <td><a href="/characters/{{article.id}}/{{type}}">{{article.id}}</a></td>
+    <td><a href="/characters/{{article.name}}/{{type}}">{{article.name}}</a></td>
+    <td></td>
+    <td></td>
+    <td> {{article.map}} </td>
+    <td> {{article.grid}} </td>
+    <td> {{article.level}} </td>
+    <td> {{article.xp}} </td>
+    <td> {{article.energy}} </td>
+    <td> {{article.statpoints}} </td>
+    <td> {{article.health}} </td>
+    <td> {{article.finalAttack}} </td>
+    <td> {{article.finalDefence}} </td>
+    <td> {{article.idWeapon}} </td>
+    <td> {{article.strength}} </td>
 </tr>
 {% endfor %}
 </table>

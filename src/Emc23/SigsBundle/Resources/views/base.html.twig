@@ -7,8 +7,16 @@
       <link href="/bundles/framework/css/structure.css" rel="stylesheet" type="text/css" media="all" />
         <link href="/bundles/framework/css/body.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>
+
+
+
+
     <script src="/scripts/scripts.js"></script>
 
+
+
+    <script src="/scripts/custom.js"></script>
 
 {% endblock %}
     <body>
@@ -19,12 +27,14 @@
         </div>
 
         <div id="content">
-      <div class="sf-reset">
-        <div class="block">
-            {{  knp_menu_render('Emc23SigsBundle:Builder:mainMenu') }}
-            {# knp_menu_render('main', {'template': 'Emc23SigsBundle:Menu:knp_menu.html.twig'}) #}
-            {% block body %}{% endblock %}
-            </div>
+            <div class="sf-reset">
+                <div class="block">
+                    <nav class="navbar navbar-default">
+                    {{  knp_menu_render('Emc23SigsBundle:Builder:mainMenu',{'currentClass':'active'}) }}
+                    {# knp_menu_render('main', {'template': 'Emc23SigsBundle:Menu:knp_menu.html.twig'}) #}
+                    {% block body %}{% endblock %}
+                    </nav>
+                </div>
             </div>
         </div>
     </body>

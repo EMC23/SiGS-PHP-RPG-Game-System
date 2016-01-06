@@ -1,22 +1,21 @@
 {% extends 'Emc23SigsBundle::base.html.twig' %}
 {% block body %}
-
     {# total items count #}
-
-    <table width="100%">
-        <tr>
+    <table id='myTable' width="100%">
+        <thead><tr>
             {# sorting of properties based on query components #}
-            <th>  </th>
             <th> </th>
             <th> </th>
-            <th> health</th>
-            <th> strength</th>
-            <th> intelligence</th>
-            <th> map</th>
-            <th> grid</th>
-            <th> x</th>
-            <th> y</th>
+            <th> </th>
+            <th>health</th>
+            <th>strength</th>
+            <th>intelligence</th>
+            <th>map</th>
+            <th>grid</th>
+            <th>x</th>
+            <th>y</th>
         </tr>
+        </thead>
         {# table body #}
         {% for article in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>

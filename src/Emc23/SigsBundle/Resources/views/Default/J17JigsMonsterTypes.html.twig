@@ -5,7 +5,8 @@
     <div class="count">
         {{ pagination.getTotalItemCount }}
     </div>
-    <table width="100%">
+    <table id='myTable' width="100%">
+        <thead>
         <tr>
             <th></th>
             <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
@@ -14,7 +15,7 @@
             <th> cellwidth</th>
             <th> cellheight</th>
             <th> numberofcells</th>
-        </tr>
+        </tr></thead>
 
         {# table body #}
         {% for article in pagination %}
@@ -28,7 +29,7 @@
                 <td>{{ article.id }}</td>
                 <td> <a href="/monstertypes/{{ article.id }}/">{{ article.name }}</a></td>
 
-                <td>{{ article.avatar }}</td>
+
                 <td>{{ article.cellwidth }}</td>
                 <td>{{ article.cellheight }}</td>
                 <td>{{ article.numberofcells }}</td>
