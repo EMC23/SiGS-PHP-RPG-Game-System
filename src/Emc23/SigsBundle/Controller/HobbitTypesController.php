@@ -138,13 +138,15 @@ class HobbitTypesController extends Controller
 
         // Acme\MainBundle\Controller\ArticleController.php
 
-    public function listAction()
+    public function listAction($start=0,$max=100)
     {
         $em = $this->get('doctrine.orm.entity_manager');
         $dql = "SELECT a FROM Emc23SigsBundle:J17JigsHobbitTypes a";
-        $query = $em->createQuery($dql);
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-        return $this->render('Emc23SigsBundle:Default:J17JigsHobbitTypes.html.twig', array('pagination' => $pagination));
+        $query      = $em->createQuery($dql)
+            ->setFirstResult($start)
+            ->setMaxResults($max);
+        $hobbitTypes = $query->getResult();
+
+        return $this->render('Emc23SigsBundle:Default:J17JigsHobbitTypes.html.twig', array('pagination' => $hobbitTypes));
     }
 }

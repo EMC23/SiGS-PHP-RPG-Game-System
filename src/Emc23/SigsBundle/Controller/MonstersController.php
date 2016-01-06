@@ -131,25 +131,20 @@ class MonstersController extends Controller
         return $this->render("Emc23SigsBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
-    public function listAction()
+    public function listAction($start=0,$max=100)
     {
         $em         = $this->get('doctrine.orm.entity_manager');
         $dql        = "SELECT a, b FROM Emc23SigsBundle:J17JigsMonsters a LEFT JOIN a.type b";
         $query      = $em->createQuery($dql)
-        ->setFirstResult(0)
-        ->setMaxResults(100);
-        $repository = $this->getDoctrine()
-            ->getRepository('Emc23SigsBundle:J17JigsMonsters');
-        // find *all* products
-        $monsters = $repository->findAll();
+        ->setFirstResult($start)
+        ->setMaxResults($max);
+        $monsters = $query->getResult();
+
         foreach ($monsters as $monster) {
             $monster->name          = $monster->getType()->getname();
             $monster->cellwidth     = $monster->getType()->getCellwidth();
             $monster->cellheight    = $monster->getType()->getCellheight();
         }
-        //$paginator  = $this->get('knp_paginator');
-        //$pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-        // parameters to template
         return $this->render('Emc23SigsBundle:Default:J17JigsMonsters.html.twig', array('pagination' => $monsters));
     }
 }

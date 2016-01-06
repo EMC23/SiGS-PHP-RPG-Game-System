@@ -57,10 +57,8 @@ class GroupsController extends Controller
             $task = new J17JigsHobbits();
             //    $jigs           = new Jigs();
 
-
             $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
             $name = Mudnames::generate_name_from($file);
-
 
             $task->setName($name);
 
@@ -73,7 +71,6 @@ class GroupsController extends Controller
             $task->setIntelligence($hobbit['intelligence']);
             $task->setOwner($hobbit['owner']);
             $task->setContentment($hobbit['contentment']);
-
 
             $form = $this->createFormBuilder($task)
                 ->add('name')
@@ -102,9 +99,6 @@ class GroupsController extends Controller
             $gid = $task->getGid();
             $owner = $task->getOwner();
 
-            //$faction    = $task->getFaction();
-            //$gid        = $task->getGid();
-
             $task->setName($name);
             $task->setFaction($faction);
             $task->setHealth($health);
@@ -121,42 +115,25 @@ class GroupsController extends Controller
         return $this->render("Emc23SigsBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
 
-
     public function showAction($id, Request $request)
     {
-
         $type = 'J17JigsGroups';
         $task = new J17JigsGroups();
         $record = $this->getDoctrine()
             ->getRepository("Emc23SigsBundle:J17JigsGroups")
             ->find($id);
-
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-
-
-
-
-            $captain = $record->getCaptain();
-
-
-
-
-           // $task->setGid($gid);
-            $task->setCaptain($captain);
-         ;
-
-            $form = $this->createFormBuilder($task)
-
+        $captain = $record->getCaptain();
+        // $task->setGid($gid);
+        $task->setCaptain($captain);
+        $form = $this->createFormBuilder($task)
                 ->add('captain', 'text')
-
                 ->add('save', 'submit')
                 ->getForm();
 
         return $this->render("Emc23SigsBundle:Default:J17JigsGroups_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
-
-
     }
 
     public function listAction()

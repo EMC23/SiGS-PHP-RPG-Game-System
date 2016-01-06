@@ -148,26 +148,14 @@ class HobbitsController extends Controller
         return $this->render("Emc23SigsBundle:Default:J17JigsHobbits_page.html.twig", array('typename' => $typeName, 'form' => $form->createView()));
     }
 
-    public function listAction()
+    public function listAction($start=0,$max=100)
     {
         $em         = $this->get('doctrine.orm.entity_manager');
         $dql        = "SELECT a,b FROM Emc23SigsBundle:J17JigsHobbits a JOIN a.type b";
         $query      = $em->createQuery($dql)
-            ->setFirstResult(0)
-            ->setMaxResults(100);
-        //$paginator  = $this->get('knp_paginator');
-        //$pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-        $pagination = new Paginator($query, $fetchJoinCollection = true);
-
-
-
-
-        return $this->render('Emc23SigsBundle:Default:J17JigsHobbits.html.twig', array('pagination' => $pagination));
-
-
-
-
-
-
+            ->setFirstResult($start)
+            ->setMaxResults($max);
+        $hobbits    = $query->getResult();
+        return $this->render('Emc23SigsBundle:Default:J17JigsHobbits.html.twig', array('pagination' => $hobbits));
     }
 }

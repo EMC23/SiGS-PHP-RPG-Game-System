@@ -129,14 +129,16 @@ class MonsterTypesController extends Controller
                 ->getForm();
         return $this->render("Emc23SigsBundle:Default:J17JigsMonsterTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
-    public function listAction()
+
+    public function listAction($start=0,$max=100)
     {
-        $type = 'J17JigsMonsterTypes';
-        $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM Emc23SigsBundle:$type a";
-        $query = $em->createQuery($dql);
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-        return $this->render('Emc23SigsBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
+        $type           = 'J17JigsMonsterTypes';
+        $em             = $this->get('doctrine.orm.entity_manager');
+        $dql            = "SELECT a FROM Emc23SigsBundle:J17JigsMonsterTypes a";
+        $query      = $em->createQuery($dql)
+            ->setFirstResult($start)
+            ->setMaxResults($max);
+        $monsterTypes = $query->getResult();
+        return $this->render('Emc23SigsBundle:Default:J17JigsMonsterTypes.html.twig', array('pagination' => $monsterTypes));
     }
 }
