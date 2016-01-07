@@ -29,7 +29,7 @@
 
                 <td><a href="/hobbits/{{ article.id }}/">{{ article.id }}</a></td>
                 <td><a href="/hobbits/{{ article.id }}/">{{ article.name }}</a></td>
-                <td><a href="/hobbits/{{ article.faction }}/{{ type }}">{{ article.faction }}</a></td>
+                <td><a href="/hobbits/{{ article.faction }}/">{{ article.faction }}</a></td>
                 <td>{{ article.health }}</td>
                 <td>{{ article.strength }}</td>
                 <td>{{ article.intelligence }}</td>
@@ -46,7 +46,7 @@
         {% endfor %}
     </table>
 
-    <a href="/app_dev.php/new/{{ type }}">New</a>
+    <a href="/hobbits.php/new/">New</a>
 
 
 
