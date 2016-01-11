@@ -5,4 +5,5 @@
 /.gitignore
 /app/config/parameters.yml
 # Created by .ignore support plugin (hsz.mobi)
-/app
+/app/cache
+/app/logs
