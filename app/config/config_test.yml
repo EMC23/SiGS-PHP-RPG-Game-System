@@ -9,10 +9,8 @@ framework:
         collect: false
 
 web_profiler:
-    toolbar: true
+    toolbar: false
     intercept_redirects: false
 
 swiftmailer:
     disable_delivery: true
-
-

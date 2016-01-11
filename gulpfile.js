@@ -18,12 +18,12 @@ var gulp = require('gulp'),
 
 gulp.task('site-copy-fonts', function() {
     gulp.src('bower_components/fontawesome/fonts/*')
-        .pipe(gulp.dest('www/fonts/'));
+        .pipe(gulp.dest('web/fonts/'));
 });
 
 gulp.task('site-copy-scripts', function() {
     gulp.src('src/Site/Webroot/Scripts/*')
-        .pipe(gulp.dest('www/scripts/'));
+        .pipe(gulp.dest('web/scripts/'));
 });
 
 /*
@@ -45,35 +45,33 @@ gulp.task('site-design', function() {
         'bower_components/jquery.ui/themes/base/jquery.ui.core.css',
         'bower_components/jquery.ui/themes/base/jquery.ui.theme.css',
         'bower_components/jquery.ui/themes/base/jquery.ui.slider.css',
-        'bower_components/bootstrap/dist/css/bootstrap.css',
-        'bower_components/bootstrap/less/pagination.css',
-        'src/Webroot/Styles/jquery.dataTables.css',
+
+      //  'bower_components/bootstrap/less/pagination.css',
+
         'src/Webroot/Styles/font-awesome.min.css',
-        'src/Webroot/Styles/bootstrap.min.css',
+        'bower_components/bootstrap/dist/css/bootstrap.min.css',
 
-        'src/Webroot/Styles/less/site.less',
+      //  'src/Webroot/Styles/less/site.less',
 
-        'src/Webroot/Styles/dataTables.bootstrap.css',
-        'src/Webroot/Styles/main.css'
+    //    'node_modules/datatables.net-bs/css/dataTables.bootstrap.css',
+
+      //  'src/Webroot/Styles/main.css'
     ])
         .pipe(less())
         .pipe(concat('style.css'))
-        .pipe(cssmin())
-        .pipe(gulp.dest('www/styles/'));
+     //   .pipe(cssmin())
+        .pipe(gulp.dest('web/styles/'));
 });
 
 gulp.task('site-scripts', function() {
     gulp.src([
         // jQuery
         'bower_components/jquery/jquery.js',
-
-        'src/Webroot/Scripts/jquery.easing.min.js',
-        'src/Webroot/Scripts/jquery.lazyloadxt.extra.min.js',
-        'src/Webroot/Scripts/jquery.dataTables.min.js',
-        'src/Webroot/Scripts/dataTables.bootstrap.js',
-        'src/Webroot/Scripts/natural.js',
-
-
+        //'src/Webroot/Scripts/jquery.easing.min.js',
+        //'src/Webroot/Scripts/jquery.lazyloadxt.extra.min.js',
+        'node_modules/datatables.net/js/jquery.dataTables.js',
+        'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
+      //      'src/Webroot/Scripts/natural.js',
         // IE Shim
         'bower_components/augment.js/augment.js',
 
@@ -103,12 +101,16 @@ gulp.task('site-scripts', function() {
         'bower_components/bootstrap/js/tab.js',
 
         // lurn
-        'bower_components/lunr.js/lunr.js'
+        'bower_components/lunr.js/lunr.js',
+
+            'src/Webroot/Scripts/custom.js'
+
+
 
     ])
         .pipe(concat('scripts.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('www/scripts/'));
+      //  .pipe(uglify())
+        .pipe(gulp.dest('web/scripts/'));
 });
 /*
 gulp.task('site-google-maps', function () {

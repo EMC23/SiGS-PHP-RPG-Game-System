@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{# total items count #}
+<div class="count">
+
+</div>
+<table  id = 'myTable' width="100%">
+    <thead><tr>
+{# sorting of properties based on query components #}
+    <th> Id </th>
+    <th> Title </th>
+    <th> Pos-X </th>
+    <th> Pos-Y </th>
+    <th> map </th>
+    <th> grid </th>
+    <th> level </th>
+    <th> xp </th>
+    <th> energy </th>
+    <th> level </th>
+    <th> health </th>
+    <th> attack </th>
+    <th> defence </th>
+    <th> owner </th>
+    <th> price </th>
+    <th> access </th>
+    <th> published </th>
+</tr> </thead>
+{# table body #}
+{% for article in pagination %}
+<tr {% if loop.index is odd %}class="color"{% endif %}>
+   <td>
+       <a href="/app_dev.php/show/{{article.id}}/{{type}}">{{article.id}}</a>
+   </td>
+    <td><a href="/app_dev.php/show/{{article.id}}/{{type}}">{{article.name}}</a></td>
+    <td>{{article.posx}}</td>
+    <td>{{article.posy}}</td>
+    <td>{{article.map}}</td>
+    <td>{{article.grid}}</td>
+    <td>{{article.level}}</td>
+    <td>{{article.xp}}</td>
+    <td>{{article.energy}}</td>
+    <td>{{article.level}}</td>
+    <td>{{article.health}}</td>
+    <td>{{article.attack}}</td>
+    <td>{{article.defence}}</td>
+    <td>{{article.owner}}</td>
+    <td>{{article.price}}</td>
+    <td>{{article.access}}</td>
+    <td>{{article.published}}</td>
+</tr>
+{% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+
+</div>
+
+{% endblock %}

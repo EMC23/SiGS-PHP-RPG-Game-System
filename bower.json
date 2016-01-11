@@ -1,0 +1,14 @@
+{
+  "name": "Emc23.Sigs",
+  "version": "0.1.0",
+  "dependencies": {
+    "jquery": "1.9.*",
+    "jquery.ui": "1.10.*",
+    "bootstrap": "3.1.*",
+    "momentjs": "2.3.*",
+    "bootstrap-sortable": "*",
+    "lunr.js": "0.4.*",
+    "augment.js": "1.0.*",
+    "fontawesome": "~4.2.0"
+  }
+}

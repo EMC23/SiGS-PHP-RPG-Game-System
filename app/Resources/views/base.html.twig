@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>
+        <script src="/scripts/scripts.js"></script>
+        <script src="/scripts/custom.js"></script>
+    </head>
+    <body>
+    {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
