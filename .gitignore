@@ -7,3 +7,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 /app/cache
 /app/logs
+/app/bootstrap.php.cache

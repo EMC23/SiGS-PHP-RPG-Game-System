@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {# total items count #}
+    <table id='myTable' width="100%">
+        <thead><tr>
+            {# sorting of properties based on query components #}
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th>health</th>
+            <th>strength</th>
+            <th>intelligence</th>
+            <th>map</th>
+            <th>grid</th>
+            <th>x</th>
+            <th>y</th>
+        </tr>
+        </thead>
+        {# table body #}
+        {% for article in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+
+                <td><a href="/monsters/{{ article.id }}/">{{ article.id }}</a></td>
+                <td><a href="/monsters/{{ article.id }}/">{{ article.name }}</a></td>
+                <td>   <div style="width:{{ article.cellwidth }}px;
+                            height:{{ article.cellheight }}px;
+                            overflow:hidden;">
+                        <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/chars/monsters/{{ article.name }}/{{ article.name }}.png">
+                    </div></td></td>
+                <td>{{ article.health }}</td>
+                <td>{{ article.strength }}</td>
+                <td>{{ article.intelligence }}</td>
+                <td>{{ article.map }}</td>
+                <td>{{ article.grid }}</td>
+                <td>{{ article.x }}</td>
+                <td>{{ article.y }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="/monsters/new/">New</a>
+    {# display navigation #}
+    <div class="navigation">
+
+    </div>
+{% endblock %}
