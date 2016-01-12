@@ -1,22 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: techbot
- * Date: 11-1-16
- * Time: 17:53
- */
-<?php
-
-// src/Acme/DemoBundle/Command/GreetCommand.php
-namespace Emc23\SigsBundle\Command;
+// src/AppBundle/Command/GreetCommand.php
+namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Emc23\SigsBundle\Entity\J17JigsHobbitTypes;
-use Emc23\SigsBundle\Entity\Mudnames;
 
 class generateHobbitTypeCommand extends ContainerAwareCommand
 {
@@ -31,7 +21,7 @@ class generateHobbitTypeCommand extends ContainerAwareCommand
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
-    {
+   {
         $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
         //$name              = Mudnames::generate_name_from($file);
         $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
@@ -64,4 +54,3 @@ class generateHobbitTypeCommand extends ContainerAwareCommand
       }
       $output->writeln($text);*/
 }
-

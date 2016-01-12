@@ -1,28 +1,22 @@
 <?php
+// src/AppBundle/Command/GreetCommand.php
+namespace AppBundle\Command;
 
-namespace Emc23\SigsBundle\Command;
-
-use Emc23\SigsBundle\Entity\J17JigsHobbitTypes;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Emc23\SigsBundle\Entity\J17JigsHobbits;
-use Emc23\SigsBundle\Entity\Mudnames;
-use Emc23\SigsBundle\JigsFactory;
 
 class makeHobbitCommand extends ContainerAwareCommand
 {
-
     protected function configure()
     {
         $this
             ->setName('Emc23:makeHobbit')
             ->setDescription('generate Hobbit')
             ->addArgument('name', InputArgument::OPTIONAL, 'Enter name of new hobbit?')
-            ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
-        ;
+            ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -60,4 +54,3 @@ class makeHobbitCommand extends ContainerAwareCommand
         $output->writeln($text);
     }
 }
-

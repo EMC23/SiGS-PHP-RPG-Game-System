@@ -1,24 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: techbot
- * Date: 11-1-16
- * Time: 17:55
- */
-<?php
-
-// src/Acme/DemoBundle/Command/GreetCommand.php
-namespace Emc23\SigsBundle\Command;
+// src/AppBundle/Command/GreetCommand.php
+namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Emc23\SigsBundle\Entity\J17JigsMonsterTypes;
 
-
-class generateMonsterTypeCommand extends ContainerAwareCommand
+class greetCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
@@ -26,8 +16,7 @@ class generateMonsterTypeCommand extends ContainerAwareCommand
             ->setName('Emc23:generateMonsterType')
             ->setDescription('Scan directory')
             ->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to greet?')
-            ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
-        ;
+            ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -54,5 +43,4 @@ class generateMonsterTypeCommand extends ContainerAwareCommand
             $output->writeln($row);
         }
     }
-
 }

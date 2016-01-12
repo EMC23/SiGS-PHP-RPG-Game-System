@@ -1,23 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: techbot
- * Date: 11-1-16
- * Time: 17:58
- */
-
-<?php
-
-// src/Acme/DemoBundle/Command/GreetCommand.php
-namespace Emc23\SigsBundle\Command;
+// src/AppBundle/Command/GreetCommand.php
+namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Emc23\SigsBundle\Entity\J17JigsHobbits;
-use Emc23\SigsBundle\Entity\Mudnames;
 use Doctrine\ORM\Query;
 use \ZMQContext;
 
@@ -105,4 +94,3 @@ class moveHobbitCommand extends ContainerAwareCommand
       }
         $output->writeln($text);*/
 }
-

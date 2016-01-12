@@ -1,27 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: techbot
- * Date: 11-1-16
- * Time: 17:57
- */
-
-<?php
-
-namespace Emc23\SigsBundle\Command;
+// src/AppBundle/Command/GreetCommand.php
+namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Emc23\SigsBundle\Entity\J17JigsMonsters;
-
-use Emc23\SigsBundle\JigsFactory;
 
 class makeMonsterCommand extends ContainerAwareCommand
 {
-
     protected function configure()
     {
         $this
@@ -59,4 +47,3 @@ class makeMonsterCommand extends ContainerAwareCommand
         $output->writeln($text);
     }
 }
-

@@ -1,30 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: techbot
- * Date: 11-1-16
- * Time: 17:59
- */
-
-<?php
-
-// src/Acme/DemoBundle/Command/GreetCommand.php
-namespace Emc23\SigsBundle\Command;
+// src/AppBundle/Command/GreetCommand.php
+namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Emc23\SigsBundle\Entity\J17JigsHobbits;
-use Emc23\SigsBundle\Entity\Mudnames;
-use Doctrine\ORM\Query;
-use \ZMQContext;
 
 class moveMonsterCommand extends ContainerAwareCommand
 {
     protected function configure()
-    {
+      {
         $this
             ->setName('Emc23:moveMonster')
             ->setDescription('Move a monster')
@@ -36,7 +23,7 @@ class moveMonsterCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
-        $dql = "SELECT a FROM Emc23SigsBundle:J17JigsMonsters a";
+        $dql = "SELECT a FROM AppBundle:J17JigsMonsters a";
         $query = $em->createQuery($dql);
         $result = $query->getResult(Query::HYDRATE_ARRAY);
 
@@ -72,7 +59,7 @@ class moveMonsterCommand extends ContainerAwareCommand
             }
             $x      = $row['x'];
             $y      = $row['y'];
-            $dql    = "UPDATE Emc23SigsBundle:J17JigsMonsters u SET u.x = $x, u.y = $y WHERE u.id =" . $row['id'];
+            $dql    = "UPDATE AppBundle:J17JigsMonsters u SET u.x = $x, u.y = $y WHERE u.id =" . $row['id'];
 
             $query  = $em->createQuery($dql);
             $query->execute();
@@ -84,28 +71,15 @@ class moveMonsterCommand extends ContainerAwareCommand
 
 
             //temporary todo: only send diff
-            $dql = "SELECT a FROM Emc23SigsBundle:J17JigsMonsters a";
+            $dql = "SELECT a FROM AppBundle:J17JigsMonsters a";
             $query = $em->createQuery($dql);
             $result = $query->getResult(Query::HYDRATE_ARRAY);
 
 
             $entryData  = array('category' => 'monstersCategory', 'title' => 'title', 'article'  => $result, 'when' => time()  );
             $socket->send(json_encode($entryData));
-
-            //  $output->writeln($type);
+         
         }
-        //$em->flush();
+     
     }
-    /*
-      $name = $input->getArgument('name');
-      if ($name) {
-          $text = 'Hello '.$name;
-      } else {
-          $text = 'Hello';
-      }
-      if ($input->getOption('yell')) {
-          $text = strtoupper($text);
-      }
-        $output->writeln($text);*/
 }
-
