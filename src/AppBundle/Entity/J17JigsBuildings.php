@@ -13,18 +13,26 @@ use Doctrine\ORM\Mapping as ORM;
 class J17JigsBuildings
 {
     /**
-     * @var boolean
+     * @var integer
      *
      * @ORM\Column(name="posy", type="boolean", nullable=false)
      */
     private $posy;
 
     /**
-     * @var boolean
+     * @var integer
      *
      * @ORM\Column(name="posx", type="boolean", nullable=false)
      */
     private $posx;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="health", type="boolean", nullable=false)
+     */
+    private $health;
+
 
     /**
      * @var string
@@ -54,7 +62,27 @@ class J17JigsBuildings
      */
     private $protection;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="attack", type="smallint", nullable=false)
+     */
+    private $attack;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="defence", type="smallint", nullable=false)
+     */
+    private $defence;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="energy", type="smallint", nullable=false)
+     */
+    private $energy;
 
     /**
      * @var string
@@ -596,5 +624,101 @@ class J17JigsBuildings
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set energy
+     *
+     * @param integer $energy
+     *
+     * @return J17JigsBuildings
+     */
+    public function setEnergy($energy)
+    {
+        $this->energy = $energy;
+
+        return $this;
+    }
+
+    /**
+     * Get energy
+     *
+     * @return integer
+     */
+    public function getEnergy()
+    {
+        return $this->energy;
+    }
+
+    /**
+     * Set health
+     *
+     * @param boolean $health
+     *
+     * @return J17JigsBuildings
+     */
+    public function setHealth($health)
+    {
+        $this->health = $health;
+
+        return $this;
+    }
+
+    /**
+     * Get health
+     *
+     * @return boolean
+     */
+    public function getHealth()
+    {
+        return $this->health;
+    }
+
+    /**
+     * Set attack
+     *
+     * @param integer $attack
+     *
+     * @return J17JigsBuildings
+     */
+    public function setAttack($attack)
+    {
+        $this->attack = $attack;
+
+        return $this;
+    }
+
+    /**
+     * Get attack
+     *
+     * @return integer
+     */
+    public function getAttack()
+    {
+        return $this->attack;
+    }
+
+    /**
+     * Set defence
+     *
+     * @param integer $defence
+     *
+     * @return J17JigsBuildings
+     */
+    public function setDefence($defence)
+    {
+        $this->defence = $defence;
+
+        return $this;
+    }
+
+    /**
+     * Get defence
+     *
+     * @return integer
+     */
+    public function getDefence()
+    {
+        return $this->defence;
     }
 }
