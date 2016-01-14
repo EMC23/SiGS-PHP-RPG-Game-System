@@ -11,7 +11,9 @@
         <script src="/scripts/custom.js"></script>
     </head>
     <body>
-    {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+    <nav class="navbar navbar-default">
+    {{ knp_menu_render('AppBundle:Builder:mainMenu',{'currentClass':'active'}) }}
+    </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

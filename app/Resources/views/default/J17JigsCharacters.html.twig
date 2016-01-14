@@ -11,42 +11,31 @@
 {# sorting of properties based on query components #}
     <th> Id </th>
     <th> Title </th>
-       <th> Pos-X </th>
-       <th>Pos-Y</th>
-        <th> map </th>
+    <th> Pos-X </th>
+    <th>Pos-Y</th>
+    <th> map </th>
     <th> grid </th>
     <th> level </th>
     <th> xp </th>
     <th> energy </th>
-    <th> statpoints </th>
     <th> health </th>
-
-    <th> finalAttack </th>
-
-    <th> finalDefence </th>
     <th> idWeapon </th>
     <th> strength </th>
-
-
 </tr> </thead>
 
 {# table body #}
 
 {% for article in pagination %}
 <tr {% if loop.index is odd %}class="color"{% endif %}>
-    <td><a href="/characters/{{article.id}}/{{type}}">{{article.id}}</a></td>
-    <td><a href="/characters/{{article.name}}/{{type}}">{{article.name}}</a></td>
+    <td><a href="/characters/{{article.id}}">{{article.id}}</a></td>
+    <td><a href="/characters/{{article.name}}">{{article.name}}</a></td>
     <td></td>
     <td></td>
     <td> {{article.map}} </td>
     <td> {{article.grid}} </td>
     <td> {{article.level}} </td>
     <td> {{article.xp}} </td>
-    <td> {{article.energy}} </td>
-    <td> {{article.statpoints}} </td>
     <td> {{article.health}} </td>
-    <td> {{article.finalAttack}} </td>
-    <td> {{article.finalDefence}} </td>
     <td> {{article.idWeapon}} </td>
     <td> {{article.strength}} </td>
 </tr>

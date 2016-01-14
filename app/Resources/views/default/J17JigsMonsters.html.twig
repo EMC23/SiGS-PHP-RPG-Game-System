@@ -20,8 +20,8 @@
         {% for article in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
 
-                <td><a href="/monsters/{{ article.id }}/">{{ article.id }}</a></td>
-                <td><a href="/monsters/{{ article.id }}/">{{ article.name }}</a></td>
+                <td><a href="/monsters/{{ article.id }}">{{ article.id }}</a></td>
+                <td><a href="/monsters/{{ article.id }}">{{ article.name }}</a></td>
                 <td>   <div style="width:{{ article.cellwidth }}px;
                             height:{{ article.cellheight }}px;
                             overflow:hidden;">
