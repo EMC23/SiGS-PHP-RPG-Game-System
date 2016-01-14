@@ -59,6 +59,16 @@ class J17JigsMonsters
     private $grid;
 
     /**
+     * @var integer
+     * @ORM\Column(name="map", type="integer")
+     */
+    private $map;
+
+
+
+
+
+    /**
      * @var \AppBundle\Entity\J17JigsMonsterTypes
 
      * @ORM\ManyToOne(targetEntity="J17JigsMonsterTypes")
@@ -240,5 +250,29 @@ class J17JigsMonsters
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set map
+     *
+     * @param integer $map
+     *
+     * @return J17JigsMonsters
+     */
+    public function setMap($map)
+    {
+        $this->map = $map;
+
+        return $this;
+    }
+
+    /**
+     * Get map
+     *
+     * @return integer
+     */
+    public function getMap()
+    {
+        return $this->map;
     }
 }
