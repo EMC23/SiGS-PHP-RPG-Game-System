@@ -26,7 +26,6 @@ class MonsterTypesController extends Controller
         $query      = $em->createQuery($dql)
             ->setFirstResult($start)
             ->setMaxResults($max);
-        $paginator ='';
         $paginator = new Paginator($query, $fetchJoinCollection = true);
 
         //$monsterTypes = $query->getResult();

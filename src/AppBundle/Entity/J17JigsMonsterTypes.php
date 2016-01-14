@@ -53,13 +53,15 @@ class J17JigsMonsterTypes
 
     /**
      * @var integer
+     * @ORM\Column(name="cellwidth", type="integer")
      */
-    private $cellwidth = '32';
+    private $cellWidth;
 
     /**
      * @var integer
+     * @ORM\Column(name="cellheight", type="integer")
      */
-    private $cellheight = '32';
+    private $cellHeight;
 
     /**
      * @var integer
@@ -413,51 +415,51 @@ class J17JigsMonsterTypes
     }
 
     /**
-     * Set cellwidth
+     * Set cellWidth
      *
-     * @param integer $cellwidth
+     * @param integer $cellWidth
      *
      * @return J17JigsMonsterTypes
      */
-    public function setCellwidth($cellwidth)
+    public function setCellWidth($cellWidth)
     {
-        $this->cellwidth = $cellwidth;
+        $this->cellWidth = $cellWidth;
 
         return $this;
     }
 
     /**
-     * Get cellwidth
+     * Get cellWidth
      *
      * @return integer
      */
-    public function getCellwidth()
+    public function getCellWidth()
     {
-        return $this->cellwidth;
+        return $this->cellWidth;
     }
 
     /**
-     * Set cellheight
+     * Set cellHeight
      *
-     * @param integer $cellheight
+     * @param integer $cellHeight
      *
      * @return J17JigsMonsterTypes
      */
-    public function setCellheight($cellheight)
+    public function setCellHeight($cellHeight)
     {
-        $this->cellheight = $cellheight;
+        $this->cellHeight = $cellHeight;
 
         return $this;
     }
 
     /**
-     * Get cellheight
+     * Get cellHeight
      *
      * @return integer
      */
-    public function getCellheight()
+    public function getCellHeight()
     {
-        return $this->cellheight;
+        return $this->cellHeight;
     }
 
     /**
