@@ -126,17 +126,12 @@ class PlayersController extends Controller
             $task->setContentment($contentment);
 
             $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
-                ->add('faction', 'text')
-                ->add('health', 'text')
-                ->add('strength', 'text')
-                ->add('intelligence', 'text')
-             //   ->add('group', 'text')
-                ->add('contentment', 'text')
+                ->add('name', 'string')
+
                 ->add('save', 'submit')
                 ->getForm();
 
-             return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+             return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
 
     }
 

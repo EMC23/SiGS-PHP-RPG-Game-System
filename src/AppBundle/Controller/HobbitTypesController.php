@@ -8,9 +8,15 @@ use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Query;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-// src/Acme/StoreBundle/Controller/DefaultController.php
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-
+/**
+ * @Route("/hobbittypes")
+ */
 class HobbitTypesController extends Controller
 {
     public function indexAction()
@@ -92,7 +98,10 @@ class HobbitTypesController extends Controller
         }
         return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
-
+    /**
+     * @Route("/{id}",requirements={"id" = "\d+"}, name="emc23_sigs_monster_type")
+     * @Method({"GET", "POST"})
+     */
     public function showAction($id, Request $request)
     {
         $task = new J17JigsHobbitTypes();
@@ -118,11 +127,11 @@ class HobbitTypesController extends Controller
         $task->setNumberOfCells($numberOfCells);
         //);
         $form = $this->createFormBuilder($task)
-            ->add('typename', 'text')
-            ->add('avatar', 'text')
-            ->add('cellwidth', 'text')
-            ->add('cellheight', 'text')
-            ->add('NumberOfCells', 'text')
+            ->add('typename', TextType::class)
+            ->add('avatar', TextType::class)
+            ->add('cellwidth', TextType::class)
+            ->add('cellheight', TextType::class)
+            ->add('NumberOfCells', TextType::class)
             ->add('save', 'submit')
             ->getForm();
        return $this->render("AppBundle:Default:J17JigsHobbitTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
@@ -130,7 +139,8 @@ class HobbitTypesController extends Controller
 
         // Acme\MainBundle\Controller\ArticleController.php
     /**
-     * @Route("/hobbittypes", name="emc23_sigs_hobbit_types")
+     * @Route("/", name="emc23_sigs_hobbit_types")
+     * @Method({"GET", "POST"})
      */
     public function listAction($start=0,$max=100)
     {
