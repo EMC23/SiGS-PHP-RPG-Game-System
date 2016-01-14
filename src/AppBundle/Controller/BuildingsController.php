@@ -1,13 +1,21 @@
 <?php
 
 namespace AppBundle\Controller;
+use AppBundle\Entity\J17JigsBuildings;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Query;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/**
+ * @Route("/buildings")
+ */
 class BuildingsController extends Controller
 {
     public function indexAction()
@@ -96,22 +104,15 @@ class BuildingsController extends Controller
         return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
 
-
-    public function showAction($id, $type, Request $request)
+    /**
+     * @Route("/{id}",requirements={"id" = "\d+"}, name="emc23_sigs_building")
+     * @Method({"GET", "POST"})
+     */
+    public function showAction($id, Request $request)
     {
 
-        if ($type == 'J17JigsCharacters') {
-            $task = new J17JigsCharacters();
-        }
-        if ($type == 'J17JigsPlayers') {
-            $task = new J17JigsPlayers();
-        }
-        if ($type == 'J17JigsBuildings') {
-            $task = new J17JigsBuildings();
-        }
-        if ($type == 'J17JigsHobbits') {
-            $task = new J17JigsHobbits();
-        }
+        $type = 'J17JigsBuildings';
+        $task = new J17JigsBuildings();
         $record = $this->getDoctrine()
             //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
             ->getRepository("AppBundle:$type")
@@ -119,42 +120,39 @@ class BuildingsController extends Controller
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-        if ($type == 'J17JigsHobbits') {
             $name = $record->getName();
-            $faction = $record->getFaction();
+
             $health = $record->getHealth();
-            $strength = $record->getStrength();
-            $intelligence = $record->getIntelligence();
+
+
            // $gid = $record->getGid();
             $owner = $record->getOwner();
-            $contentment = $record->getContentment();
+
 
             $task->setName($name);
-            $task->setFaction($faction);
+
             $task->setHealth($health);
-            $task->setStrength($strength);
-            $task->setIntelligence($intelligence);
+
+
            // $task->setGid($gid);
             $task->setOwner($owner);
-            $task->setContentment($contentment);
+
 
             $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
-                ->add('faction', 'text')
-                ->add('health', 'text')
-                ->add('strength', 'text')
-                ->add('intelligence', 'text')
+                ->add('name',  TextType::class)
+
+                ->add('health',  TextType::class)
+
              //   ->add('group', 'text')
-                ->add('contentment', 'text')
-                ->add('save', 'submit')
+
+             ->add('save', SubmitType::class, array('label' => 'Create Task'))
                 ->getForm();
 
-        }
-        return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("default/J17JigsBuildings_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
     /**
-     * @Route("/buildings", name="emc23_sigs_buildings")
+     * @Route("/", name="emc23_sigs_buildings")
      */
 
     public function listAction($start=0,$max=100)

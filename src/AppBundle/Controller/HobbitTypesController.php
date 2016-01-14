@@ -132,9 +132,9 @@ class HobbitTypesController extends Controller
             ->add('cellwidth', TextType::class)
             ->add('cellheight', TextType::class)
             ->add('NumberOfCells', TextType::class)
-            ->add('save', 'submit')
+            ->add('save', SubmitType::class, array('label' => 'Create Task'))
             ->getForm();
-       return $this->render("AppBundle:Default:J17JigsHobbitTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
+       return $this->render("default/J17JigsHobbitTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
        }
 
         // Acme\MainBundle\Controller\ArticleController.php

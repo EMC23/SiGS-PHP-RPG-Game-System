@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Controller;
+use AppBundle\Entity\J17JigsGroups;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,8 +9,14 @@ use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Query;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-
+/**
+ * @Route("/groups")
+ */
 class GroupsController extends Controller
 {
     public function __get($var)
@@ -108,6 +115,10 @@ class GroupsController extends Controller
         return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
 
+    /**
+     * @Route("/{id}",requirements={"id" = "\d+"}, name="emc23_sigs_group")
+     * @Method({"GET", "POST"})
+     */
     public function showAction($id, Request $request)
     {
         $type = 'J17JigsGroups';
@@ -122,15 +133,15 @@ class GroupsController extends Controller
         // $task->setGid($gid);
         $task->setCaptain($captain);
         $form = $this->createFormBuilder($task)
-                ->add('captain', 'text')
-                ->add('save', 'submit')
+                ->add('captain', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create Task'))
                 ->getForm();
 
-        return $this->render("AppBundle:Default:J17JigsGroups_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("default/J17JigsGroups_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
     /**
-     * @Route("/groups", name="emc23_sigs_groups")
+     * @Route("/", name="emc23_sigs_groups")
      */
 
     public function listAction()
