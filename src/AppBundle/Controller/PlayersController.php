@@ -128,16 +128,12 @@ class PlayersController extends Controller
             $intelligence = $record->getIntelligence();
             //$gid = $record->getGid();
 
-
-
             $task->setName($name);
             //$task->setFaction($faction);
             $task->setHealth($health);
             $task->setStrength($strength);
             $task->setIntelligence($intelligence);
            // $task->setGid($gid);
-
-
 
             $form = $this->createFormBuilder($task)
                 ->add('name', TextType::class)
