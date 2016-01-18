@@ -38,71 +38,66 @@ class PlayersController extends Controller
         return new Response('Created product id ' . $product->getId());
     }
 
-
-    public function newAction($type, Request $request)
+    /**
+     * @Route("/api/update")
+     */
+    public function saveAction(Request $request)
     {
-
+        foreach ($request->get('data') as $key=>$value){
+         $id=$key;
+        }
         $em = $this->getDoctrine()->getManager();
-        $jigs = $this->get('my_JigsFactory');
+        // $jigs = $this->get('my_JigsFactory');
+        //$type = 'J17JigsPlayers';
+        //$task = new J17JigsPlayers();
+        //$jigs = new Jigs();
+        $task = $this->getDoctrine()
+            ->getRepository("AppBundle:J17JigsPlayers")
+            ->find($id);
+        if (!$task) {
+            throw $this->createNotFoundException('No record found for id ' . $id);
+        }
+        //  $all = $request->request->all();
+        //  $data_array = $request->query->get('data');
+        $data_array = $request->request->all();
+        //print_r($data_array);
+        foreach($data_array as $key=>$value) {
+            if (is_array($value)) {
+                $return_data = $value;
+                foreach ($value as $person) {
+                    foreach ($person as $fieldName => $fieldValue) {
+                        if ($fieldName == 'name') {
+                            //   echo $fieldName;
+                            $task->setName($fieldValue);
+                        }
+                    }
+                }
+            }
+        }
+        $em->persist($task);
+        $em->flush();
+        $record = $this->getDoctrine()
+            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
+            ->getRepository("AppBundle:J17JigsPlayers")
+            ->find($id);
 
-        if ($type == 'J17JigsHobbits') {
-
-            $task = new J17JigsHobbits();
-            //    $jigs           = new Jigs();
-            $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
-            $name = Mudnames::generate_name_from($file);
-            $task->setName($name);
-            $hobbit = $jigs->generateHobbit();
-            $task->setFaction($hobbit['faction_number']);
-            $task->setGid($hobbit['Gid']);
-            $task->setHealth($hobbit['health']);
-            $task->setStrength($hobbit['strength']);
-            $task->setIntelligence($hobbit['intelligence']);
-            $task->setOwner($hobbit['owner']);
-            $task->setContentment($hobbit['contentment']);
-            $form = $this->createFormBuilder($task)
-                ->add('name')
-                ->add('faction')
-                ->add('health')
-                ->add('strength')
-                ->add('intelligence')
-                ->add('gid')
-                ->add('owner')
-                ->add('contentment')
-                ->add('save', 'submit')
-                ->getForm();
+        $row = array();
+        if ($record instanceof \AppBundle\Entity\J17JigsPlayers ) {
+            $row[0]['id'] = $record->getId();
+            $row[0]['DT_RowId'] = $record->getId();
+            $row[0]['name'] = $record->getName();
+            $row[0]['posX']  = $record->getPosx();
+            $row[0]['posY']  = $record->getPosy();
+            $row[0]['action']  = 'edit';
         }
 
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-
-        //$record = $form->getData();
-            $name = $task->getName();
-            $faction = $task->getFaction();
-            $contentment = $task->getContentment();
-            $health = $task->getHealth();
-            $intelligence = $task->getIntelligence();
-            $strength = $task->getStrength();
-            $gid = $task->getGid();
-            $owner = $task->getOwner();
-
-            $task->setName($name);
-            $task->setFaction($faction);
-            $task->setHealth($health);
-            $task->setStrength($strength);
-            $task->setIntelligence($intelligence);
-            $task->setContentment($contentment);
-            $task->setGid($gid);
-            $task->setOwner($owner);
-            $em->persist($task);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('task_success'));
-        }
-        return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
+        $response = new Response(json_encode(array('data' => $row)));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+       //     return $this->redirect($this->generateUrl('task_success'));
+       // }
+   //     return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
-
 
     /**
      * @Route("/{id}",requirements={"id" = "\d+"}, name="emc23_sigs_player")
@@ -120,7 +115,6 @@ class PlayersController extends Controller
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-
             $name = $record->getName();
             //$faction = $record->getFaction();
             $health = $record->getHealth();
@@ -159,5 +153,49 @@ class PlayersController extends Controller
         $Players    = $query->getResult();
 
         return $this->render('default/J17JigsPlayers.html.twig', array('pagination' => $Players));
+    }
+
+    /**
+     * @Route("/api/list", name="emc23_sigs_players_api")
+     */
+    public function apiListAction($start=0,$max=100)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM AppBundle:J17JigsPlayers a";
+
+        $query      = $em->createQuery($dql)
+            ->setFirstResult($start)
+            ->setMaxResults($max);
+        $resource = $query->getResult();
+        //$result= new \stdClass();
+        $result= array();
+        $i = 0 ;
+        foreach( $resource as $row){
+        //    print_r($row);
+
+            if ($row instanceof \AppBundle\Entity\J17JigsPlayers ) {
+                $result[$i]['DT_RowId'] = $row->getId();
+
+                $result[$i]['name'] = $row->getName();
+                $result[$i]['posX']  = $row->getPosx();
+                $result[$i]['posY']  = $row->getPosy();
+                $i++;
+            }
+
+    }
+
+        foreach ($result as $player){
+
+            $playerList[]    = $player;
+
+        }
+
+
+        //$players    = json_encode($result);
+        // create a JSON-response with a 200 status code
+        $response = new Response(json_encode(array('data' => $playerList)));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }
