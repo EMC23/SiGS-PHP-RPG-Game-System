@@ -20,16 +20,16 @@ class J17JigsPlayers
     private $name;
 
     /**
-     * @var boolean
+     * @var float
      *
-     * @ORM\Column(name="posx", type="boolean", nullable=false)
+     * @ORM\Column(name="posx", type="float", nullable=false)
      */
     private $posx;
 
     /**
-     * @var boolean
+     * @var float
      *
-     * @ORM\Column(name="posy", type="boolean", nullable=false)
+     * @ORM\Column(name="posy", type="float", nullable=false)
      */
     private $posy;
 
@@ -335,7 +335,7 @@ class J17JigsPlayers
     /**
      * Get posx
      *
-     * @return boolean 
+     * @return float
      */
     public function getPosx()
     {
@@ -358,7 +358,7 @@ class J17JigsPlayers
     /**
      * Get posy
      *
-     * @return boolean 
+     * @return float
      */
     public function getPosy()
     {
