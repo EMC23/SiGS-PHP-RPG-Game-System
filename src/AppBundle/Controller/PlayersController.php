@@ -44,59 +44,25 @@ class PlayersController extends Controller
     public function saveAction(Request $request)
     {
         foreach ($request->get('data') as $key=>$value){
-         $id=$key;
+            $id         = $key;
         }
-        $em = $this->getDoctrine()->getManager();
-        // $jigs = $this->get('my_JigsFactory');
-        //$type = 'J17JigsPlayers';
-        //$task = new J17JigsPlayers();
-        //$jigs = new Jigs();
-        $task = $this->getDoctrine()
+        $em         = $this->getDoctrine()->getManager();
+        $model      = $this->get('playerModel');
+        $task       = $this->getDoctrine()
             ->getRepository("AppBundle:J17JigsPlayers")
             ->find($id);
         if (!$task) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-        //  $all = $request->request->all();
-        //  $data_array = $request->query->get('data');
-        $data_array = $request->request->all();
-        //print_r($data_array);
-        foreach($data_array as $key=>$value) {
-            if (is_array($value)) {
-                $return_data = $value;
-                foreach ($value as $person) {
-                    foreach ($person as $fieldName => $fieldValue) {
-                        if ($fieldName == 'name') {
-                            //   echo $fieldName;
-                            $task->setName($fieldValue);
-                        }
-                    }
-                }
-            }
-        }
-        $em->persist($task);
-        $em->flush();
+        $model->save($request, $task, $em);
+
         $record = $this->getDoctrine()
-            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
             ->getRepository("AppBundle:J17JigsPlayers")
             ->find($id);
 
-        $row = array();
-        if ($record instanceof \AppBundle\Entity\J17JigsPlayers ) {
-            $row[0]['id'] = $record->getId();
-            $row[0]['DT_RowId'] = $record->getId();
-            $row[0]['name'] = $record->getName();
-            $row[0]['posX']  = $record->getPosx();
-            $row[0]['posY']  = $record->getPosy();
-            $row[0]['action']  = 'edit';
-        }
-
-        $response = new Response(json_encode(array('data' => $row)));
+        $response = new Response(json_encode(array('data' => $model->repopulate($record))));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
-       //     return $this->redirect($this->generateUrl('task_success'));
-       // }
-   //     return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
 
     /**
@@ -168,21 +134,24 @@ class PlayersController extends Controller
             ->setMaxResults($max);
         $resource = $query->getResult();
         //$result= new \stdClass();
+
+
+
         $result= array();
         $i = 0 ;
-        foreach( $resource as $row){
-        //    print_r($row);
+        foreach( $resource as $row) {
+            //    print_r($row);
 
-            if ($row instanceof \AppBundle\Entity\J17JigsPlayers ) {
+            if ($row instanceof \AppBundle\Entity\J17JigsPlayers) {
                 $result[$i]['DT_RowId'] = $row->getId();
 
                 $result[$i]['name'] = $row->getName();
-                $result[$i]['posX']  = $row->getPosx();
-                $result[$i]['posY']  = $row->getPosy();
+                $result[$i]['posX'] = $row->getPosx();
+                $result[$i]['posY'] = $row->getPosy();
                 $i++;
             }
 
-    }
+        }
 
         foreach ($result as $player){
 
@@ -198,4 +167,7 @@ class PlayersController extends Controller
 
         return $response;
     }
+
+
+
 }
