@@ -7,7 +7,10 @@
  */
 namespace AppBundle\Model;
 
-class PlayerModel{
+use AppBundle\Entity\J17JigsPlayers;
+
+class PlayerModel implements ModelInterface
+{
 
     public function __construct($parameter_name)
     {
@@ -59,16 +62,21 @@ class PlayerModel{
      */
     public function repopulate($record)
     {
-        $row = array();
-        if ($record instanceof \AppBundle\Entity\J17JigsPlayers) {
-            $row[0]['id'] = $record->getId();
-            $row[0]['DT_RowId'] = $record->getId();
-            $row[0]['name'] = $record->getName();
-            $row[0]['posX'] = $record->getPosx();
-            $row[0]['posY'] = $record->getPosy();
-            $row[0]['action'] = 'edit';
-            return $row;
+
+        $result = array();
+        $i = 0 ;
+
+          foreach ($record as $row) {
+              if ($row instanceof J17JigsPlayers) {
+                  $result[$i]['id'] = $row->getId();
+                  $result[$i]['DT_RowId'] = $row->getId();
+                  $result[$i]['name'] = $row->getName();
+                  $result[$i]['posX'] = $row->getPosx();
+                  $result[$i]['posY'] = $row->getPosy();
+                  $result[$i]['action'] = 'edit';
+                  $i++;
+              }
         }
-        return $row;
+        return $result;
     }
 }
