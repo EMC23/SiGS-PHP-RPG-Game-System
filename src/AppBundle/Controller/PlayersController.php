@@ -126,48 +126,22 @@ class PlayersController extends Controller
      */
     public function apiListAction($start=0,$max=100)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM AppBundle:J17JigsPlayers a";
-
+        $em         = $this->get('doctrine.orm.entity_manager');
+        $dql        = "SELECT a FROM AppBundle:J17JigsPlayers a";
         $query      = $em->createQuery($dql)
             ->setFirstResult($start)
             ->setMaxResults($max);
         $resource = $query->getResult();
-        //$result= new \stdClass();
 
-
-
-        $result= array();
-        $i = 0 ;
-        foreach( $resource as $row) {
-            //    print_r($row);
-
-            if ($row instanceof \AppBundle\Entity\J17JigsPlayers) {
-                $result[$i]['DT_RowId'] = $row->getId();
-
-                $result[$i]['name'] = $row->getName();
-                $result[$i]['posX'] = $row->getPosx();
-                $result[$i]['posY'] = $row->getPosy();
-                $i++;
-            }
-
-        }
+        $model      = $this->get('playerModel');
+        $result     = $model->repopulate($resource);
 
         foreach ($result as $player){
-
             $playerList[]    = $player;
-
         }
-
-
-        //$players    = json_encode($result);
         // create a JSON-response with a 200 status code
         $response = new Response(json_encode(array('data' => $playerList)));
         $response->headers->set('Content-Type', 'application/json');
-
         return $response;
     }
-
-
-
 }
