@@ -15,7 +15,6 @@ class MonsterTypesModel implements ModelInterface
         $this->parameter_name = $parameter_name;
     }
 
-
     public function greet($name)
     {
         return $this->parameter_name . ' ' . $name;
@@ -45,10 +44,6 @@ class MonsterTypesModel implements ModelInterface
                             //   echo $fieldName;
                             $task->setCellheight($fieldValue);
                         }
-
-
-
-
                     }
                 }
             }
@@ -87,13 +82,13 @@ class MonsterTypesModel implements ModelInterface
     public function place($rows, $result, $i)
     {
         foreach ($rows as $row) {
-            $name = $row->getName();
-            $result[$i]['id'] = $row->getId();
-            $result[$i]['DT_RowId'] = $row->getId();
-            $result[$i]['type'] = $row->getName();
-            $cellwidth = $result[$i]['cellwidth'] = $row->getCellWidth();
-            $cellheight = $result[$i]['cellheight'] = $row->getCellHeight();
-            $result[$i]['numberofcells'] = $row->getNumberofcells();
+            $name                                       = $row->getName();
+            $result[$i]['id']                           = $row->getId();
+            $result[$i]['DT_RowId']                     = $row->getId();
+            $result[$i]['type']                         = $row->getName();
+            $cellwidth = $result[$i]['cellwidth']       = $row->getCellWidth();
+            $cellheight = $result[$i]['cellheight']     = $row->getCellHeight();
+            $result[$i]['numberofcells']                = $row->getNumberofcells();
             $result[$i]['image'] = "<div style='width: " . $cellwidth . "px; height: " . $cellheight . "px; overflow:hidden;'>
                         <img src = 'http://www.eclecticmeme.com/components/com_battle/images/assets/chars/monsters/$name/$name.png'>
                 </div>";
