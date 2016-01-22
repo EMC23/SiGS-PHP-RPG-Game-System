@@ -2,6 +2,7 @@
 // src/AppBundle/Command/GreetCommand.php
 namespace AppBundle\Command;
 
+use AppBundle\Entity\J17JigsMonsters;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +15,7 @@ class makeMonsterCommand extends ContainerAwareCommand
     {
         $this
             ->setName('Emc23:makeMonster')
-            ->setDescription('generate Hobbit')
+            ->setDescription('generate Monster')
             ->addArgument('name', InputArgument::OPTIONAL, 'Enter name of new hobbit?')
             ->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
         ;
@@ -22,16 +23,14 @@ class makeMonsterCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em                = $this->getContainer()->get('doctrine')->getEntityManager('default');
-        $monsterObject     = new J17JigsMonsters();
-        //$monstersTypeObject = new J17JigsMonsterType();
-        $jigs              = new JigsFactory($em);
-        $monster           = $jigs->generateMonster();
+        $em                 = $this->getContainer()->get('doctrine')->getEntityManager('default');
+        $monsterObject      = new J17JigsMonsters();
+        $model              = $this->getContainer()->get('monstersModel');
+        $monster            = $model->generate();
         echo 'Monster Generated' . PHP_EOL;
 
         $monstersTypeObject = $em
-            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
-            ->getRepository("Emc23SigsBundle:J17JigsMonsterTypes")
+            ->getRepository("AppBundle:J17JigsMonsterTypes")
             ->find($monster['type']);
 
         $monsterObject->setType( $monstersTypeObject );
