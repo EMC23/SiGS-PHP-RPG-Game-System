@@ -8,15 +8,24 @@
 namespace AppBundle\Model;
 
 use AppBundle\Entity\J17JigsPlayers;
+use Doctrine\ORM\EntityManager;
 
 class MonsterModel extends AbstractModel
 {
+
+    protected $em;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->em = $entityManager;
+    }
+
     public function generate()
     {
         $monster['health']                = $this->generateHealth();
         $monster['strength']              = $this->generateStrength();
         $monster['intelligence']          = $this->generateIntelligence();
-        $monster['type']                  = $this->generateType();
+        $monster['type']                  = $this->selectType('J17JigsMonsterTypes');
         return $monster;
     }
     /**
