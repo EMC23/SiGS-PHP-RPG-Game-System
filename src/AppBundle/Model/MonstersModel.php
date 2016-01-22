@@ -8,10 +8,26 @@
 namespace AppBundle\Model;
 
 use AppBundle\Entity\J17JigsPlayers;
+use Doctrine\ORM\EntityManager;
 
-class PlayerModel extends AbstractModel
+class MonstersModel extends AbstractModel
 {
+    protected $em;
 
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->em = $entityManager;
+    }
+
+    public function generate()
+    {
+        $monster['health']                  = $this->generateHealth();
+        $monster['strength']                = $this->generateStrength();
+        $monster['intelligence']            = $this->generateIntelligence();
+        $monster['type']                    = $this->selectType('J17JigsMonsterTypes');
+        $monster['grid']                    = $this->selectGrid(50,100);
+        return $monster;
+    }
     /**
      * @param Request $request
      * @param $task
@@ -53,17 +69,16 @@ class PlayerModel extends AbstractModel
     {
         $result = array();
         $i = 0 ;
-
-          foreach ($record as $row) {
-              if ($row instanceof J17JigsPlayers) {
-                  $result[$i]['id']         = $row->getId();
-                  $result[$i]['DT_RowId']   = $row->getId();
-                  $result[$i]['name']       = $row->getName();
-                  $result[$i]['posX']       = $row->getPosx();
-                  $result[$i]['posY']       = $row->getPosy();
-                  $result[$i]['action']     = 'edit';
-                  $i++;
-              }
+        foreach ($record as $row) {
+            if ($row instanceof J17JigsPlayers) {
+                $result[$i]['id']         = $row->getId();
+                $result[$i]['DT_RowId']   = $row->getId();
+                $result[$i]['name']       = $row->getName();
+                $result[$i]['posX']       = $row->getPosx();
+                $result[$i]['posY']       = $row->getPosy();
+                $result[$i]['action']     = 'edit';
+                $i++;
+            }
         }
         return $result;
     }

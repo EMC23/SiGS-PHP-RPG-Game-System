@@ -10,9 +10,8 @@ namespace AppBundle\Model;
 use AppBundle\Entity\J17JigsPlayers;
 use Doctrine\ORM\EntityManager;
 
-class MonsterModel extends AbstractModel
+class HobbitsModel extends AbstractModel
 {
-
     protected $em;
 
     public function __construct(EntityManager $entityManager)
@@ -22,10 +21,11 @@ class MonsterModel extends AbstractModel
 
     public function generate()
     {
-        $monster['health']                = $this->generateHealth();
-        $monster['strength']              = $this->generateStrength();
-        $monster['intelligence']          = $this->generateIntelligence();
-        $monster['type']                  = $this->selectType('J17JigsMonsterTypes');
+        $monster['health']                  = $this->generateHealth();
+        $monster['strength']                = $this->generateStrength();
+        $monster['intelligence']            = $this->generateIntelligence();
+        $monster['type']                    = $this->selectType('J17JigsMonsterTypes');
+        $monster['grid']                    = $this->selectGrid(50,100);
         return $monster;
     }
     /**
