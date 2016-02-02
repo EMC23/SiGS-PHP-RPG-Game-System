@@ -35,6 +35,12 @@ abstract class AbstractModel
     }
 
     // Common method
+    public function selectMap($min=1,$max=1) {
+        return rand($min, $max);
+    }
+
+
+    // Common method
     public function selectType($type) {
 
         $result         = $this->em->createQuery("SELECT a.id FROM AppBundle:$type a")->getArrayResult();
