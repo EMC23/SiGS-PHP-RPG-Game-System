@@ -7,7 +7,7 @@
  */
 namespace AppBundle\Model;
 
-class MonsterTypesModel implements ModelInterface
+class MonsterTypesModel extends AbstractModel
 {
 
     public function __construct($parameter_name)
