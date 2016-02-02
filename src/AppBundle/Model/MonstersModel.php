@@ -26,6 +26,7 @@ class MonstersModel extends AbstractModel
         $monster['intelligence']            = $this->generateIntelligence();
         $monster['type']                    = $this->selectType('J17JigsMonsterTypes');
         $monster['grid']                    = $this->selectGrid(50,100);
+        $monster['map']                     = $this->selectMap(50,100);
         return $monster;
     }
     /**
