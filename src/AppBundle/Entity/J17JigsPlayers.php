@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Acme\HelloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,16 +20,16 @@ class J17JigsPlayers
     private $name;
 
     /**
-     * @var float
+     * @var boolean
      *
-     * @ORM\Column(name="posx", type="float", nullable=false)
+     * @ORM\Column(name="posx", type="boolean", nullable=false)
      */
     private $posx;
 
     /**
-     * @var float
+     * @var boolean
      *
-     * @ORM\Column(name="posy", type="float", nullable=false)
+     * @ORM\Column(name="posy", type="boolean", nullable=false)
      */
     private $posy;
 
@@ -181,11 +181,25 @@ class J17JigsPlayers
     private $ammunition;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="tempsplanque", type="integer", nullable=false)
+     */
+    private $tempsplanque;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
      */
     private $image;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tempsmove", type="integer", nullable=false)
+     */
+    private $tempsmove;
 
     /**
      * @var string
@@ -197,9 +211,9 @@ class J17JigsPlayers
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=255, nullable=false)
+     * @ORM\Column(name="commentaire", type="string", length=255, nullable=false)
      */
-    private $comment;
+    private $commentaire;
 
     /**
      * @var integer
@@ -207,6 +221,41 @@ class J17JigsPlayers
      * @ORM\Column(name="bank", type="integer", nullable=false)
      */
     private $bank;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="parrainage", type="integer", nullable=false)
+     */
+    private $parrainage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="stupefiant", type="integer", nullable=false)
+     */
+    private $stupefiant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="volevoiture", type="smallint", nullable=false)
+     */
+    private $volevoiture;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="volearme", type="smallint", nullable=false)
+     */
+    private $volearme;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="voleargent", type="smallint", nullable=false)
+     */
+    private $voleargent;
 
     /**
      * @var integer
@@ -335,7 +384,7 @@ class J17JigsPlayers
     /**
      * Get posx
      *
-     * @return float
+     * @return boolean 
      */
     public function getPosx()
     {
@@ -358,7 +407,7 @@ class J17JigsPlayers
     /**
      * Get posy
      *
-     * @return float
+     * @return boolean 
      */
     public function getPosy()
     {
@@ -802,6 +851,28 @@ class J17JigsPlayers
         return $this->idCar;
     }
 
+    /**
+     * Set reservoir
+     *
+     * @param boolean $reservoir
+     * @return J17JigsPlayers
+     */
+    public function setReservoir($reservoir)
+    {
+        $this->reservoir = $reservoir;
+
+        return $this;
+    }
+
+    /**
+     * Get reservoir
+     *
+     * @return boolean 
+     */
+    public function getReservoir()
+    {
+        return $this->reservoir;
+    }
 
     /**
      * Set ammunition
@@ -826,7 +897,28 @@ class J17JigsPlayers
         return $this->ammunition;
     }
 
+    /**
+     * Set tempsplanque
+     *
+     * @param integer $tempsplanque
+     * @return J17JigsPlayers
+     */
+    public function setTempsplanque($tempsplanque)
+    {
+        $this->tempsplanque = $tempsplanque;
 
+        return $this;
+    }
+
+    /**
+     * Get tempsplanque
+     *
+     * @return integer 
+     */
+    public function getTempsplanque()
+    {
+        return $this->tempsplanque;
+    }
 
     /**
      * Set image
@@ -849,6 +941,29 @@ class J17JigsPlayers
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set tempsmove
+     *
+     * @param integer $tempsmove
+     * @return J17JigsPlayers
+     */
+    public function setTempsmove($tempsmove)
+    {
+        $this->tempsmove = $tempsmove;
+
+        return $this;
+    }
+
+    /**
+     * Get tempsmove
+     *
+     * @return integer 
+     */
+    public function getTempsmove()
+    {
+        return $this->tempsmove;
     }
 
     /**
@@ -875,26 +990,26 @@ class J17JigsPlayers
     }
 
     /**
-     * Set comment
+     * Set commentaire
      *
-     * @param string $comment
+     * @param string $commentaire
      * @return J17JigsPlayers
      */
-    public function setComment($comment)
+    public function setCommentaire($commentaire)
     {
-        $this->comment = $comment;
+        $this->commentaire = $commentaire;
 
         return $this;
     }
 
     /**
-     * Get comment
+     * Get commentaire
      *
      * @return string 
      */
-    public function getComment()
+    public function getCommentaire()
     {
-        return $this->comment;
+        return $this->commentaire;
     }
 
     /**
@@ -918,6 +1033,121 @@ class J17JigsPlayers
     public function getBank()
     {
         return $this->bank;
+    }
+
+    /**
+     * Set parrainage
+     *
+     * @param integer $parrainage
+     * @return J17JigsPlayers
+     */
+    public function setParrainage($parrainage)
+    {
+        $this->parrainage = $parrainage;
+
+        return $this;
+    }
+
+    /**
+     * Get parrainage
+     *
+     * @return integer 
+     */
+    public function getParrainage()
+    {
+        return $this->parrainage;
+    }
+
+    /**
+     * Set stupefiant
+     *
+     * @param integer $stupefiant
+     * @return J17JigsPlayers
+     */
+    public function setStupefiant($stupefiant)
+    {
+        $this->stupefiant = $stupefiant;
+
+        return $this;
+    }
+
+    /**
+     * Get stupefiant
+     *
+     * @return integer 
+     */
+    public function getStupefiant()
+    {
+        return $this->stupefiant;
+    }
+
+    /**
+     * Set volevoiture
+     *
+     * @param integer $volevoiture
+     * @return J17JigsPlayers
+     */
+    public function setVolevoiture($volevoiture)
+    {
+        $this->volevoiture = $volevoiture;
+
+        return $this;
+    }
+
+    /**
+     * Get volevoiture
+     *
+     * @return integer 
+     */
+    public function getVolevoiture()
+    {
+        return $this->volevoiture;
+    }
+
+    /**
+     * Set volearme
+     *
+     * @param integer $volearme
+     * @return J17JigsPlayers
+     */
+    public function setVolearme($volearme)
+    {
+        $this->volearme = $volearme;
+
+        return $this;
+    }
+
+    /**
+     * Get volearme
+     *
+     * @return integer 
+     */
+    public function getVolearme()
+    {
+        return $this->volearme;
+    }
+
+    /**
+     * Set voleargent
+     *
+     * @param integer $voleargent
+     * @return J17JigsPlayers
+     */
+    public function setVoleargent($voleargent)
+    {
+        $this->voleargent = $voleargent;
+
+        return $this;
+    }
+
+    /**
+     * Get voleargent
+     *
+     * @return integer 
+     */
+    public function getVoleargent()
+    {
+        return $this->voleargent;
     }
 
     /**
@@ -1181,29 +1411,5 @@ class J17JigsPlayers
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set reservoir
-     *
-     * @param boolean $reservoir
-     *
-     * @return J17JigsPlayers
-     */
-    public function setReservoir($reservoir)
-    {
-        $this->reservoir = $reservoir;
-
-        return $this;
-    }
-
-    /**
-     * Get reservoir
-     *
-     * @return boolean
-     */
-    public function getReservoir()
-    {
-        return $this->reservoir;
     }
 }

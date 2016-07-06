@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Acme\HelloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,26 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
 class J17JigsBuildings
 {
     /**
-     * @var integer
+     * @var boolean
      *
      * @ORM\Column(name="posy", type="boolean", nullable=false)
      */
     private $posy;
 
     /**
-     * @var integer
+     * @var boolean
      *
      * @ORM\Column(name="posx", type="boolean", nullable=false)
      */
     private $posx;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="health", type="boolean", nullable=false)
-     */
-    private $health;
-
 
     /**
      * @var string
@@ -65,24 +57,9 @@ class J17JigsBuildings
     /**
      * @var integer
      *
-     * @ORM\Column(name="attack", type="smallint", nullable=false)
+     * @ORM\Column(name="coffre", type="integer", nullable=false)
      */
-    private $attack;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="defence", type="smallint", nullable=false)
-     */
-    private $defence;
-
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="energy", type="smallint", nullable=false)
-     */
-    private $energy;
+    private $coffre;
 
     /**
      * @var string
@@ -106,6 +83,13 @@ class J17JigsBuildings
     private $image;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="couleur", type="string", length=7, nullable=false)
+     */
+    private $couleur;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="xp", type="smallint", nullable=false)
@@ -118,6 +102,13 @@ class J17JigsBuildings
      * @ORM\Column(name="owner", type="integer", nullable=false)
      */
     private $owner;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="proprio_equipe", type="integer", nullable=false)
+     */
+    private $proprioEquipe;
 
     /**
      * @var integer
@@ -136,9 +127,9 @@ class J17JigsBuildings
     /**
      * @var boolean
      *
-     * @ORM\Column(name="access", type="boolean", nullable=false)
+     * @ORM\Column(name="acces", type="boolean", nullable=false)
      */
-    private $access;
+    private $acces;
 
     /**
      * @var integer
@@ -318,6 +309,29 @@ class J17JigsBuildings
     }
 
     /**
+     * Set coffre
+     *
+     * @param integer $coffre
+     * @return J17JigsBuildings
+     */
+    public function setCoffre($coffre)
+    {
+        $this->coffre = $coffre;
+
+        return $this;
+    }
+
+    /**
+     * Get coffre
+     *
+     * @return integer 
+     */
+    public function getCoffre()
+    {
+        return $this->coffre;
+    }
+
+    /**
      * Set type
      *
      * @param string $type
@@ -384,6 +398,29 @@ class J17JigsBuildings
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set couleur
+     *
+     * @param string $couleur
+     * @return J17JigsBuildings
+     */
+    public function setCouleur($couleur)
+    {
+        $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    /**
+     * Get couleur
+     *
+     * @return string 
+     */
+    public function getCouleur()
+    {
+        return $this->couleur;
     }
 
     /**
@@ -502,26 +539,26 @@ class J17JigsBuildings
     }
 
     /**
-     * Set access
+     * Set acces
      *
      * @param boolean $acces
      * @return J17JigsBuildings
      */
-    public function setAccess($access)
+    public function setAcces($acces)
     {
-        $this->access = $access;
+        $this->acces = $acces;
 
         return $this;
     }
 
     /**
-     * Get access
+     * Get acces
      *
      * @return boolean 
      */
-    public function getAccess()
+    public function getAcces()
     {
-        return $this->access;
+        return $this->acces;
     }
 
     /**
@@ -624,101 +661,5 @@ class J17JigsBuildings
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set energy
-     *
-     * @param integer $energy
-     *
-     * @return J17JigsBuildings
-     */
-    public function setEnergy($energy)
-    {
-        $this->energy = $energy;
-
-        return $this;
-    }
-
-    /**
-     * Get energy
-     *
-     * @return integer
-     */
-    public function getEnergy()
-    {
-        return $this->energy;
-    }
-
-    /**
-     * Set health
-     *
-     * @param boolean $health
-     *
-     * @return J17JigsBuildings
-     */
-    public function setHealth($health)
-    {
-        $this->health = $health;
-
-        return $this;
-    }
-
-    /**
-     * Get health
-     *
-     * @return boolean
-     */
-    public function getHealth()
-    {
-        return $this->health;
-    }
-
-    /**
-     * Set attack
-     *
-     * @param integer $attack
-     *
-     * @return J17JigsBuildings
-     */
-    public function setAttack($attack)
-    {
-        $this->attack = $attack;
-
-        return $this;
-    }
-
-    /**
-     * Get attack
-     *
-     * @return integer
-     */
-    public function getAttack()
-    {
-        return $this->attack;
-    }
-
-    /**
-     * Set defence
-     *
-     * @param integer $defence
-     *
-     * @return J17JigsBuildings
-     */
-    public function setDefence($defence)
-    {
-        $this->defence = $defence;
-
-        return $this;
-    }
-
-    /**
-     * Get defence
-     *
-     * @return integer
-     */
-    public function getDefence()
-    {
-        return $this->defence;
     }
 }

@@ -1,10 +1,13 @@
 /src/Knp
 /src/FOS
 /vendor/autoload.php
-/composer.lock
 /.gitignore
 /app/config/parameters.yml
 # Created by .ignore support plugin (hsz.mobi)
 /app/cache
 /app/logs
 /app/bootstrap.php.cache
+/vendor/
+/var/
+/bin/
+/app/config/

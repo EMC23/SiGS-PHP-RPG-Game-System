@@ -1,6 +1,6 @@
 <?php
 
-namespace Emc23\SigsBundle\Entity;
+namespace Acme\HelloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -49,11 +49,25 @@ class J17Usergroups
      */
     private $id;
 
-     /**
-         * @ORM\OneToOne(targetEntity="J17JigsGroups", referencedColumnName="gid")
-         */
 
-    private $gid;
+
+
+
+ /**
+     * @ORM\OneToOne(targetEntity="J17JigsGroups", referencedColumnName="gid")
+     */
+
+private $gid;
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Set parentId
@@ -154,30 +168,6 @@ class J17Usergroups
      */
     public function getId()
     {
-        return $this->id;
-    }
-
-    /**
-     * Set gid
-     *
-     * @param \Emc23\SigsBundle\Entity\J17JigsGroups $gid
-     *
-     * @return J17Usergroups
-     */
-    public function setGid(\Emc23\SigsBundle\Entity\J17JigsGroups $gid = null)
-    {
-        $this->gid = $gid;
-
-        return $this;
-    }
-
-    /**
-     * Get gid
-     *
-     * @return \Emc23\SigsBundle\Entity\J17JigsGroups
-     */
-    public function getGid()
-    {
-        return $this->gid;
+      return $this->id;
     }
 }

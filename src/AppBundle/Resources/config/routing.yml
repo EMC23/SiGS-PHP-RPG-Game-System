@@ -1,0 +1,40 @@
+acme_hello_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AppBundle:Default:index }
+    
+    
+acme_hello_homepage2:
+    pattern:  /addstuff/
+    defaults: { _controller: AppBundle:Default:add }
+    
+acme_hello_homepage3:
+    pattern:  /show/{id}/{type}
+    defaults: { _controller: AppBundle:Default:show }    
+    
+acme_hello_homepage4:
+    pattern:  /showallusers2/
+    defaults: { _controller: AppBundle:Default:showallusers2 }
+    
+acme_hello_homepage5:
+    pattern:  /list/{type}
+    defaults: { _controller: AppBundle:Default:list }
+    
+acme_hello_homepage6:
+    pattern:  /
+    defaults: { _controller: AppBundle:Default:index }
+
+acme_hello_homepage7:
+    pattern:  /showfactions
+    defaults: { _controller: AppBundle:Default:showfactions }
+    
+acme_hello_homepage8:
+    pattern:  /showgroups
+    defaults: { _controller: AppBundle:Default:showgroups }
+    
+acme_hello_homepage9:
+    pattern:  /list/{type}
+    defaults: { _controller: AppBundle:Default:list }
+    
+acme_hello_homepage10:
+    pattern:  /new/{type}
+    defaults: { _controller: AppBundle:Default:new }   

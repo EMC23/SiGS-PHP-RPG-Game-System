@@ -1,6 +1,6 @@
 <?php
 
-namespace Emc23\SigsBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

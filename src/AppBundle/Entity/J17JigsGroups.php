@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Acme\HelloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,11 +15,9 @@ class J17JigsGroups
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="gid", type="integer", nullable=false)
      */
-    private $id;
+    private $gid;
 
     /**
      * @var integer
@@ -56,17 +54,25 @@ class J17JigsGroups
      */
     private $coffers;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+//    private $id;
 
 
     /**
      * Set gid
      *
-     * @param integer $id
+     * @param integer $gid
      * @return J17JigsGroups
      */
-    public function setId($id)
+    public function setGid($gid)
     {
-        $this->id = $id;
+        $this->gid = $gid;
 
         return $this;
     }
@@ -76,9 +82,9 @@ class J17JigsGroups
      *
      * @return integer 
      */
-    public function getId()
+    public function getGid()
     {
-        return $this->id;
+        return $this->gid;
     }
 
     /**
@@ -195,43 +201,14 @@ class J17JigsGroups
     {
         return $this->coffers;
     }
-    /**
-     * @var integer
-     */
-    private $captain;
-
 
     /**
-     * Set captain
+     * Get id
      *
-     * @param integer $captain
-     *
-     * @return J17JigsGroups
+     * @return integer 
      */
-    public function setCaptain($captain)
-    {
-        $this->captain = $captain;
-
-        return $this;
-    }
-
-    /**
-     * Get captain
-     *
-     * @return integer
-     */
-    public function getCaptain()
-    {
-        return $this->captain;
-    }
-
-
-
-
-
-
-
-
-
-
+ //   public function getId()
+ //   {
+  //      return $this->id;
+  //  }
 }

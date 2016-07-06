@@ -1,6 +1,6 @@
 <?php
 
-namespace Emc23\SigsBundle\Entity;
+namespace Acme\HelloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -43,9 +43,9 @@ class J17JigsCars
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text", nullable=false)
+     * @ORM\Column(name="commentaire", type="text", nullable=false)
      */
-    private $comment;
+    private $commentaire;
 
     /**
      * @var boolean
@@ -242,26 +242,26 @@ class J17JigsCars
     }
 
     /**
-     * Set comment
+     * Set commentaire
      *
-     * @param string $comment
+     * @param string $commentaire
      * @return J17JigsCars
      */
-    public function setComment($comment)
+    public function setCommentaire($commentaire)
     {
-        $this->comment = $comment;
+        $this->commentaire = $commentaire;
 
         return $this;
     }
 
     /**
-     * Get comment
+     * Get commentaire
      *
      * @return string 
      */
-    public function getComment()
+    public function getCommentaire()
     {
-        return $this->comment;
+        return $this->commentaire;
     }
 
     /**

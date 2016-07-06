@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Acme\HelloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,6 +46,13 @@ class J17JigsFactions
      * @ORM\Column(name="total_buildings", type="integer", nullable=false)
      */
     private $totalBuildings;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="coffers", type="integer", nullable=false)
+     */
+    private $coffers;
 
     /**
      * @var integer
@@ -171,6 +178,29 @@ class J17JigsFactions
     public function getTotalBuildings()
     {
         return $this->totalBuildings;
+    }
+
+    /**
+     * Set coffers
+     *
+     * @param integer $coffers
+     * @return J17JigsFactions
+     */
+    public function setCoffers($coffers)
+    {
+        $this->coffers = $coffers;
+
+        return $this;
+    }
+
+    /**
+     * Get coffers
+     *
+     * @return integer 
+     */
+    public function getCoffers()
+    {
+        return $this->coffers;
     }
 
     /**

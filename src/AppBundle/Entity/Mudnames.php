@@ -10,7 +10,7 @@
  */
 
 
-namespace Emc23\SigsBundle\Entity;
+namespace Acme\HelloBundle\Entity;
  use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 
 class Mudnames_Dictionnaries {
@@ -34,13 +34,9 @@ class Mudnames_Dictionnaries {
      *
      * @param string $directory directory where the dictionnaries can be found
      */
-    public function __construct() {
-
-        $directory=dirname(__FILE__).'/data/';
-
-
+    public function __construct($directory='./data/') {
         if (!file_exists($directory)) {
-            throw new InvalidArgumentException ('Directory \''. $directory . '\' doesn\'t exist.');
+            throw new InvalidArgumentException ('Directory \''. $directory . '\' doesn\'t exists.');
         }
 
         if (!is_dir($directory)) {

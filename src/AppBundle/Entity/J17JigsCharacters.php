@@ -71,16 +71,16 @@ class J17JigsCharacters
     /**
      * @var integer
      *
-     * @ORM\Column(name="strength", type="integer", nullable=false)
+     * @ORM\Column(name="strenght", type="integer", nullable=false)
      */
-    private $strength;
+    private $strenght;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="contentment", type="boolean", nullable=false)
+     * @ORM\Column(name="humeur", type="boolean", nullable=false)
      */
-    private $contentment;
+    private $humeur;
 
     /**
      * @var boolean
@@ -183,9 +183,9 @@ class J17JigsCharacters
     /**
      * @var boolean
      *
-     * @ORM\Column(name="ammunition", type="boolean", nullable=false)
+     * @ORM\Column(name="munition", type="boolean", nullable=false)
      */
-    private $ammunition;
+    private $munition;
 
     /**
      * @var integer
@@ -404,49 +404,49 @@ class J17JigsCharacters
     }
 
     /**
-     * Set strength
+     * Set strenght
      *
-     * @param integer $strength
+     * @param integer $strenght
      * @return J17JigsCharacters
      */
-    public function setStrength($strength)
+    public function setStrenght($strenght)
     {
-        $this->strength = $strength;
+        $this->strenght = $strenght;
 
         return $this;
     }
 
     /**
-     * Get strength
+     * Get strenght
      *
      * @return integer 
      */
-    public function getStrength()
+    public function getStrenght()
     {
-        return $this->strength;
+        return $this->strenght;
     }
 
     /**
-     * Set contentment
+     * Set humeur
      *
-     * @param boolean $contentment
+     * @param boolean $humeur
      * @return J17JigsCharacters
      */
-    public function setcontentment($contentment)
+    public function setHumeur($humeur)
     {
-        $this->contentment = $contentment;
+        $this->humeur = $humeur;
 
         return $this;
     }
 
     /**
-     * Get contentment
+     * Get humeur
      *
      * @return boolean 
      */
-    public function getcontentment()
+    public function getHumeur()
     {
-        return $this->contentment;
+        return $this->humeur;
     }
 
     /**
@@ -772,26 +772,26 @@ class J17JigsCharacters
     }
 
     /**
-     * Set ammunition
+     * Set munition
      *
-     * @param boolean $ammunition
+     * @param boolean $munition
      * @return J17JigsCharacters
      */
-    public function setMunition($ammunition)
+    public function setMunition($munition)
     {
-        $this->ammunition = $ammunition;
+        $this->munition = $munition;
 
         return $this;
     }
 
     /**
-     * Get Ammunition
+     * Get munition
      *
      * @return boolean 
      */
-    public function getAmmunition()
+    public function getMunition()
     {
-        return $this->ammunition;
+        return $this->munition;
     }
 
     /**
@@ -871,19 +871,5 @@ class J17JigsCharacters
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set ammunition
-     *
-     * @param boolean $ammunition
-     *
-     * @return J17JigsCharacters
-     */
-    public function setAmmunition($ammunition)
-    {
-        $this->ammunition = $ammunition;
-
-        return $this;
     }
 }
