@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\HelloBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -61,7 +61,7 @@ class J17JigsGroups
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-//    private $id;
+    private $id;
 
 
     /**

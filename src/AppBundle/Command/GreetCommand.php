@@ -8,8 +8,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Acme\HelloBundle\Entity\J17JigsHobbits; 
-use Acme\HelloBundle\Entity\Mudnames; 
+use AppBundle\Entity\J17JigsHobbits;
+use AppBundle\Entity\Mudnames;
 
 
 class GreetCommand extends ContainerAwareCommand

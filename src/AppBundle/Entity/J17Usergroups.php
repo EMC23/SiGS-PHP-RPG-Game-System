@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\HelloBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -54,7 +54,7 @@ class J17Usergroups
 
 
  /**
-     * @ORM\OneToOne(targetEntity="J17JigsGroups", referencedColumnName="gid")
+     * @ORM\OneToOne(targetEntity="J17JigsGroups")
      */
 
 private $gid;

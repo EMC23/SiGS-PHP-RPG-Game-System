@@ -71,16 +71,72 @@ class J17JigsCharacters
     /**
      * @var integer
      *
-     * @ORM\Column(name="strenght", type="integer", nullable=false)
+     * @ORM\Column(name="strength", type="integer", nullable=false)
      */
-    private $strenght;
+    private $strength;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="speed", type="integer", nullable=false)
+     */
+    private $speed;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", nullable=false)
+     */
+    private $type;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="history", type="string", nullable=false)
+     */
+    private $history;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slack", type="string", nullable=false)
+     */
+    private $slack;
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="aggression", type="integer", nullable=false)
+     */
+    private $aggression;
+
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="contentment", type="integer", nullable=false)
+     */
+    private $contentment;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="bank", type="string", nullable=false)
+     */
+    private $bank;
+
+
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="humeur", type="boolean", nullable=false)
+     * @ORM\Column(name="mood", type="boolean", nullable=false)
      */
-    private $humeur;
+    private $mood;
 
     /**
      * @var boolean
@@ -181,11 +237,11 @@ class J17JigsCharacters
     private $level;
 
     /**
-     * @var boolean
+     * @var int
      *
-     * @ORM\Column(name="munition", type="boolean", nullable=false)
+     * @ORM\Column(name="ammunition", type="integer", nullable=false)
      */
-    private $munition;
+    private $ammunition;
 
     /**
      * @var integer
@@ -200,6 +256,26 @@ class J17JigsCharacters
      * @ORM\Column(name="empty", type="boolean", nullable=false)
      */
     private $empty;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @var boolean
@@ -241,6 +317,38 @@ class J17JigsCharacters
     {
         return $this->name;
     }
+
+    /**
+     * Set speed
+     *
+     * @param string $speed
+     * @return J17JigsCharacters
+     */
+    public function setSpeed($speed)
+    {
+        $this->speed = $speed;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getSpeed()
+    {
+        return $this->speed;
+    }
+
+
+
+
+
+
+
+
+
 
     /**
      * Set gid
@@ -406,47 +514,47 @@ class J17JigsCharacters
     /**
      * Set strenght
      *
-     * @param integer $strenght
+     * @param integer $strength
      * @return J17JigsCharacters
      */
-    public function setStrenght($strenght)
+    public function setStrength($strength)
     {
-        $this->strenght = $strenght;
+        $this->strength = $strength;
 
         return $this;
     }
 
     /**
-     * Get strenght
+     * Get strength
      *
      * @return integer 
      */
-    public function getStrenght()
+    public function getStrength()
     {
-        return $this->strenght;
+        return $this->strength;
     }
 
     /**
-     * Set humeur
+     * Set mood
      *
-     * @param boolean $humeur
+     * @param boolean $mood
      * @return J17JigsCharacters
      */
-    public function setHumeur($humeur)
+    public function setMood($mood)
     {
-        $this->humeur = $humeur;
+        $this->mood = $mood;
 
         return $this;
     }
 
     /**
-     * Get humeur
+     * Get mood
      *
      * @return boolean 
      */
-    public function getHumeur()
+    public function getMood()
     {
-        return $this->humeur;
+        return $this->mood;
     }
 
     /**
@@ -774,24 +882,24 @@ class J17JigsCharacters
     /**
      * Set munition
      *
-     * @param boolean $munition
+     * @param boolean $Ammunition
      * @return J17JigsCharacters
      */
-    public function setMunition($munition)
+    public function setAmmunition($ammunition)
     {
-        $this->munition = $munition;
+        $this->ammunition = $ammunition;
 
         return $this;
     }
 
     /**
-     * Get munition
+     * Get ammunition
      *
      * @return boolean 
      */
-    public function getMunition()
+    public function getAmmunition()
     {
-        return $this->munition;
+        return $this->ammunition;
     }
 
     /**

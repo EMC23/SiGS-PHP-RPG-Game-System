@@ -10,7 +10,7 @@
  */
 
 
-namespace Acme\HelloBundle\Entity;
+namespace AppBundle\Entity;
  use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 
 class Mudnames_Dictionnaries {

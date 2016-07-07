@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Acme\HelloBundle\Entity\J17JigsAwards;
+use AppBundle\Entity\J17JigsAwards;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Model\Jigs;
 use AppBundle\Entity\J17JigsCharacters;
@@ -15,8 +15,8 @@ use AppBundle\Entity\J17JigsHobbits;
 use AppBundle\Entity\Mudnames;       
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 use AppBundle\JigsFactory;
-//use Acme\HelloBundle\Entity\J17JigsFactions;
-//   use Acme\HelloBundle\Entity\J17JUsergroups;
+//use AppBundle\Entity\J17JigsFactions;
+//   use AppBundle\Entity\J17JUsergroups;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Query;
 // src/Acme/StoreBundle/Controller/DefaultController.php
