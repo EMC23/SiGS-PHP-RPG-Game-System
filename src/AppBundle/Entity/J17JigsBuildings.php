@@ -55,13 +55,6 @@ class J17JigsBuildings
     private $protection;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="coffre", type="integer", nullable=false)
-     */
-    private $coffre;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=50, nullable=false)
@@ -83,13 +76,6 @@ class J17JigsBuildings
     private $image;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="couleur", type="string", length=7, nullable=false)
-     */
-    private $couleur;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="xp", type="smallint", nullable=false)
@@ -106,13 +92,6 @@ class J17JigsBuildings
     /**
      * @var integer
      *
-     * @ORM\Column(name="proprio_equipe", type="integer", nullable=false)
-     */
-    private $proprioEquipe;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="price", type="integer", nullable=false)
      */
     private $price;
@@ -123,13 +102,6 @@ class J17JigsBuildings
      * @ORM\Column(name="timer", type="integer", nullable=false)
      */
     private $timer;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="acces", type="boolean", nullable=false)
-     */
-    private $acces;
 
     /**
      * @var integer

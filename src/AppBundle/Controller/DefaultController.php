@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\J17JigsAwards;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Model\Jigs;
@@ -99,7 +101,7 @@ class DefaultController extends Controller
                 ->getForm();
         }
 
-        if ($type == 'J17JigsPLayers') {
+        if ($type == 'J17JigsPlayers') {
 
             $task = new J17JigsHobbits();
             //$jigs           = new Jigs();
@@ -174,8 +176,10 @@ class DefaultController extends Controller
      * @Route("/show", name="show")
      * @Method("GET")
      */
-    public function showAction($id, $type, Request $request)
+    public function showAction( Request $request)
     {
+        $type=$request->get('type');
+        $id=$request->get('id');
 
         if ($type == 'J17JigsCharacters') {
             $task = new J17JigsCharacters();
@@ -227,14 +231,14 @@ class DefaultController extends Controller
             $task->setContentment($contentment);
 
             $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
-                ->add('faction', 'text')
-                ->add('health', 'text')
-                ->add('strength', 'text')
-                ->add('intelligence', 'text')
+                ->add('name', TextType::class)
+                ->add('faction', TextType::class)
+                ->add('health', TextType::class)
+                ->add('strength', TextType::class)
+                ->add('intelligence', TextType::class)
                 //   ->add('group', 'text')           
-                ->add('contentment', 'text')
-                ->add('save', 'submit')
+                ->add('contentment', TextType::class)
+                ->add('save', SubmitType::class)
                 ->getForm();
 
         }
@@ -260,15 +264,15 @@ class DefaultController extends Controller
             // $task->setContentment($contentment);
 
             $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
+                ->add('name', TextType::class)
                 //->add('faction', 'text')
-                ->add('health', 'text')
-                ->add('strength', 'text')
-                ->add('intelligence', 'text')
+                ->add('health', TextType::class)
+                ->add('strength', TextType::class)
+                ->add('intelligence', TextType::class)
                 //   ->add('group', 'text')           
                 //    ->add('contentment', 'text')           
 
-                ->add('save', 'submit')
+                ->add('save', SubmitType::class)
                 ->getForm();
 
         }
@@ -293,7 +297,7 @@ class DefaultController extends Controller
             // $task->setContentment($contentment);
 
             $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
+                ->add('name', TextType::class)
                 //->add('faction', 'text')
                 //     ->add('health', 'text')           
                 //       ->add('strength', 'text')          
@@ -301,7 +305,7 @@ class DefaultController extends Controller
                 //   ->add('group', 'text')           
                 //    ->add('contentment', 'text')           
 
-                ->add('save', 'submit')
+                ->add('save', SubmitType::class)
                 ->getForm();
 
         }
@@ -326,7 +330,7 @@ class DefaultController extends Controller
             // $task->setContentment($contentment);
 
             $form = $this->createFormBuilder($task)
-                ->add('name', 'text')
+                ->add('name', TextType::class)
                 //->add('faction', 'text')
                 //     ->add('health', 'text')           
                 //       ->add('strength', 'text')          
@@ -334,7 +338,7 @@ class DefaultController extends Controller
                 //   ->add('group', 'text')           
                 //    ->add('contentment', 'text')           
 
-                ->add('save', 'submit')
+                ->add('save', SubmitType::class)
                 ->getForm();
         }
 
@@ -423,12 +427,34 @@ class DefaultController extends Controller
             $gids = array(42, 35, 36);
             $this->faction = array();
             $em = $this->getDoctrine()->getManager();
+            // example1: creating a QueryBuilder instance
+            $qb = $em->createQueryBuilder();
+
             foreach ($gids as $gid) {
-                $query = $em->createQuery("SELECT u,a FROM AppBundle:J17Usergroups u LEFT JOIN u.gid a WHERE u.parentId = " . $gid);
+
+                $qb->select("u_".$gid, "p_".$gid)
+                    ->from("AppBundle:J17Usergroups", "u_".$gid)
+                    ->leftJoin("u_".$gid.".group", "p_".$gid)
+                    ->where("u_".$gid.".parentId = ".$gid)
+                    ;
+                // $qb instanceof QueryBuilder
+                $query = $qb->getQuery();
+                // Execute Query
+                //$result = $query->getResult();
+                //$single = $query->getSingleResult();
                 $array = $query->getArrayResult(Query::HYDRATE_OBJECT);
-
+               // $scalar = $query->getScalarResult();
+                //$singleScalar = $query->getSingleScalarResult();
+                //echo '<pre>';
+                //print_r($array);
+                //echo '</pre>';
+                /*
+                $query = $em->createQuery("SELECT u,a FROM AppBundle:J17Usergroups u LEFT JOIN u.id a WHERE u.parentId = " . $gid);
+                echo   $query->getQuery();
+                exit();
+                $array = $query->getArrayResult(Query::HYDRATE_OBJECT);
+*/
                 //$scalar = $query->getScalarResult();
-
                 /*
                 $qb->select(array('e','u'))
                 ->from('AcmeHelloBundle:J17Usergroups', 'e')
@@ -439,11 +465,13 @@ class DefaultController extends Controller
                 $results = $query->getResult(); 
                 
                 */
-
+                $this->faction[$gid]=[];
                 $this->faction[$gid]['factiontotalBank'] = 0;
+
                 foreach ($array as $group) {
-                    $this->faction[$gid]['factiontotalBank'] += $group['gid']['totalBank'];
+                    $this->faction[$gid]['factiontotalBank'] += $group['group']['totalBank'];
                 }
+
                 $i = 0;
                 foreach ($array as $page) {
                     if ($page['parentId'] == 42) {
@@ -460,8 +488,12 @@ class DefaultController extends Controller
                     $this->faction[$gid]['id'] = $i;
 
                 }
-            }
 
+                $cacheDriver = new \Doctrine\Common\Cache\ArrayCache();
+                $deleted = $cacheDriver->deleteAll();
+
+            }
+////////////////////////////////////////////////////////////////////////////////////
             $pagination = $this->faction;
         } else {
 

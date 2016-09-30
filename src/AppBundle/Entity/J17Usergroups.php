@@ -42,25 +42,28 @@ class J17Usergroups
 
     /**
      * @var integer
-     *
+     * @ORM\OneToOne(targetEntity="J17JigsGroups" )
      * @ORM\Column(name="id", type="integer")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+
+
     private $id;
 
 
 
 
-
- /**
-     * @ORM\OneToOne(targetEntity="J17JigsGroups")
+    /**
+     * @var \Group
+     *
+     * @ORM\ManyToOne(targetEntity="J17JigsGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * })
      */
-
-private $gid;
-
-
-
+    private $group;
 
 
 

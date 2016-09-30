@@ -33,22 +33,23 @@ $menu->setChildrenAttributes(array('id' => 'menu'));
          ));
          
         $menu->addChild('Factions', array(
-          //  'route' => 'acme_hello_homepage7'
-            'route' => 'list',
-            'routeParameters' => array('type' => 'J17JigsFactions')         
+            'route' => 'factions'
          ));
                   
          $menu->addChild('Groups', array(
-            'route' => 'list',
-            'routeParameters' => array('type' => 'J17JigsGroups')        
+            'route' => 'groups'
+
          ));       
          
          $menu->addChild('Hobbits', array(
-            'route' => 'list',
-            'routeParameters' => array('type' => 'J17JigsHobbits')        
-         ));        
-         
-        
+            'route' => 'hobbits'
+
+         ));
+
+        $menu->addChild('Monsters', array(
+            'route' => 'monsters'
+        ));
+
         // ... add more children
 
         return $menu;

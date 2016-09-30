@@ -1,20 +1,7 @@
-{% extends 'AcmeHelloBundle::base.html.twig' %}
-
-
+{% extends 'AppBundle::base.html.twig' %}
 
 {% block body %}
-{{ knp_menu_render('AcmeHelloBundle:Builder:mainMenu') }}
-
-
-
-
-
-
-
-
-
-
-
+{{ knp_menu_render('AppBundle:Builder:mainMenu') }}
 Username : {{stuff.Name}}<br/>
 
 {% endblock %}

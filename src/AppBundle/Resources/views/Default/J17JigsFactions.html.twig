@@ -1,48 +1,39 @@
-{% extends 'AcmeHelloBundle::base.html.twig' %}
-
-
-
+{% extends 'AppBundle::base.html.twig' %}
 {% block body %}
-
-{{ knp_menu_render('AcmeHelloBundle:Builder:mainMenu') }}
-
-
-
-
-
-
-<table width="100%"> 
+{{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+<table width="100%">
 <tr>
 {# sorting of properties based on query components #}
-    <th> bbb </th>
-
-        <th> map </th>
-    <th> grid </th>
-
-    
-    
+    <th> id </th>
+    <th> totalGroups </th>
+    <th> totalPlayers </th>
+    <th> totalXp</th>
+    <th> total Buildings </th>
+    <th> totalMoney </th>
 </tr>
-
 {# table body #}
 {% for article in pagination %}
 
-{% for groups in article %}
-{{article.id}}
-
-
-
-
-{% endfor %}
-
 <tr {% if loop.index is odd %}class="color"{% endif %}>
-   
-   
-
-
-
+    <td>
+        {{article.id}}
+    </td>
+    <td>
+        {{article.totalGroups}}
+    </td>
+    <td>
+        {{article.totalPlayers}}
+    </td>
+    <td>
+        {{article.totalXp}}
+    </td>
+    <td>
+      {{article.totalBuildings}}
+    </td>
+    <td>
+        {{article.totalMoney}}
+    </td>
 </tr>
 {% endfor %}
 </table>
-
-
 {% endblock %}

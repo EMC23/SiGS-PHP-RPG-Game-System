@@ -14,10 +14,15 @@ class J17JigsGroups
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="gid", type="integer", nullable=false)
+     * @ORM\OneToOne(targetEntity="J17JigsGroups")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+
      */
-    private $gid;
+    private $id;
+
+
 
     /**
      * @var integer
@@ -54,14 +59,7 @@ class J17JigsGroups
      */
     private $coffers;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+
 
 
     /**

@@ -1,0 +1,25 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+
+{{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+
+<table width="100%"> 
+<tr>
+{# sorting of properties based on query components #}
+    <th> Name </th>
+    <th> Faction </th>
+    <th> Total Members </th>
+</tr>
+{# table body #}
+{% for faction in pagination %}
+    {% for group in faction %}
+    <tr {% if loop.index is odd %}class="color"{% endif %}>
+        <td><a href="/group?id={{group.title}}">{{group.title}}</a></td>
+        <td>{{group.parentId}}</td>
+        <td>{{group.group.totalMembers}}</td>
+    </tr>
+    {% endfor %}
+{% endfor %}
+</table>
+{% endblock %}

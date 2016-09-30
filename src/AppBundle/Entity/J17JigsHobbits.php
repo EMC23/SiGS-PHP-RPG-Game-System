@@ -69,6 +69,13 @@ class J17JigsHobbits
      */
     private $owner_type;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", nullable=true)
+     */
+    private $type;
+
      /**
      * @var text
      *
@@ -237,6 +244,20 @@ class J17JigsHobbits
     }
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="grid", type="integer", nullable=false)
+     */
+    private $grid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="map", type="integer", nullable=false)
+     */
+    private $map;
+
+    /**
      * Set faction
      *
      * @param integer $faction
@@ -280,6 +301,53 @@ class J17JigsHobbits
     public function getGid()
     {
         return $this->gid;
+    }
+
+
+    /**
+     * Set map
+     *
+     * @param integer $map
+     * @return J17JigsHobbits
+     */
+    public function setMap($map)
+    {
+        $this->map = $map;
+
+        return $this;
+    }
+
+    /**
+     * Get map
+     *
+     * @return integer
+     */
+    public function getMap()
+    {
+        return $this->map;
+    }
+
+    /**
+     * Set grid
+     *
+     * @param integer $grid
+     * @return J17JigsHobbits
+     */
+    public function setGrid($grid)
+    {
+        $this->y = $grid;
+
+        return $this;
+    }
+
+    /**
+     * Get grid
+     *
+     * @return integer
+     */
+    public function getGrid()
+    {
+        return $this->grid;
     }
 
 
@@ -330,7 +398,32 @@ class J17JigsHobbits
 
 
 ////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return J17JigsHobbits
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+
+////////////////////////////////////////////////////
 
 
     /**

@@ -1,5 +1,13 @@
 {% extends 'AppBundle::base.html.twig' %}
+
 {% block body %}
 {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+
+Username : {{stuff.name}}<br/>
+Posx : {{stuff.x}}<br/>
+Posy : {{stuff.y}}<br/>
+
+Map : {{stuff.Map}}<br/>
+Grid : {{stuff.Grid}}<br/>
 {{ form(form) }}
 {% endblock %}

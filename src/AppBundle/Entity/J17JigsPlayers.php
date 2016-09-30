@@ -181,25 +181,11 @@ class J17JigsPlayers
     private $ammunition;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="tempsplanque", type="integer", nullable=false)
-     */
-    private $tempsplanque;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
      */
     private $image;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="tempsmove", type="integer", nullable=false)
-     */
-    private $tempsmove;
 
     /**
      * @var string
@@ -211,9 +197,9 @@ class J17JigsPlayers
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="string", length=255, nullable=false)
+     * @ORM\Column(name="comment", type="string", length=255, nullable=false)
      */
-    private $commentaire;
+    private $comment;
 
     /**
      * @var integer
@@ -221,41 +207,6 @@ class J17JigsPlayers
      * @ORM\Column(name="bank", type="integer", nullable=false)
      */
     private $bank;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="parrainage", type="integer", nullable=false)
-     */
-    private $parrainage;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="stupefiant", type="integer", nullable=false)
-     */
-    private $stupefiant;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="volevoiture", type="smallint", nullable=false)
-     */
-    private $volevoiture;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="volearme", type="smallint", nullable=false)
-     */
-    private $volearme;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="voleargent", type="smallint", nullable=false)
-     */
-    private $voleargent;
 
     /**
      * @var integer

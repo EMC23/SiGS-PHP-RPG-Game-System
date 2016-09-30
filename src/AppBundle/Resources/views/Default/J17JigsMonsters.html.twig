@@ -1,5 +1,7 @@
 {% extends 'AppBundle::base.html.twig' %}
 
+
+
 {% block body %}
 {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
 {# total items count #}
@@ -11,27 +13,32 @@
 {# sorting of properties based on query components #}
     <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
     <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Title', 'a.name') }} </th>
-       <th{% if pagination.isSorted('a.posx') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-X', 'a.posx') }} </th>
-       <th{% if pagination.isSorted('a.posy') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-Y', 'a.posy') }} </th>
-        <th> map </th>
+    <th{% if pagination.isSorted('a.posx') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-X', 'a.posx') }} </th>
+    <th{% if pagination.isSorted('a.posy') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-Y', 'a.posy') }} </th>
+    <th> map </th>
     <th> grid </th>
-    <th> level </th>
-    <th> xp </th>
-    <th> energy </th>
-    <th> statpoints </th>
+    <th> type </th>
     <th> health </th>
     <th> attack </th>
-    <th> finalAttack </th>
     <th> defence </th>
-    <th> finalDefence </th>
-    <th> idWeapon </th>
     <th> strength </th>
+
 </tr>
 {# table body #}
 {% for article in pagination %}
-<tr {% if loop.index is odd %}class="color"{% endif %}>
-   <td><a href="/show?id={{article.id}}&type={{type}}">{{article.id}}</a></td>
-    <td><a href="/show?id={article.name}}&type={{type}}">{{article.name}}</a></td>
+<tr {% if loop.index is odd %}{% endif %}>
+   <td><a href="/monster/{{article.id}}">{{article.id}}</a></td>
+    <td>{{article.name}}</td>
+    <td>{{article.x}}</td>
+    <td>{{article.y}}</td>
+    <td>{{article.map}}</td>
+    <td>{{article.grid}}</td>
+    <td>{{article.name}}</td>
+    <td>{{article.health}}</td>
+    <td>{{article.attack}}</td>
+    <td>{{article.defence}}</td>
+    <td>{{article.strength}}</td>
+
 </tr>
 {% endfor %}
 </table>
@@ -39,4 +46,5 @@
 <div class="navigation">
     {{ knp_pagination_render(pagination) }}
 </div>
+
 {% endblock %}

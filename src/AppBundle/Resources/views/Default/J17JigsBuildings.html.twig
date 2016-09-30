@@ -1,9 +1,9 @@
-{% extends 'AcmeHelloBundle::base.html.twig' %}
+{% extends 'AppBundle::base.html.twig' %}
 
 
 
 {% block body %}
-{{ knp_menu_render('AcmeHelloBundle:Builder:mainMenu') }}
+{{ knp_menu_render('AppBundle:Builder:mainMenu') }}
 {# total items count #}
 <div class="count">
     {{ pagination.getTotalItemCount }}
@@ -37,8 +37,8 @@
 <tr {% if loop.index is odd %}class="color"{% endif %}>
    
    
-   <td><a href="/app_dev.php/show/{{article.id}}/{{type}}">{{article.id}}</a></td>
-   <td><a href="/app_dev.php/show/{{article.id}}/{{type}}">{{article.name}}</a></td>  
+   <td><a href="/show?id={{article.id}}&type={{type}}">{{article.id}}</a></td>
+   <td><a href="/show?id={{article.id}}&type={{type}}">{{article.name}}</a></td>
    <td>{{article.posx}}</td>
     <td>{{article.posy}}</td>
     <td>{{article.map}}</td>

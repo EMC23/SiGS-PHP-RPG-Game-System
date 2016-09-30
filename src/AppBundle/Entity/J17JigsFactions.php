@@ -50,13 +50,6 @@ class J17JigsFactions
     /**
      * @var integer
      *
-     * @ORM\Column(name="coffers", type="integer", nullable=false)
-     */
-    private $coffers;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

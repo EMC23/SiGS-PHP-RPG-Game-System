@@ -1,10 +1,10 @@
-{% extends 'AcmeHelloBundle::base.html.twig' %}
+{% extends 'AppBundle::base.html.twig' %}
 
 
 
 {% block body %}
 
-{{ knp_menu_render('AcmeHelloBundle:Builder:mainMenu') }}
+{{ knp_menu_render('AppBundle:Builder:mainMenu') }}
 
 
 
@@ -43,7 +43,7 @@
 <tr {% if loop.index is odd %}class="color"{% endif %}>
    
    
-   <td><a href="/app_dev.php/show/{{article.id}}/{{type}}">{{article.id}}</a></td>
+   <td><a href="/show?id={{article.id}}&type={{type}}">{{article.id}}</a></td>
    
    <td>{{article.name}}</td>
    <td>{{article.posx}}</td>
