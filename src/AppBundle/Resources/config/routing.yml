@@ -1,8 +1,7 @@
 acme_hello_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: AppBundle:Default:index }
-    
-    
+
 acme_hello_homepage2:
     pattern:  /addstuff/
     defaults: { _controller: AppBundle:Default:add }
@@ -37,4 +36,8 @@ acme_hello_homepage9:
     
 acme_hello_homepage10:
     pattern:  /new/{type}
-    defaults: { _controller: AppBundle:Default:new }   
+    defaults: { _controller: AppBundle:Default:new }
+
+acme_hello_homepage11:
+    pattern:  /monster/{id}
+    defaults: { _controller: AppBundle:Monster:showMonster }

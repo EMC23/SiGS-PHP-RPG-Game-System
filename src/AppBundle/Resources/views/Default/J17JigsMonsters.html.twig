@@ -1,7 +1,4 @@
 {% extends 'AppBundle::base.html.twig' %}
-
-
-
 {% block body %}
 {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
 {# total items count #}
@@ -22,7 +19,6 @@
     <th> attack </th>
     <th> defence </th>
     <th> strength </th>
-
 </tr>
 {# table body #}
 {% for article in pagination %}
@@ -38,7 +34,6 @@
     <td>{{article.attack}}</td>
     <td>{{article.defence}}</td>
     <td>{{article.strength}}</td>
-
 </tr>
 {% endfor %}
 </table>
