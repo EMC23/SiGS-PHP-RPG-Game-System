@@ -2,10 +2,13 @@
 {% block body %}
 {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
 {# total items count #}
-<div class="count">
-    {{ pagination.getTotalItemCount }}
-</div>
-<table width="100%"> 
+
+<table width="100%">
+    <tr>
+        <div class="count">
+            {{ pagination.getTotalItemCount }}
+       </div>
+    </tr>
 <tr>
 {# sorting of properties based on query components #}
     <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>

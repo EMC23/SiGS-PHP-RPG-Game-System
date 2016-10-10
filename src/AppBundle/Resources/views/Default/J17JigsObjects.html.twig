@@ -1,0 +1,38 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block body %}
+{{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+{# total items count #}
+<div class="count">
+    {{ pagination.getTotalItemCount }}
+</div>
+<table width="100%"> 
+<tr>
+{# sorting of properties based on query components #}
+    <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
+    <th> Image </th>
+    <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Title', 'a.name') }} </th>
+    <th{% if pagination.isSorted('a.posx') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-X', 'a.posx') }} </th>
+    <th{% if pagination.isSorted('a.posy') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-Y', 'a.posy') }} </th>
+    <th> Owner </th>
+    <th> location </th>
+
+</tr>
+{# table body #}
+{% for article in pagination %}
+<tr {% if loop.index is odd %}{% endif %}>
+   <td><a href="/object/{{article.id}}">{{article.id}}</a></td>
+    <td>   </td>
+    <td><a href="/object/{{article.id}}">{{article.type.name}}</a></td>
+    <td>   </td><td>   </td>
+    <td>{{article.PlayerId}}</td>
+    <td>{{article.location}}</td>
+
+</tr>
+{% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+{% endblock %}
