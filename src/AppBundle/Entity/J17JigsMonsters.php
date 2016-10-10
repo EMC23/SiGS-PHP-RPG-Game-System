@@ -282,17 +282,8 @@ class J17JigsMonsters
 
         return $this;
     }
-
-
-
-
-
-
-
-
-
     /**
-     * Get Type
+     * Get Name
      *
      * @return integer
      */

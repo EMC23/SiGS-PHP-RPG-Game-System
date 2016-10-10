@@ -49,7 +49,7 @@ class J17JigsObjects
      * Set playerId
      *
      * @param integer $playerId
-     * @return J17JigsInventory
+     * @return J17JigsObjects
      */
     public function setPlayerId($playerId)
     {

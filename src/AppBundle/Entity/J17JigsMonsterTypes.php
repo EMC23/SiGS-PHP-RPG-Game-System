@@ -52,26 +52,6 @@ class J17JigsMonsterTypes
      */
     private $numberofcells = '16';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Set name
      *
