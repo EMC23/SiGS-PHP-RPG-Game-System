@@ -1,5 +1,5 @@
 {
-  "name": "Emc23.Sigs",
+  "name": "emc23.sigs",
   "version": "0.1.0",
   "dependencies": {
     "jquery": "1.9.*",

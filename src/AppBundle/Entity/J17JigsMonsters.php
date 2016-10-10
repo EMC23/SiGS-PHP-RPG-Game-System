@@ -90,6 +90,7 @@ class J17JigsMonsters
     private $map;
 
 
+
     function __construct(){
 
         $this->type = $this->getType();
@@ -258,14 +259,37 @@ class J17JigsMonsters
     }
 
     /**
-     * Get Type
+     * Get type
      *
-     * @return integer
+     * @return \AppBundle\Entity\J17JigsMonsterTypes
      */
     public function getType()
     {
         return $this->type;
     }
+
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\J17JigsMonsterTypes $type
+     *
+     * @return J17JigsMonsters
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
 
     /**
      * Get Type

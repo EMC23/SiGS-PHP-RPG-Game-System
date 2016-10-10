@@ -9,6 +9,7 @@
 <tr>
 {# sorting of properties based on query components #}
     <th> {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }} </th>
+    <th> Image </th>
     <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Title', 'a.name') }} </th>
     <th{% if pagination.isSorted('a.posx') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-X', 'a.posx') }} </th>
     <th{% if pagination.isSorted('a.posy') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-Y', 'a.posy') }} </th>
@@ -24,6 +25,11 @@
 {% for article in pagination %}
 <tr {% if loop.index is odd %}{% endif %}>
    <td><a href="/monster/{{article.id}}">{{article.id}}</a></td>
+    <td>   <div style="width:{{ article.type.cellwidth }}px;
+                height:{{ article.type.cellheight }}px;
+                overflow:hidden;">
+            <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/chars/monsters/{{ article.name }}/{{ article.name }}.png">
+        </div></td>
     <td>{{article.name}}</td>
     <td>{{article.x}}</td>
     <td>{{article.y}}</td>
