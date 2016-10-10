@@ -13,60 +13,26 @@ use Doctrine\ORM\Mapping as ORM;
 class J17JigsObjects
 {
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="player_id", type="integer", nullable=false)
      */
-    private $name;
+    private $playerId;
+
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\ManyToOne(targetEntity="J17JigsObjectTypes")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id")
      */
-    private $description;
+    private $type;
+
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="man_time", type="integer", nullable=false)
+     * @ORM\Column(name="location", type="integer", nullable=false)
      */
-    private $manTime;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="metal_1", type="integer", nullable=false)
-     */
-    private $metal1;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="quantity_1", type="integer", nullable=false)
-     */
-    private $quantity1;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="metal_2", type="integer", nullable=false)
-     */
-    private $metal2;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="quantity_2", type="integer", nullable=false)
-     */
-    private $quantity2;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="level", type="integer", nullable=false)
-     */
-    private $level;
+    private $location;
 
     /**
      * @var integer
@@ -80,187 +46,49 @@ class J17JigsObjects
 
 
     /**
-     * Set name
+     * Set playerId
      *
-     * @param string $name
-     * @return J17JigsObjects
+     * @param integer $playerId
+     * @return J17JigsInventory
      */
-    public function setName($name)
+    public function setPlayerId($playerId)
     {
-        $this->name = $name;
+        $this->playerId = $playerId;
 
         return $this;
     }
 
     /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return J17JigsObjects
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set manTime
-     *
-     * @param integer $manTime
-     * @return J17JigsObjects
-     */
-    public function setManTime($manTime)
-    {
-        $this->manTime = $manTime;
-
-        return $this;
-    }
-
-    /**
-     * Get manTime
+     * Get playerId
      *
      * @return integer 
      */
-    public function getManTime()
+    public function getPlayerId()
     {
-        return $this->manTime;
+        return $this->playerId;
     }
 
     /**
-     * Set metal1
+     * Set location
      *
-     * @param integer $metal1
-     * @return J17JigsObjects
+     * @param integer $location
+     * @return J17JigsInventory
      */
-    public function setMetal1($metal1)
+    public function setLocation($location)
     {
-        $this->metal1 = $metal1;
+        $this->location = $location;
 
         return $this;
     }
 
     /**
-     * Get metal1
+     * Get location
      *
      * @return integer 
      */
-    public function getMetal1()
+    public function getLocation()
     {
-        return $this->metal1;
-    }
-
-    /**
-     * Set quantity1
-     *
-     * @param integer $quantity1
-     * @return J17JigsObjects
-     */
-    public function setQuantity1($quantity1)
-    {
-        $this->quantity1 = $quantity1;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity1
-     *
-     * @return integer 
-     */
-    public function getQuantity1()
-    {
-        return $this->quantity1;
-    }
-
-    /**
-     * Set metal2
-     *
-     * @param integer $metal2
-     * @return J17JigsObjects
-     */
-    public function setMetal2($metal2)
-    {
-        $this->metal2 = $metal2;
-
-        return $this;
-    }
-
-    /**
-     * Get metal2
-     *
-     * @return integer 
-     */
-    public function getMetal2()
-    {
-        return $this->metal2;
-    }
-
-    /**
-     * Set quantity2
-     *
-     * @param integer $quantity2
-     * @return J17JigsObjects
-     */
-    public function setQuantity2($quantity2)
-    {
-        $this->quantity2 = $quantity2;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity2
-     *
-     * @return integer 
-     */
-    public function getQuantity2()
-    {
-        return $this->quantity2;
-    }
-
-    /**
-     * Set level
-     *
-     * @param integer $level
-     * @return J17JigsObjects
-     */
-    public function setLevel($level)
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
-    /**
-     * Get level
-     *
-     * @return integer 
-     */
-    public function getLevel()
-    {
-        return $this->level;
+        return $this->location;
     }
 
     /**
@@ -272,4 +100,44 @@ class J17JigsObjects
     {
         return $this->id;
     }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\J17JigsObjectTypes
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\J17JigsObjectTypes $type
+     *
+     * @return J17JigsMonsters
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
