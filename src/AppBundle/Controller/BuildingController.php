@@ -415,7 +415,6 @@ class BuildingController extends Controller
     public function listAction(Request $request)
     {
         $type = 'J17JigsBuildings';
-        print_r($type);
         if ($type == "J17JigsFactions") {
 
             $gids = array(42, 35, 36);

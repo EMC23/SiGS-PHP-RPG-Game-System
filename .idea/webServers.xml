@@ -2,11 +2,12 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="977a49cc-6486-4108-9d02-9ebbafa8a1ba" name="46" url="http://46.19.37.66">
-        <fileTransfer host="46.19.37.66" port="22" privateKey="$USER_HOME$/.ssh/id_dsa" accessType="SFTP" passphrase="dfc9dfd3dfc8dfcfdfd8dfc3dfcbdf98df99" username="root" keyPair="true">
+      <webServer id="de6dfb1b-9e16-4221-844a-a4218d17c291" name="emc23-1" url="http://164.138.27.49">
+        <fileTransfer host="164.138.27.49" port="22" accessType="SFTP" password="dfc4dfd0dfc2dfc7dff0dfdcdfc7df98" username="root">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
+          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

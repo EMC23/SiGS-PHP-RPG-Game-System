@@ -39,6 +39,20 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('MonsterTypes', array(
             'route' => 'monster_types'
         ));
+
+        $menu->addChild('Objects', array(
+            'route' => 'objects'
+        ));
+        $menu->addChild('ObjectTypes', array(
+            'route' => 'object_types'
+        ));
+
+      //  $menu->addChild('Content', array(
+    //        'route' => 'content'
+     //   ));
+
+
+
         // ... add more children
         return $menu;
     }

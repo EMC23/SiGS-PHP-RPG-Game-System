@@ -409,7 +409,6 @@ class CharacterController extends Controller
     public function listAction(Request $request)
     {
         $type = 'J17JigsCharacters';
-        print_r($type);
         $em = $this->get('doctrine.orm.entity_manager');
         $dql = "SELECT a FROM AppBundle:J17JigsCharacters a";
         $query = $em->createQuery($dql);

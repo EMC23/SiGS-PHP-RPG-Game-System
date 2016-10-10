@@ -10,7 +10,7 @@
 /vendor/
 /var/
 /bin/
-
 /web/
 /www/
 /bower_components/
+/node_modules/

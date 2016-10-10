@@ -22,6 +22,13 @@ class J17JigsObjectTypes
     /**
      * @var string
      *
+     * @ORM\Column(name="category", type="string", length=255, nullable=false)
+     */
+    private $category;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
@@ -77,7 +84,22 @@ class J17JigsObjectTypes
      */
     private $id;
 
+    /**
+     * @var integer
+     * @ORM\Column(name="cellwidth", type="integer")
+     */
+    private $cellWidth;
 
+    /**
+     * @var integer
+     * @ORM\Column(name="cellheight", type="integer")
+     */
+    private $cellHeight;
+
+    /**
+     * @var integer
+     */
+    private $numberofcells = '1';
 
     /**
      * Set name
@@ -101,6 +123,31 @@ class J17JigsObjectTypes
     {
         return $this->name;
     }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return J17JigsObjectType
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+
+
 
     /**
      * Set description
@@ -272,4 +319,84 @@ class J17JigsObjectTypes
     {
         return $this->id;
     }
+
+    /**
+     * Set cellWidth
+     *
+     * @param integer $cellWidth
+     *
+     * @return J17JigsMonsterTypes
+     */
+    public function setCellWidth($cellWidth)
+    {
+        $this->cellWidth = $cellWidth;
+
+        return $this;
+    }
+
+    /**
+     * Get cellWidth
+     *
+     * @return integer
+     */
+    public function getCellWidth()
+    {
+        return $this->cellWidth;
+    }
+
+    /**
+     * Set cellHeight
+     *
+     * @param integer $cellHeight
+     *
+     * @return J17JigsMonsterTypes
+     */
+    public function setCellHeight($cellHeight)
+    {
+        $this->cellHeight = $cellHeight;
+
+        return $this;
+    }
+
+    /**
+     * Get cellHeight
+     *
+     * @return integer
+     */
+    public function getCellHeight()
+    {
+        return $this->cellHeight;
+    }
+
+
+    /**
+     * Set numberofcells
+     *
+     * @param integer $numberofcells
+     *
+     * @return J17JigsMonsterTypes
+     */
+    public function setNumberofcells($numberofcells)
+    {
+        $this->numberofcells = $numberofcells;
+
+        return $this;
+    }
+
+    /**
+     * Get numberofcells
+     *
+     * @return integer
+     */
+    public function getNumberofcells()
+    {
+        return $this->numberofcells;
+    }
+
+
+
+
+
+
+
 }
