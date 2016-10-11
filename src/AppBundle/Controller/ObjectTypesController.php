@@ -13,59 +13,56 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @Route("/object_types")
- */
 class ObjectTypesController extends Controller
 {
     /**
-     * @Route("/", name="object_types")
+     * @Route("/object_types/", name="object_types")
      */
-    public function indexAction($start=0,$max=100)
+    public function indexAction($start=0,$max=100,Request $request)
     {
-        $em             = $this->get('doctrine.orm.entity_manager');
-        $dql            = "SELECT a FROM AppBundle:J17JigsObjectTypes a";
+        $em         = $this->get('doctrine.orm.entity_manager');
+        $dql        = "SELECT a FROM AppBundle:J17JigsObjectTypes a";
         $query      = $em->createQuery($dql)
             ->setFirstResult($start)
             ->setMaxResults($max);
-        $paginator = new Paginator($query, $fetchJoinCollection = true);
-        return $this->render('AppBundle:Default:J17JigsObjectTypes.html.twig', array('pagination' => $paginator));
+     // $paginator  = new Paginator($query, $fetchJoinCollection = true);
+        $paginator  = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        $pagination->setCustomParameters(array(
+            'style' => 'bottom',
+            'span_class' => 'whatever'
+        ));
+        return $this->render('AppBundle:Default:J17JigsObjectTypes.html.twig', array('pagination' => $pagination));
     }
 
     /**
-     * @Route("/{id}",requirements={"id" = "\d+"}, defaults={"id" = 1}), name="emc23_sigs_monster_type")
+     * @Route("/object_type", name="object_type")
      * @Method({"GET", "POST"})
      */
-    public function showAction($id)
+    public function showAction(Request $request)
     {
-        $type       = 'J17JigsObjecttypes';
         $task       = new J17JigsMonsterTypes();
+        $id = $request->get('id');
         $record     = $this->getDoctrine()
-            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
-            ->getRepository("AppBundle:J17JigsMonstertypes")
+            ->getRepository("AppBundle:J17JigsObjectTypes")
             ->find($id);
 
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
         $name           = $record->getName();
-        $health         = $record->getHealth();
-        $strength       = $record->getStrength();
-        $intelligence   = $record->getIntelligence();
-        $task->setHealth($health);
-        $task->setStrength($strength);
-        $task->setIntelligence($intelligence);
-
         $form = $this->createFormBuilder($task)
             ->add('name', TextType::class)
-            ->add('health',TextType::class)
-            ->add('strength',TextType::class)
-            ->add('intelligence',TextType::class)
+
             ->add('save', SubmitType::class, array('label' => 'Create Task'))
             ->getForm();
-        return $this->render("default/J17JigsObjectTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
+        return $this->render("AppBundle:Default:J17JigsObjectTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
     }
-
 
     /**
      * @Route("/api/update")
@@ -77,7 +74,6 @@ class ObjectTypesController extends Controller
         }
         $em         = $this->getDoctrine()->getManager();
         $model      = $this->get('objectTypesModel');
-
         $task       = $this->getDoctrine()
             ->getRepository("AppBundle:J17JigsObjectTypes")
             ->find($id);
@@ -85,11 +81,9 @@ class ObjectTypesController extends Controller
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
         $model->save($request, $task, $em);
-
         $record = $this->getDoctrine()
             ->getRepository("AppBundle:J17JigsObjectTypes")
             ->find($id);
-
         $response = new Response(json_encode(array('data' => $model->repopulate($record))));
         $response->headers->set('Content-Type', 'application/json');
         return $response;

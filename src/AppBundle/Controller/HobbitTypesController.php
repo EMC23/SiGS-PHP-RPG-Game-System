@@ -22,7 +22,7 @@ class HobbitTypesController extends Controller
     public function indexAction()
     {
         $name = "stuff";
-        return $this->render('default/J17JigsHobbitTypes.html.twig', array('name' => $name));
+        return $this->render('AppBundle:Default:HobbitTypes.html.twig', array('name' => $name));
     }
 
     public function addAction()

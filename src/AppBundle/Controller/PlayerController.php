@@ -30,24 +30,75 @@ class PlayerController extends Controller
         return $this->var;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////
     /**
-     * @Route("/", name="homepage")
+     * @param Request $request
+     * @param $type
+     * @Route("/players", name="players")
+     * @Method("GET")
+     * @return Response
+     */
+
+    public function listAction(Request $request )
+    {
+        $type = "J17JigsPlayers";
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM AppBundle:$type a";
+        $query = $em->createQuery($dql);
+        //$paginator = $this->get('knp_paginator');
+        //$pagination = $paginator->paginate($query, $this->get($request)->query->get('page', 1)/*page number*/, 30/*limit per page*/);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('AppBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @Route("/show", name="show")
      * @Method("GET")
      */
-    public function indexAction()
+    public function showAction( Request $request)
     {
-        $name = "stuff";
-        $this->user = $this->getUser();
+        $type = 'J17JigsPlayers';
+        $task = new J17JigsPlayers();
+        $id=$request->get('id');
 
-        if ($this->user != null) {
-            return $this->render('AppBundle:Default:index.html.twig', array('name' => $name));
-        } else {
-            return $this->render('default/home.html.twig', [
-                'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
-            ]);
+        $record = $this->getDoctrine()
+            ->getRepository("AppBundle:J17JigsPlayers")
+            ->find($id);
+
+        if (!$record) {
+            throw $this->createNotFoundException('No record found for id ' . $id);
         }
+        $name         = $record->getName();
+        $health       = $record->getHealth();
+        $strength     = $record->getStrength();
+        $intelligence = $record->getIntelligence();
+        $task->setName($name);
+        $task->setHealth($health);
+        $task->setStrength($strength);
+        $task->setIntelligence($intelligence);
+
+
+        $form = $this->createFormBuilder($task)
+            ->add('name', TextType::class)
+            //->add('faction', 'text')
+            ->add('health', TextType::class)
+            ->add('strength', TextType::class)
+            ->add('intelligence', TextType::class)
+
+            ->add('save', SubmitType::class)
+            ->getForm();
+
+        return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
 
     }
+////////////////////////////////
 
     public function addAction()
     {
@@ -63,6 +114,8 @@ class PlayerController extends Controller
         return new Response('Created product id ' . $product->getId());
     }
 
+
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////      
     public function newAction($type, Request $request)
     {
@@ -70,68 +123,33 @@ class PlayerController extends Controller
         $em = $this->getDoctrine()->getManager();
         $jigs = $this->get('my_JigsFactory');
 
-        if ($type == 'J17JigsHobbits') {
+        $task = new J17JigsPlayers();
+        //$jigs           = new Jigs();
+        $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
+        $name = Mudnames::generate_name_from($file);
+        $task->setName($name);
 
-            $task = new J17JigsHobbits();
-            //$jigs           = new Jigs();
-            $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
-            $name = Mudnames::generate_name_from($file);
-            $task->setName($name);
+        $hobbit = $jigs->generateHobbit();
 
-            $hobbit = $jigs->generateHobbit();
+        $task->setFaction($hobbit['faction_number']);
+        $task->setGid($hobbit['Gid']);
+        $task->setHealth($hobbit['health']);
+        $task->setStrength($hobbit['strength']);
+        $task->setIntelligence($hobbit['intelligence']);
+        $task->setOwner($hobbit['owner']);
+        $task->setContentment($hobbit['contentment']);
 
-            $task->setFaction($hobbit['faction_number']);
-            $task->setGid($hobbit['Gid']);
-            $task->setHealth($hobbit['health']);
-            $task->setStrength($hobbit['strength']);
-            $task->setIntelligence($hobbit['intelligence']);
-            $task->setOwner($hobbit['owner']);
-            $task->setContentment($hobbit['contentment']);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name')
-                ->add('faction')
-                ->add('health')
-                ->add('strength')
-                ->add('intelligence')
-                ->add('gid')
-                ->add('owner')
-                ->add('contentment')
-                ->add('save', 'submit')
-                ->getForm();
-        }
-
-        if ($type == 'J17JigsPlayers') {
-
-            $task = new J17JigsHobbits();
-            //$jigs           = new Jigs();
-            $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
-            $name = Mudnames::generate_name_from($file);
-            $task->setName($name);
-
-            $hobbit = $jigs->generateHobbit();
-
-            $task->setFaction($hobbit['faction_number']);
-            $task->setGid($hobbit['Gid']);
-            $task->setHealth($hobbit['health']);
-            $task->setStrength($hobbit['strength']);
-            $task->setIntelligence($hobbit['intelligence']);
-            $task->setOwner($hobbit['owner']);
-            $task->setContentment($hobbit['contentment']);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name')
-                ->add('faction')
-                ->add('health')
-                ->add('strength')
-                ->add('intelligence')
-                ->add('gid')
-                ->add('owner')
-                ->add('contentment')
-                ->add('save', 'submit')
-                ->getForm();
-        }
-
+        $form = $this->createFormBuilder($task)
+            ->add('name')
+            ->add('faction')
+            ->add('health')
+            ->add('strength')
+            ->add('intelligence')
+            ->add('gid')
+            ->add('owner')
+            ->add('contentment')
+            ->add('save', 'submit')
+            ->getForm();
 
         $form->handleRequest($request);
 
@@ -172,180 +190,7 @@ class PlayerController extends Controller
 
     }
     
-    /**
-     * @Route("/show", name="show")
-     * @Method("GET")
-     */
-    public function showAction( Request $request)
-    {
-        $type=$request->get('type');
-        $id=$request->get('id');
 
-        if ($type == 'J17JigsCharacters') {
-            $task = new J17JigsCharacters();
-        }
-        if ($type == 'J17JigsPlayers') {
-            $task = new J17JigsPlayers();
-        }
-        if ($type == 'J17JigsBuildings') {
-            $task = new J17JigsBuildings();
-        }
-        if ($type == 'J17JigsHobbits') {
-            $task = new J17JigsHobbits();
-        }
-
-        $record = $this->getDoctrine()
-            //  ->getRepository('AcmeHelloBundle:J17JigsPlayers')
-            ->getRepository("AppBundle:$type")
-            ->find($id);
-
-        if (!$record) {
-            throw $this->createNotFoundException('No record found for id ' . $id);
-        }
-        // ... do something, like pass the $product object into a template
-        // return $product;
-        //   return new Response('product id '.$product->getIdUser());
-        //    $faction = $record->getFaction();
-        // $image = $product->getImage();
-        //    $Posx = $product->getPosx();
-        //  $task = new J17JigsCharacters();
-//   $task = new $type();
-
-        if ($type == 'J17JigsHobbits') {
-            $name = $record->getName();
-            $faction = $record->getFaction();
-            $health = $record->getHealth();
-            $strength = $record->getStrength();
-            $intelligence = $record->getIntelligence();
-            //    $group          = $record->getGroup();
-            $owner = $record->getOwner();
-            $contentment = $record->getContentment();
-
-            $task->setName($name);
-            $task->setFaction($faction);
-            $task->setHealth($health);
-            $task->setStrength($strength);
-            $task->setIntelligence($intelligence);
-            // $task->setGroup($group);
-            $task->setOwner($owner);
-            $task->setContentment($contentment);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name', TextType::class)
-                ->add('faction', TextType::class)
-                ->add('health', TextType::class)
-                ->add('strength', TextType::class)
-                ->add('intelligence', TextType::class)
-                //   ->add('group', 'text')           
-                ->add('contentment', TextType::class)
-                ->add('save', SubmitType::class)
-                ->getForm();
-
-        }
-
-
-        if ($type == 'J17JigsPlayers') {
-            $name = $record->getName();
-            //     $faction        = $record->getFaction();
-            $health = $record->getHealth();
-            $strength = $record->getStrength();
-            $intelligence = $record->getIntelligence();
-            //   $group          = $record->getGroup();
-            //  $owner          = $record->getOwner();
-            //   $contentment    = $record->getContentment();
-
-            $task->setName($name);
-            //   $task->setFaction($faction);        
-            $task->setHealth($health);
-            $task->setStrength($strength);
-            $task->setIntelligence($intelligence);
-            //  $task->setGroup($group);
-            //  $task->setOwner($owner);
-            // $task->setContentment($contentment);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name', TextType::class)
-                //->add('faction', 'text')
-                ->add('health', TextType::class)
-                ->add('strength', TextType::class)
-                ->add('intelligence', TextType::class)
-                //   ->add('group', 'text')           
-                //    ->add('contentment', 'text')           
-
-                ->add('save', SubmitType::class)
-                ->getForm();
-
-        }
-
-        if ($type == 'J17JigsBuildings') {
-            $name = $record->getName();
-            //     $faction        = $record->getFaction();
-            // $health         = $record->getHealth();
-            //  $strength       = $record->getStrength();
-            //   $intelligence   = $record->getIntelligence();
-            //   $group          = $record->getGroup();
-            //  $owner          = $record->getOwner();
-            //   $contentment    = $record->getContentment();
-
-            $task->setName($name);
-            //   $task->setFaction($faction);        
-            //       $task->setHealth($health);
-            //      $task->setStrength($strength);
-            //      $task->setIntelligence($intelligence);
-            //  $task->setGroup($group);
-            //  $task->setOwner($owner);
-            // $task->setContentment($contentment);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name', TextType::class)
-                //->add('faction', 'text')
-                //     ->add('health', 'text')           
-                //       ->add('strength', 'text')          
-                //    ->add('intelligence', 'text')            
-                //   ->add('group', 'text')           
-                //    ->add('contentment', 'text')           
-
-                ->add('save', SubmitType::class)
-                ->getForm();
-
-        }
-
-        if ($type == 'J17JigsCharacters') {
-            $name = $record->getName();
-            //     $faction        = $record->getFaction();
-            // $health         = $record->getHealth();
-            //  $strength       = $record->getStrength();
-            //   $intelligence   = $record->getIntelligence();
-            //   $group          = $record->getGroup();
-            //  $owner          = $record->getOwner();
-            //   $contentment    = $record->getContentment();
-
-            $task->setName($name);
-            //   $task->setFaction($faction);        
-            //       $task->setHealth($health);
-            //      $task->setStrength($strength);
-            //      $task->setIntelligence($intelligence);
-            //  $task->setGroup($group);
-            //  $task->setOwner($owner);
-            // $task->setContentment($contentment);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name', TextType::class)
-                //->add('faction', 'text')
-                //     ->add('health', 'text')           
-                //       ->add('strength', 'text')          
-                //    ->add('intelligence', 'text')            
-                //   ->add('group', 'text')           
-                //    ->add('contentment', 'text')           
-
-                ->add('save', SubmitType::class)
-                ->getForm();
-        }
-
-        return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
-
-    }
-////////////////////////////////          
 
     public function showallusersAction()
     {
@@ -403,31 +248,7 @@ class PlayerController extends Controller
         $content .= '</table>';
         return new Response($content);
     }
-    ////////////////////////////////////////////////////////////////////////////////////
-    /**
-     * @param Request $request
-     * @param $type
-     * @Route("/players", name="players")
-     * @Method("GET")
-     * @return Response
-     */
 
-    public function listAction(Request $request )
-    {
-            $type = "J17JigsPlayers";
-            $em = $this->get('doctrine.orm.entity_manager');
-            $dql = "SELECT a FROM AppBundle:$type a";
-            $query = $em->createQuery($dql);
-            //$paginator = $this->get('knp_paginator');
-            //$pagination = $paginator->paginate($query, $this->get($request)->query->get('page', 1)/*page number*/, 30/*limit per page*/);
-            $paginator  = $this->get('knp_paginator');
-            $pagination = $paginator->paginate(
-                $query, /* query NOT result */
-                $request->query->getInt('page', 1)/*page number*/,
-                10/*limit per page*/
-            );
-        return $this->render('AppBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
-    }
     ///////////////////////////////////////////////////////////////////
     public function showfactionsAction()
     {

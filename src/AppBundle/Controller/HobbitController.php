@@ -109,15 +109,15 @@ class HobbitController extends Controller
     }
 
     /**
-     * @Route("/hobbit/{id}", name="showHobbit")
+     * @Route("/hobbit/", name="showHobbit")
      * @Method("GET")
      *
      */
-    public function showAction($id)
+    public function showAction(Request $request)
     {
       //  $task = new J17JigsMonsters();
         $type = 'J17JigsHobbits';
-
+        $id = $request->get('id');
         $record = $this->getDoctrine()
             ->getRepository("AppBundle:J17JigsHobbits")
             ->find($id);
