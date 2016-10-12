@@ -16,17 +16,22 @@ use Symfony\Component\HttpFoundation\Response;
 class MonsterTypesController extends Controller
 {
     /**
-     * @Route("/", name="monster_types")
+     * @Route("/monster_types/", name="monster_types")
      */
-    public function listAction($start=0,$max=100)
+    public function listAction($start=0, $max=100, Request $request)
     {
         $em         = $this->get('doctrine.orm.entity_manager');
         $dql        = "SELECT a FROM AppBundle:J17JigsMonsterTypes a";
         $query      = $em->createQuery($dql)
             ->setFirstResult($start)
             ->setMaxResults($max);
-        $paginator = new Paginator($query, $fetchJoinCollection = true);
-        return $this->render('AppBundle:Default:J17JigsMonsterTypes.html.twig', array('pagination' => $paginator));
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+            );
+        return $this->render('AppBundle:Default:J17JigsMonsterTypes.html.twig', array('pagination' => $pagination));
     }
 
     /**
@@ -45,13 +50,21 @@ class MonsterTypesController extends Controller
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
         $name           = $record->getName();
+        $cellWidth      = $record->getCellWidth();
+        $cellHeight     = $record->getCellHeight();
+        $numberOfCells  = $record->getNumberOfCells();
         $task->setName($name);
-
+        $task->setCellWidth($cellWidth);
+        $task->setCellHeight($cellHeight);
+        $task->setNumberOfCells($numberOfCells);
         $form = $this->createFormBuilder($task)
             ->add('name', TextType::class)
+            ->add('cellWidth', TextType::class)
+            ->add('cellHeight', TextType::class)
+            ->add('numberOfCells', TextType::class)
             ->add('save', SubmitType::class, array('label' => 'Create Task'))
             ->getForm();
-        return $this->render("AppBundle:Default:J17JigsMonsterTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
     }
 
     /**

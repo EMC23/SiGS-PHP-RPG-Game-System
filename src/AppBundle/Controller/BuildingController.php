@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +21,6 @@ use AppBundle\JigsFactory;
 //  use AppBundle\Entity\J17JUsergroups;
 use Doctrine\ORM\Query;
 
-
 class BuildingController extends Controller
 {
     public function __get($var)
@@ -44,7 +42,7 @@ class BuildingController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            20/*limit per page*/
         );
         return $this->render('AppBundle:Default:J17JigsBuildings.html.twig', array('pagination' => $pagination, 'type' => 'J17JigsBuildings'));
     }
@@ -81,7 +79,6 @@ class BuildingController extends Controller
         $task->setComment($comment);
         $task->setProtection($protection);
         $task->setCash($cash);
-
         $form = $this->createFormBuilder($task)
             ->add('name', TextType::class)
             ->add('grid', TextType::class)
@@ -94,9 +91,8 @@ class BuildingController extends Controller
 
             ->add('save', SubmitType::class)
             ->getForm();
-
-
-        return $this->render("AppBundle:Default:J17JigsBuildings_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => 'J17JigsBuildings'));
+        return $this->render("AppBundle:Default:page.html.twig",
+            array('stuff' => $record, 'form' => $form->createView(), 'type' => 'J17JigsBuildings'));
 
     }
 
@@ -114,52 +110,41 @@ class BuildingController extends Controller
         return new Response('Created product id ' . $product->getId());
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////      
     public function newAction($type, Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $jigs = $this->get('my_JigsFactory');
+        $task = new J17JigsHobbits();
+        //$jigs           = new Jigs();
+        $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
+        $name = Mudnames::generate_name_from($file);
+        $task->setName($name);
 
-        if ($type == 'J17JigsPlayers') {
+        $hobbit = $jigs->generateHobbit();
 
-            $task = new J17JigsHobbits();
-            //$jigs           = new Jigs();
-            $file = (isset($_GET['f']) && !empty($_GET['f'])) ? $_GET['f'] : 'random';
-            $name = Mudnames::generate_name_from($file);
-            $task->setName($name);
+        $task->setFaction($hobbit['faction_number']);
+        $task->setGid($hobbit['Gid']);
+        $task->setHealth($hobbit['health']);
+        $task->setStrength($hobbit['strength']);
+        $task->setIntelligence($hobbit['intelligence']);
+        $task->setOwner($hobbit['owner']);
+        $task->setContentment($hobbit['contentment']);
 
-            $hobbit = $jigs->generateHobbit();
-
-            $task->setFaction($hobbit['faction_number']);
-            $task->setGid($hobbit['Gid']);
-            $task->setHealth($hobbit['health']);
-            $task->setStrength($hobbit['strength']);
-            $task->setIntelligence($hobbit['intelligence']);
-            $task->setOwner($hobbit['owner']);
-            $task->setContentment($hobbit['contentment']);
-
-            $form = $this->createFormBuilder($task)
-                ->add('name')
-                ->add('faction')
-                ->add('health')
-                ->add('strength')
-                ->add('intelligence')
-                ->add('gid')
-                ->add('owner')
-                ->add('contentment')
-                ->add('save', 'submit')
-                ->getForm();
-        }
-
-
+        $form = $this->createFormBuilder($task)
+            ->add('name')
+            ->add('faction')
+            ->add('health')
+            ->add('strength')
+            ->add('intelligence')
+            ->add('gid')
+            ->add('owner')
+            ->add('contentment')
+            ->add('save', 'submit')
+            ->getForm();
         $form->handleRequest($request);
 
-
         if ($form->isValid()) {
-
             //$record = $form->getData();
-
             $name = $task->getName();
             $faction = $task->getFaction();
             $contentment = $task->getContentment();
@@ -168,10 +153,8 @@ class BuildingController extends Controller
             $strength = $task->getStrength();
             $gid = $task->getGid();
             $owner = $task->getOwner();
-
             //$faction    = $task->getFaction();
             //$gid        = $task->getGid();     
-
             $task->setName($name);
             $task->setFaction($faction);
             $task->setHealth($health);
@@ -180,7 +163,6 @@ class BuildingController extends Controller
             $task->setContentment($contentment);
             $task->setGid($gid);
             $task->setOwner($owner);
-
             $em->persist($task);
             $em->flush();
 
@@ -188,4 +170,4 @@ class BuildingController extends Controller
         }
         return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
- }
+}

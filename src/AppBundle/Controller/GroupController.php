@@ -99,7 +99,7 @@ class GroupController extends Controller
             ->add('save', SubmitType::class)
             ->getForm();
         //     return $this->render("AppBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record));
-        return $this->render("AppBundle:Default:J17JigsHobbits_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
     public function addAction()

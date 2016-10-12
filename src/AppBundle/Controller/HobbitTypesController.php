@@ -14,16 +14,68 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-/**
- * @Route("/hobbittypes")
- */
+
 class HobbitTypesController extends Controller
 {
-    public function indexAction()
+     /**
+     * @Route("/hobbit_types", name="hobbit_types")
+     * @Method({"GET", "POST"})
+     */
+    public function listAction($start=0, $max=100, Request $request)
     {
-        $name = "stuff";
-        return $this->render('AppBundle:Default:HobbitTypes.html.twig', array('name' => $name));
+        $em         = $this->get('doctrine.orm.entity_manager');
+        $dql        = "SELECT a FROM AppBundle:J17JigsHobbitTypes a";
+        $query      = $em->createQuery($dql)
+            ->setFirstResult($start)
+            ->setMaxResults($max);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
+        return $this->render('AppBundle:Default:J17JigsHobbitTypes.html.twig', array('pagination' => $pagination));
     }
+
+    /**
+     * @Route("/hobbit_type",name="hobbit_type")
+     * @Method({"GET", "POST"})
+     */
+    public function showAction(Request $request)
+    {
+        $task = new J17JigsHobbitTypes();
+        $id = $request->get('id');
+        $record = $this->getDoctrine()
+            ->getRepository("AppBundle:J17JigsHobbitTypes")
+            ->find($id);
+        if (!$record) {
+            throw $this->createNotFoundException('No record found for id ' . $id);
+        }
+        $id                     = $record->getId();
+        $type                   = $record->getTypeName();
+        $avatar                 = $record->getAvatar();
+        $cellWidth              = $record->getCellwidth();
+        $cellHeight             = $record->getCellheight();
+        $numberOfCells          = $record->getNumberOfCells();
+
+        $task->setTypeName($type);
+        $task->setAvatar($avatar);
+        $task->setCellWidth($cellWidth);
+        $task->setCellHeight($avatar);
+        $task->setCellHeight($cellHeight);
+        $task->setNumberOfCells($numberOfCells);
+        //);
+        $form = $this->createFormBuilder($task)
+            ->add('typename', TextType::class)
+            ->add('avatar', TextType::class)
+            ->add('cellWidth', TextType::class)
+            ->add('cellHeight', TextType::class)
+            ->add('numberOfCells', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create Task'))
+            ->getForm();
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
+    }
+
 
     public function addAction()
     {
@@ -98,59 +150,5 @@ class HobbitTypesController extends Controller
         }
         return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
     }
-    /**
-     * @Route("/{id}",requirements={"id" = "\d+"}, name="hobbit_type")
-     * @Method({"GET", "POST"})
-     */
-    public function showAction($id, Request $request)
-    {
-        $task = new J17JigsHobbitTypes();
-        $record = $this->getDoctrine()
-            //  ->getRepository('AcmeSigsBundle:J17JigsPlayers')
-            ->getRepository("AppBundle:J17JigsHobbitTypes")
-            ->find($id);
-        if (!$record) {
-            throw $this->createNotFoundException('No record found for id ' . $id);
-        }
-        $id                     = $record->getId();
-        $type                   = $record->getTypeName();
-        $avatar                 = $record->getAvatar();
-        $cellWidth              = $record->getCellwidth();
-        $cellHeight             = $record->getCellheight();
-        $numberOfCells          = $record->getNumberofcells();
 
-        $task->setTypeName($type);
-        $task->setAvatar($avatar);
-        $task->setCellWidth($cellWidth);
-        $task->setCellHeight($avatar);
-        $task->setCellHeight($cellHeight);
-        $task->setNumberOfCells($numberOfCells);
-        //);
-        $form = $this->createFormBuilder($task)
-            ->add('typename', TextType::class)
-            ->add('avatar', TextType::class)
-            ->add('cellwidth', TextType::class)
-            ->add('cellheight', TextType::class)
-            ->add('NumberOfCells', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Create Task'))
-            ->getForm();
-       return $this->render("default/J17JigsHobbitTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
-       }
-
-        // Acme\MainBundle\Controller\ArticleController.php
-    /**
-     * @Route("/", name="hobbit_types")
-     * @Method({"GET", "POST"})
-     */
-    public function listAction($start=0,$max=100)
-    {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM AppBundle:J17JigsHobbitTypes a";
-        $query      = $em->createQuery($dql)
-            ->setFirstResult($start)
-            ->setMaxResults($max);
-        $hobbitTypes = $query->getResult();
-
-        return $this->render('default/J17JigsHobbitTypes.html.twig', array('pagination' => $hobbitTypes));
-    }
 }

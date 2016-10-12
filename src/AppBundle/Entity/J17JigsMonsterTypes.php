@@ -50,7 +50,7 @@ class J17JigsMonsterTypes
     /**
      * @var integer
      */
-    private $numberofcells = '16';
+    private $numberOfCells = '16';
 
     /**
      * Set name
@@ -84,30 +84,6 @@ class J17JigsMonsterTypes
     {
         return $this->id;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Set spritesheet
@@ -188,9 +164,9 @@ class J17JigsMonsterTypes
      *
      * @return J17JigsMonsterTypes
      */
-    public function setNumberofcells($numberofcells)
+    public function setNumberOfCells($numberofcells)
     {
-        $this->numberofcells = $numberofcells;
+        $this->numberOfCells = $numberofcells;
 
         return $this;
     }
@@ -200,9 +176,9 @@ class J17JigsMonsterTypes
      *
      * @return integer
      */
-    public function getNumberofcells()
+    public function getNumberOfCells()
     {
-        return $this->numberofcells;
+        return $this->numberOfCells;
     }
 
 

@@ -3,11 +3,11 @@
     {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
     {# total items count #}
     <div class="count">
-
     </div>
     <table id='myTable' width="100%">
         <thead>
-        <tr>
+        <tr >
+            <th>  </th>
             <th> id </th>
             <th> name </th>
             <th> Category</th>
@@ -18,29 +18,25 @@
         </tr></thead>
         {# table body #}
         {% for article in pagination %}
-            <tr {% if loop.index is odd %}{% endif %}>
-                <td><a href="/object/{{article.id}}">{{article.id}}</a></td>
-                <td><a href="/object/{{article.id}}">{{article.name}}</a></td>
-                <td><a href="/object/{{article.id}}">{{article.category}}</a></td>
-                <td><a href="/object/{{article.id}}">{{article.cellWidth}}</a></td>
-                <td><a href="/object/{{article.id}}">{{article.cellHeight}}</a></td>
-                <td><a href="/object/{{article.id}}">{{article.numberOfCells}}</a></td>
+            <tr style = 'height:14px;' {% if loop.index is odd %}{% endif %}>
+                <td>   <div style="width:{{ article.cellwidth }}px;
+                            height:{{ article.cellheight }}px;
+                            overflow:hidden;">
+                        <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/objects/{{ article.category }}/{{ article.name }}">
+                    </div></td>
+                <td><a href="/object_type?id={{article.id}}">{{article.id}}</a></td>
+                <td><a href="/object_type?id={{article.id}}">{{article.name}}</a></td>
+                <td><a href="/object_type?id={{article.id}}">{{article.category}}</a></td>
+                <td><a href="/object_type?id={{article.id}}">{{article.cellWidth}}</a></td>
+                <td><a href="/object_type?id={{article.id}}">{{article.cellHeight}}</a></td>
+                <td><a href="/object_type?id={{article.id}}">{{article.numberOfCells}}</a></td>
             </tr>
         {% endfor %}
-
-
-
-
-
-
-
-
     </table>
-
-    <a href="/monsterTypes/new/">New</a>
+    <a href="/objectTypes/new/">New</a>
     {# display navigation #}
     <div class="navigation">
-
+        {{ knp_pagination_render(pagination) }}
     </div>
     <script src="/scripts/MonsterTypes.js"></script>
 {% endblock %}

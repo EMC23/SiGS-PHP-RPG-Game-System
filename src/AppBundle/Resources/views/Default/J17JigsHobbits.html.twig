@@ -24,8 +24,8 @@
 {# table body #}
 {% for article in pagination %}
 <tr {% if loop.index is odd %}class="color"{% endif %}>
-    <td><a href="/hobbit/{{article.id}}">{{article.id}}</a></td>
-    <td><a href="/hobbit/{{article.id}}">{{article.name}}</a></td>
+    <td><a href="/hobbit?id={{article.id}}">{{article.id}}</a></td>
+    <td><a href="/hobbit?id={{article.id}}">{{article.name}}</a></td>
     <td><a href="/faction/{{article.faction}}">{{article.faction}}</a></td>
     <td>{{article.type}}</td>
     <td>{{article.health}}</td>

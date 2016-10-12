@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 use AppBundle\Entity\J17JigsMonsterTypes;
+use AppBundle\Entity\J17JigsObjectTypes;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\Query;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,25 +19,19 @@ class ObjectTypesController extends Controller
     /**
      * @Route("/object_types/", name="object_types")
      */
-    public function indexAction($start=0,$max=100,Request $request)
+    public function listAction($start=0,$max=100,Request $request)
     {
         $em         = $this->get('doctrine.orm.entity_manager');
         $dql        = "SELECT a FROM AppBundle:J17JigsObjectTypes a";
         $query      = $em->createQuery($dql)
             ->setFirstResult($start)
             ->setMaxResults($max);
-     // $paginator  = new Paginator($query, $fetchJoinCollection = true);
         $paginator  = $this->get('knp_paginator');
-
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            20/*limit per page*/
         );
-        $pagination->setCustomParameters(array(
-            'style' => 'bottom',
-            'span_class' => 'whatever'
-        ));
         return $this->render('AppBundle:Default:J17JigsObjectTypes.html.twig', array('pagination' => $pagination));
     }
 
@@ -46,9 +41,9 @@ class ObjectTypesController extends Controller
      */
     public function showAction(Request $request)
     {
-        $task       = new J17JigsMonsterTypes();
-        $id = $request->get('id');
-        $record     = $this->getDoctrine()
+        $task           = new J17JigsObjectTypes();
+        $id             = $request->get('id');
+        $record         = $this->getDoctrine()
             ->getRepository("AppBundle:J17JigsObjectTypes")
             ->find($id);
 
@@ -56,12 +51,34 @@ class ObjectTypesController extends Controller
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
         $name           = $record->getName();
+        $category       = $record->getCategory();
+        $description    = $record->getDescription();
+        $manTime        = $record->getMantime();
+        $level          = $record->getLevel();
+        $cellWidth      = $record->getCellWidth();
+        $cellHeight     = $record->getCellHeight();
+        $numberOfCells  = $record->getNumberOfCells();
+
+        $task->setName($name);
+        $task->setCategory($category);
+        $task->setDescription($description);
+        $task->setManTime($manTime);
+        $task->setLevel($level);
+        $task->setCellWidth($cellWidth);
+        $task->setCellHeight($cellHeight);
+        $task->setNumberOfCells($numberOfCells);
+
         $form = $this->createFormBuilder($task)
             ->add('name', TextType::class)
-
-            ->add('save', SubmitType::class, array('label' => 'Create Task'))
+            ->add('category', TextType::class)
+            ->add('description', TextType::class)
+            ->add('mantime', TextType::class)
+            ->add('level', TextType::class)
+            ->add('cellwidth', TextType::class)
+            ->add('cellheight', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create ObjectType'))
             ->getForm();
-        return $this->render("AppBundle:Default:J17JigsObjectTypes_page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView()));
     }
 
     /**

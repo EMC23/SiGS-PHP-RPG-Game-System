@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-
 /**
  * J17JigsHobbitTypes
  * @ORM\Table(name="j17_jigs_hobbit_types", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
@@ -19,18 +18,12 @@ class J17JigsHobbitTypes
      */
     private $J17JigsHobbits;
 
-    public function __construct()
-    {
-        $this->J17JigsHobbits = new ArrayCollection();
-    }
-
      /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-
      */
     private $id;
 
@@ -62,6 +55,19 @@ class J17JigsHobbitTypes
      */
     private $cellheight;
 
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numberofcells", type="integer", length=3, nullable=true)
+     */
+    private $numberOfCells;
+
+
+    public function __construct()
+    {
+        $this->J17JigsHobbits = new ArrayCollection();
+    }
     /**
      * Set type
      *
@@ -72,7 +78,6 @@ class J17JigsHobbitTypes
    public function setTypeName($typename)
     {
         $this->typename = $typename;
-
         return $this;
     }
 
@@ -96,7 +101,6 @@ class J17JigsHobbitTypes
         return $this->id;
     }
 
-
     /**
      * Set avatar
      *
@@ -107,7 +111,6 @@ class J17JigsHobbitTypes
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
-
         return $this;
     }
 
@@ -130,7 +133,6 @@ class J17JigsHobbitTypes
     public function setCellwidth($cellwidth)
     {
         $this->cellwidth = $cellwidth;
-
         return $this;
     }
 
@@ -154,7 +156,6 @@ class J17JigsHobbitTypes
     public function setCellheight($cellheight)
     {
         $this->cellheight = $cellheight;
-
         return $this;
     }
 
@@ -167,35 +168,27 @@ class J17JigsHobbitTypes
     {
         return $this->cellheight;
     }
-    /**
-     * @var integer
-     */
-    private $numberofcells;
-
 
     /**
      * Set numberofcells
      *
-     * @param integer $numberofcells
+     * @param integer $numberOfCells
      *
      * @return J17JigsHobbitTypes
      */
-    public function setNumberofcells($numberofcells)
+    public function setNumberOfCells($numberOfCells)
     {
-        $this->numberofcells = $numberofcells;
-
+        $this->numberOfCells = $numberOfCells;
         return $this;
     }
 
     /**
-     * Get numberofcells
+     * Get numberOfCells
      *
      * @return integer
      */
-    public function getNumberofcells()
+    public function getNumberOfCells()
     {
-        return $this->numberofcells;
+        return $this->numberOfCells;
     }
-
-
 }

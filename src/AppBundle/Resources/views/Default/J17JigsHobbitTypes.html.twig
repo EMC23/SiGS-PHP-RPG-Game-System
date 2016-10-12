@@ -12,7 +12,7 @@
             <th> name </th>
             <th> cellwidth</th>
             <th> cellheight</th>
-            <th> numberofcells</th>
+            <th> number of cells</th>
             <th></th>
         </tr></thead>
         {# table body #}
@@ -21,17 +21,20 @@
                 <td>   <div style="width:{{ article.cellwidth }}px;
                             height:{{ article.cellheight }}px;
                             overflow:hidden;">
-                        <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/chars/halflings/{{ article.typename }}/{{ article.typename }}.png">
+                        <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/chars/halflings/{{ article.typename }}.png">
                     </div></td>
-                <td><a href="/hobbitTypes/{{article.id}}">{{article.id}}</a></td>
-                <td><a href="/hobbitTypes/{{article.id}}">{{article.name}}</a></td>
-
+                <td><a href="/hobbit_type?id={{article.id}}">{{article.id}}</a></td>
+                <td><a href="/hobbit_type?id={{article.id}}">{{article.typename}}</a></td>
+                <td>{{article.cellWidth}}</a></td>
+                <td>{{article.cellHeight}}</a></td>
+                <td>{{article.numberOfCells}}</a></td>
             </tr>
         {% endfor %}
     </table>
     <a href="/hobbitTypes/new/">New</a>
     {# display navigation #}
-    <div class="navigation">
+    <div class="navigation">   {{ knp_pagination_render(pagination) }}
+
     </div>
     <script src="/scripts/MonsterTypes.js"></script>
 {% endblock %}

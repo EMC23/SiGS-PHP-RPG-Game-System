@@ -128,7 +128,7 @@ class J17JigsObjectTypes
      * Set name
      *
      * @param string $name
-     * @return J17JigsObjectType
+     * @return J17JigsObjectTypes
      */
     public function setCategory($category)
     {
@@ -146,14 +146,11 @@ class J17JigsObjectTypes
         return $this->category;
     }
 
-
-
-
     /**
      * Set description
      *
      * @param string $description
-     * @return J17JigsObjects
+     * @return J17JigsObjectTypes
      */
     public function setDescription($description)
     {

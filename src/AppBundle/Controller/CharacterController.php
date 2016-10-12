@@ -39,7 +39,6 @@ class CharacterController extends Controller
 
     public function listAction(Request $request)
     {
-        $type = 'J17JigsCharacters';
         $em = $this->get('doctrine.orm.entity_manager');
         $dql = "SELECT a FROM AppBundle:J17JigsCharacters a";
         $query = $em->createQuery($dql);
@@ -47,9 +46,9 @@ class CharacterController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            20/*limit per page*/
         );
-        return $this->render('AppBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
+        return $this->render('AppBundle:Default:J17JigsCharacters.html.twig', array('pagination' => $pagination));
     }
 
     /**
@@ -67,13 +66,60 @@ class CharacterController extends Controller
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-        $name = $record->getName();
+        $name  = $record->getName();
+        $level = $record->getLevel();
+        $grid  = $record->getGrid();
+        $posX  = $record->getPosX();
+        $posY  = $record->getPosY();
+        $gid  = $record->getGid();
+        $avatar  = $record->getAvatar();
+        $active  = $record->getActive();
+        $timeKilled = $record->getTimeKilled();
+        $money = $record->getMoney();
+        $bank = $record->getBank();
+        $commment = $record->getComment();
+        $history = $record->getHistory();
+        $health = $record->getHealth();
+        $slack = $record->getSlack();
+        $mood = $record->getMood();
+        $aggression = $record->getAggression();
+        $contentment = $record->getContentment();
+        $attack = $record->getAttack();
+        $defence = $record->getDefence();
+        $intelligence = $record->getIntelligence();
+        $strength = $record->getStrength();
+
         $task->setName($name);
+        $task->setLevel($level);
+        $task->setGrid($grid);
+        $task->setPosX($posX);
+        $task->setPosY($posY);
+        $task->setGid($gid);
+        $task->setAvatar($avatar);
+        $task->setActive($active);
+        $task->setAttack($attack);
+        $task->setDefence($defence);
+        $task->setStrength($strength);
+        $task->setIntelligence($intelligence);
+
         $form = $this->createFormBuilder($task)
             ->add('name', TextType::class)
+            ->add('level', TextType::class)
+            ->add('grid', TextType::class)
+            ->add('posX', TextType::class)
+            ->add('posY', TextType::class)
+            ->add('gid', TextType::class)
+            ->add('avatar', TextType::class)
+            ->add('active', TextType::class)
+            ->add('attack', TextType::class)
+            ->add('defence', TextType::class)
+            ->add('strength', TextType::class)
+            ->add('intelligence', TextType::class)
+
+
             ->add('save', SubmitType::class)
             ->getForm();
-        return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
     public function addAction()
@@ -128,14 +174,10 @@ class CharacterController extends Controller
                 ->getForm();
         }
 
-
         $form->handleRequest($request);
 
-
         if ($form->isValid()) {
-
             //$record = $form->getData();
-
             $name = $task->getName();
             $faction = $task->getFaction();
             $contentment = $task->getContentment();
@@ -154,10 +196,8 @@ class CharacterController extends Controller
             $task->setContentment($contentment);
             $task->setGid($gid);
             $task->setOwner($owner);
-
             $em->persist($task);
             $em->flush();
-
             return $this->redirect($this->generateUrl('task_success'));
         }
         return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));

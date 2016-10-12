@@ -19,13 +19,11 @@ class J17JigsObjects
      */
     private $playerId;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="J17JigsObjectTypes")
      * @ORM\JoinColumn(name="type", referencedColumnName="id")
      */
     private $type;
-
 
     /**
      * @var integer
@@ -42,8 +40,6 @@ class J17JigsObjects
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-
 
     /**
      * Set playerId
@@ -100,6 +96,19 @@ class J17JigsObjects
     {
         return $this->id;
     }
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\J17JigsObjects $type
+     *
+     * @return J17JigsObjects
+     */
+    public function setId($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
 
     /**
      * Get type
@@ -124,20 +133,4 @@ class J17JigsObjects
 
         return $this;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

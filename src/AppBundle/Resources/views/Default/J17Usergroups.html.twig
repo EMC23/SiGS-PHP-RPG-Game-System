@@ -15,7 +15,7 @@
 {% for faction in pagination %}
     {% for group in faction %}
     <tr {% if loop.index is odd %}class="color"{% endif %}>
-        <td><a href="/group?id={{group.title}}">{{group.title}}</a></td>
+        <td><a href="/group?id={{group.id}}">{{group.title}}</a></td>
         <td>{{group.parentId}}</td>
         <td>{{group.group.totalMembers}}</td>
     </tr>

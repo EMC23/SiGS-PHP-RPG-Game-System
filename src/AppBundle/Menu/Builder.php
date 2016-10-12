@@ -12,6 +12,7 @@ class Builder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
         $menu->setChildrenAttributes(array('id' => 'menu'));
         $menu->addChild('Home', array('route' => 'homepage'));
+
         $menu->addChild('Players', array(
             'route' => 'players',
         ));

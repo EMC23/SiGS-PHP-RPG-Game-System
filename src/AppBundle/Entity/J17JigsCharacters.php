@@ -129,8 +129,6 @@ class J17JigsCharacters
      */
     private $bank;
 
-
-
     /**
      * @var boolean
      *
@@ -925,28 +923,127 @@ class J17JigsCharacters
         return $this->intelligence;
     }
 
+
+
+
+
+
+    /**
+     * Get history
+     *
+     * @return boolean 
+     */
+    public function getHistory()
+    {
+        return $this->history;
+    }
+
     /**
      * Set empty
      *
-     * @param boolean $empty
+     * @param boolean $history
      * @return J17JigsCharacters
      */
-    public function setEmpty($empty)
+    public function setHistory($history)
     {
-        $this->empty = $empty;
+        $this->history = $history;
 
         return $this;
     }
 
     /**
-     * Get empty
+     * Get slack
      *
-     * @return boolean 
+     * @return boolean
      */
-    public function getEmpty()
+    public function getSlack()
     {
-        return $this->empty;
+        return $this->slack;
     }
+
+    /**
+     * Set slack
+     *
+     * @param boolean $slack
+     * @return J17JigsCharacters
+     */
+    public function setSlack($slack)
+    {
+        $this->slack = $slack;
+
+        return $this;
+    }
+
+    /**
+     * Set bank
+     *
+     * @param boolean $bank
+     * @return J17JigsCharacters
+     */
+    public function setBank($bank)
+    {
+        $this->bank = $bank;
+
+        return $this;
+    }
+
+    /**
+     * Get Aggression
+     *
+     * @return boolean
+     */
+    public function getAggression()
+    {
+        return $this->aggression;
+    }
+
+    /**
+     * Set bank
+     *
+     * @param  $contentment
+     * @return J17JigsCharacters
+     */
+    public function setContentment($contentment)
+    {
+        $this->contentment = $contentment;
+
+        return $this;
+    }
+
+    /**
+     * Get Contentment
+     *
+     * @return boolean
+     */
+    public function getContentment()
+    {
+        return $this->contentment;
+    }
+
+    /**
+     * Set bank
+     *
+     * @param  $aggression
+     * @return J17JigsCharacters
+     */
+    public function setAggression($aggression)
+    {
+        $this->aggression = $aggression;
+
+        return $this;
+    }
+
+    /**
+     * Get bank
+     *
+     * @return boolean
+     */
+    public function getBank()
+    {
+        return $this->bank;
+    }
+
+
 
     /**
      * Set published

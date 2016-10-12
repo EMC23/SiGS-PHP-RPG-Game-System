@@ -85,6 +85,14 @@ class J17JigsBuildings
     /**
      * @var integer
      *
+     * @ORM\Column(name="cash", type="integer", nullable=false)
+     */
+    private $cash;
+
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="owner", type="integer", nullable=false)
      */
     private $owner;
@@ -283,24 +291,24 @@ class J17JigsBuildings
     /**
      * Set coffre
      *
-     * @param integer $coffre
+     * @param integer $cash
      * @return J17JigsBuildings
      */
-    public function setCoffre($coffre)
+    public function setCash($cash)
     {
-        $this->coffre = $coffre;
+        $this->cash = $cash;
 
         return $this;
     }
 
     /**
-     * Get coffre
+     * Get cash
      *
      * @return integer 
      */
-    public function getCoffre()
+    public function getCash()
     {
-        return $this->coffre;
+        return $this->cash;
     }
 
     /**

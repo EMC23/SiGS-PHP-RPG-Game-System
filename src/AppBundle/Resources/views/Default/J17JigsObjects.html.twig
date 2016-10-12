@@ -15,18 +15,16 @@
     <th{% if pagination.isSorted('a.posy') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(pagination, 'Pos-Y', 'a.posy') }} </th>
     <th> Owner </th>
     <th> location </th>
-
 </tr>
 {# table body #}
 {% for article in pagination %}
 <tr {% if loop.index is odd %}{% endif %}>
-   <td><a href="/object/{{article.id}}">{{article.id}}</a></td>
+   <td><a href="/object?id={{article.id}}">{{article.id}}</a></td>
     <td>   </td>
-    <td><a href="/object/{{article.id}}">{{article.type.name}}</a></td>
+    <td><a href="/object?id={{article.id}}">{{article.type.name}}</a></td>
     <td>   </td><td>   </td>
     <td>{{article.PlayerId}}</td>
     <td>{{article.location}}</td>
-
 </tr>
 {% endfor %}
 </table>
@@ -34,5 +32,4 @@
 <div class="navigation">
     {{ knp_pagination_render(pagination) }}
 </div>
-
 {% endblock %}

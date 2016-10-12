@@ -23,15 +23,17 @@
                             overflow:hidden;">
                         <img src="http://www.eclecticmeme.com/components/com_battle/images/assets/chars/monsters/{{ article.name }}/{{ article.name }}.png">
                     </div></td>
-                <td><a href="/monster/{{article.id}}">{{article.id}}</a></td>
-                <td><a href="/monster/{{article.id}}">{{article.name}}</a></td>
-
+                <td><a href="/monstertype?id={{article.id}}">{{article.id}}</a></td>
+                <td><a href="/monstertype?id={{article.id}}">{{article.name}}</a></td>
+                <td>{{article.cellWidth}}</td>
+                <td>{{article.cellHeight}}</td>
+                <td>{{article.numberOfCells}}</td>
             </tr>
         {% endfor %}
     </table>
     <a href="/monsterTypes/new/">New</a>
     {# display navigation #}
-    <div class="navigation">
+    <div class="navigation">   {{ knp_pagination_render(pagination) }}
     </div>
     <script src="/scripts/MonsterTypes.js"></script>
 {% endblock %}

@@ -36,7 +36,7 @@ class HobbitController extends Controller
             $pagination = $paginator->paginate(
                 $query, /* query NOT result */
                 $request->query->getInt('page', 1)/*page number*/,
-                10/*limit per page*/
+                20/*limit per page*/
             );
 
         return $this->render('AppBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
@@ -143,6 +143,6 @@ class HobbitController extends Controller
                 ->add('save', SubmitType::class)
                 ->getForm();
         //     return $this->render("AppBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record));
-          return $this->render("AppBundle:Default:J17JigsHobbits_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+          return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 }

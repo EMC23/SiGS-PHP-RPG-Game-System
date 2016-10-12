@@ -41,17 +41,17 @@ gulp.task('pdf-design', function() {
 gulp.task('site-design', function() {
     gulp.src([
 
-        'bower_components/bootstrap-sortable/Contents/bootstrap-sortable.css',
-        'bower_components/jquery.ui/themes/base/jquery.ui.core.css',
-        'bower_components/jquery.ui/themes/base/jquery.ui.theme.css',
-        'bower_components/jquery.ui/themes/base/jquery.ui.slider.css',
+       // 'bower_components/bootstrap-sortable/Contents/bootstrap-sortable.css',
+     //   'bower_components/jquery.ui/themes/base/jquery.ui.core.css',
+     //   'bower_components/jquery.ui/themes/base/jquery.ui.theme.css',
+     //   'bower_components/jquery.ui/themes/base/jquery.ui.slider.css',
 
-      //  'bower_components/bootstrap/less/pagination.css',
+    //    'bower_components/bootstrap/less/pagination.less',
 
-        'src/Webroot/Styles/font-awesome.min.css',
-        'bower_components/bootstrap/dist/css/bootstrap.min.css',
+    //    'src/Webroot/Styles/font-awesome.min.css',
+     //   'bower_components/bootstrap/dist/css/bootstrap.min.css',
 
-      //  'src/Webroot/Styles/less/site.less',
+        'src/Webroot/Styles/less/site.less'
 
     //    'node_modules/datatables.net-bs/css/dataTables.bootstrap.css',
 
@@ -60,7 +60,7 @@ gulp.task('site-design', function() {
         .pipe(less())
         .pipe(concat('style.css'))
      //   .pipe(cssmin())
-        .pipe(gulp.dest('web/styles/'));
+        .pipe(gulp.dest('www/styles/'));
 });
 
 gulp.task('site-scripts', function() {
@@ -110,7 +110,7 @@ gulp.task('site-scripts', function() {
     ])
         .pipe(concat('scripts.js'))
       //  .pipe(uglify())
-        .pipe(gulp.dest('web/scripts/'));
+        .pipe(gulp.dest('www/scripts/'));
 });
 /*
 gulp.task('site-google-maps', function () {

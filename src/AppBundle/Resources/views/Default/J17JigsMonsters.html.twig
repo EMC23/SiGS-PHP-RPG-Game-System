@@ -24,7 +24,7 @@
 {# table body #}
 {% for article in pagination %}
 <tr {% if loop.index is odd %}{% endif %}>
-   <td><a href="/monster/{{article.id}}">{{article.id}}</a></td>
+   <td><a href="/monster?id={{article.id}}">{{article.id}}</a></td>
     <td>   <div style="width:{{ article.type.cellwidth }}px;
                 height:{{ article.type.cellheight }}px;
                 overflow:hidden;">

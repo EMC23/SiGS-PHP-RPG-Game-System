@@ -52,18 +52,43 @@ class MonsterController extends Controller
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
 
+        $status = $record->getStatus();
         $health = $record->getHealth();
+        $strength= $record->getStrength();
+        $intelligence = $record->getIntelligence();
+        $attack = $record->getAttack();
+        $defence = $record->getDefence();
+        $map = $record->getMap();
+        $grid = $record->getGrid();
+        $x = $record->getX();
+        $y = $record->getY();
         $task = new J17JigsMonsters();
+
+        $task->setStatus($status);
         $task->setHealth($health);
+        $task->setStrength($strength);
+        $task->setIntelligence($intelligence);
+        $task->setAttack($attack);
+        $task->setDefence($defence);
+        $task->setMap($map);
+        $task->setGrid($grid);
+        $task->setX($x);
+        $task->setY($y);
+
         $form = $this->createFormBuilder($task)
             ->add('health', TextType::class)
             ->add('strength', TextType::class)
             ->add('intelligence', TextType::class)
-            //   ->add('group', 'text')
+            ->add('attack', TextType::class)
+            ->add('defence', TextType::class)
+            ->add('map', TextType::class)
+            ->add('grid', TextType::class)
+            ->add('x', TextType::class)
+            ->add('y', TextType::class)
             ->add('save', SubmitType::class)
             ->getForm();
         //     return $this->render("AppBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record));
-        return $this->render("AppBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
 

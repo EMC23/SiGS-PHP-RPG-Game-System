@@ -32,7 +32,7 @@ class ObjectController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            20/*limit per page*/
         );
         return $this->render('AppBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
     }
@@ -52,15 +52,23 @@ class ObjectController extends Controller
         if (!$record) {
             throw $this->createNotFoundException('No record found for id ' . $id);
         }
-        $id = $record->getId();
         $task = new J17JigsObjects();
+        $player_id = $record->getPlayerId();
+        $type = $record->getType();
+        $location = $record->getLocation();
         $task->setId($id);
+        $task->setPlayerId($player_id);
+        //$task->setType($type);
+        $task->setLocation($location);
+
         $form = $this->createFormBuilder($task)
             ->add('id', TextType::class)
-
+            ->add('playerId', TextType::class)
+            ->add('type', TextType::class)
+            ->add('location', TextType::class)
             ->add('save', SubmitType::class)
             ->getForm();
-        return $this->render("AppBundle:Default:J17JigsObjects_page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
     public function addAction()

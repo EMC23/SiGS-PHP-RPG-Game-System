@@ -29,6 +29,12 @@ class J17JigsMonsters
     /**
      * @var integer
      *
+     * @ORM\Column(name="status", type="integer", nullable=false)
+     */
+    private $status;
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="health", type="integer", nullable=false)
      */
     private $health;
@@ -95,22 +101,29 @@ class J17JigsMonsters
 
         $this->type = $this->getType();
 
-
 }
 
 
-
     /**
-     * Set attack
+     * Set status
      *
-     * @param integer $attack
+     * @param integer $status
      * @return J17JigsMonsters
      */
-    public function setX($attack)
+    public function setStatus($status)
     {
-        $this->attack = $attack;
+        $this->status = $status;
 
         return $this;
+    }
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**
@@ -152,6 +165,18 @@ class J17JigsMonsters
     public function setDefence($defence)
     {
         $this->defence = $defence;
+
+        return $this;
+    }
+    /**
+     * Set x
+     *
+     * @param integer $x
+     * @return J17JigsMonsters
+     */
+    public function setX($x)
+    {
+        $this->x = $x;
 
         return $this;
     }
