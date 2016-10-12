@@ -53,7 +53,12 @@ class J17JigsHobbits
      * @ORM\Column(name="gid", type="integer", nullable=true)
      */
     private $gid;
-
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="section", type="integer", nullable=true)
+     */
+    private $section;
     /**
      * @var integer
      *
@@ -61,6 +66,12 @@ class J17JigsHobbits
      */
     private $owner;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="xp", type="integer", nullable=true)
+     */
+    private $xp;
 
     /**
      * @var string
@@ -90,7 +101,24 @@ class J17JigsHobbits
      * @ORM\Column(name="contentment", type="integer", nullable=true)
      */
     private $contentment;
-    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="x", type="integer", nullable=true)
+     */
+    private $x;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="y", type="integer", nullable=true)
+     */
+    private $y;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=true)
+     */
+    private $status;
 
      /**
      * @var integer
@@ -377,10 +405,10 @@ class J17JigsHobbits
     /**
      * Set owner
      *
-     * @param integer $owner
+     * @param integer $owner_type
      * @return J17JigsHobbits
      */
-    public function setOwner_type($owner_type)
+    public function setOwnerType($owner_type)
     {
         $this->owner_type = $owner_type;
         return $this;
@@ -391,14 +419,32 @@ class J17JigsHobbits
      *
      * @return integer 
      */
-    public function getOwner_type()
+    public function getOwnerType()
     {
         return $this->owner_type;
     }
 
+    /**
+     * Set section
+     *
+     * @param integer $section
+     * @return J17JigsHobbits
+     */
+    public function setSection($section)
+    {
+        $this->section = $section;
+        return $this;
+    }
 
-////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
+    /**
+     * Get section
+     *
+     * @return integer
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
 
     /**
      * Set type
@@ -422,7 +468,27 @@ class J17JigsHobbits
         return $this->type;
     }
 
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return J17JigsHobbits
+     */
+    public function setXp($xp)
+    {
+        $this->xp = $xp;
+        return $this;
+    }
 
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getXp()
+    {
+        return $this->xp;
+    }
 ////////////////////////////////////////////////////
 
 
@@ -435,8 +501,70 @@ class J17JigsHobbits
     {
         return $this->id;
     }
-    
- 
-    
+
+    /**
+     * Set y
+     *
+     * @param integer $y
+     * @return J17JigsHobbits
+     */
+    public function setY($y)
+    {
+        $this->y = $y;
+        return $this;
+    }
+
+    /**
+     * Get y
+     *
+     * @return integer
+     */
+    public function getY()
+    {
+        return $this->y;
+    }
+    /**
+     * Set x
+     *
+     * @param integer $x
+     * @return J17JigsHobbits
+     */
+    public function setX($x)
+    {
+        $this->x = $x;
+        return $this;
+    }
+
+    /**
+     * Get x
+     *
+     * @return integer
+     */
+    public function getX()
+    {
+        return $this->x;
+    }
+///////////
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return J17JigsHobbits
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }
 

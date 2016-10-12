@@ -3,6 +3,7 @@
 // src/Acme/HelloBundle/Controller/HelloController.php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\J17JigsHobbits;
 use AppBundle\Entity\J17JigsMonsters;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -40,6 +41,82 @@ class HobbitController extends Controller
             );
 
         return $this->render('AppBundle:Default:' . $type . '.html.twig', array('pagination' => $pagination, 'type' => $type));
+    }
+
+    /**
+     * @Route("/hobbit/", name="showHobbit")
+     * @Method("GET")
+     *
+     */
+    public function showAction(Request $request)
+    {
+        //  $task = new J17JigsMonsters();
+        $type = 'J17JigsHobbits';
+        $id = $request->get('id');
+        $record = $this->getDoctrine()
+            ->getRepository("AppBundle:J17JigsHobbits")
+            ->find($id);
+
+        if (!$record) {
+            throw $this->createNotFoundException('No record found for id ' . $id);
+        }
+        $health = $record->getHealth();
+        $strength = $record->getStrength();
+        $intelligence = $record->getIntelligence();
+        $xp = $record->getXp();
+        $contentment = $record->getContentment();
+        $birth = $record->getBirth();
+        $faction = $record->getFaction();
+        $gid = $record->getGid();
+        $owner = $record->getOwner();
+        $owner_type = $record->getOwnerType();
+        $section = $record->getSection();
+        $x = $record->getX();
+        $y = $record->getY();
+        $grid = $record->getGrid();
+        $map = $record->getMap( );
+        $status = $record->getStatus();
+
+        $task = new J17JigsHobbits();
+        $task->setHealth($health);
+        $task->setStrength($strength);
+        $task->setIntelligence($intelligence);
+        $task->setXp($xp);
+        $task->setContentment($contentment);
+        $task->setBirth($birth);
+        $task->setFaction($faction);
+        $task->setGid($gid);
+        $task->setOwner($owner);
+        $task->setOwnerType($owner_type);
+        $task->setSection($section);
+        $task->setX($x);
+        $task->setY($y);
+        $task->setGrid($grid);
+        $task->setMap($map);
+        $task->setStatus($status);
+
+        $form = $this->createFormBuilder($task)
+            ->add('health', TextType::class)
+            ->add('strength', TextType::class)
+            ->add('intelligence', TextType::class)
+            ->add('xp', TextType::class)
+            ->add('contentment', TextType::class)
+            ->add('birth', TextType::class)
+            ->add('faction', TextType::class)
+            ->add('gid', TextType::class)
+            ->add('owner', TextType::class)
+            ->add('owner_type', TextType::class)
+            ->add('birth', TextType::class)
+            ->add('section', TextType::class)
+            ->add('x', TextType::class)
+            ->add('y', TextType::class)
+            ->add('grid', TextType::class)
+            ->add('map', TextType::class)
+            ->add('status', TextType::class)
+            ->add('save', SubmitType::class)
+            ->getForm();
+        //     return $this->render("AppBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record));
+        return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 
     public function addAction()
@@ -106,43 +183,5 @@ class HobbitController extends Controller
             return $this->redirect($this->generateUrl('task_success'));
         }
         return $this->render("AppBundle:Default:" . $type . "_page.html.twig", array('form' => $form->createView(), 'type' => $type));
-    }
-
-    /**
-     * @Route("/hobbit/", name="showHobbit")
-     * @Method("GET")
-     *
-     */
-    public function showAction(Request $request)
-    {
-      //  $task = new J17JigsMonsters();
-        $type = 'J17JigsHobbits';
-        $id = $request->get('id');
-        $record = $this->getDoctrine()
-            ->getRepository("AppBundle:J17JigsHobbits")
-            ->find($id);
-
-        if (!$record) {
-            throw $this->createNotFoundException('No record found for id ' . $id);
-        }
-            $health = $record->getHealth();
-            $strength = $record->getStrength();
-            $intelligence = $record->getIntelligence();
-            $task = new J17JigsMonsters();
-           $task->setHealth($health);
-        //    $task->setStrength($strength);
-        //    $task->setIntelligence($intelligence);
-            // $task->setGroup($group);
-
-            $form = $this->createFormBuilder($task)
-                ->add('health', TextType::class)
-                ->add('strength', TextType::class)
-                ->add('intelligence', TextType::class)
-                //   ->add('group', 'text')
-
-                ->add('save', SubmitType::class)
-                ->getForm();
-        //     return $this->render("AppBundle:Default:J17JigsMonsters_page.html.twig", array('stuff' => $record));
-          return $this->render("AppBundle:Default:page.html.twig", array('stuff' => $record, 'form' => $form->createView(), 'type' => $type));
     }
 }
